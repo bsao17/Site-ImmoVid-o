@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACN | Production Audiovisuelle : Drone, Photo & Immobilier</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #ffffff;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .video-placeholder {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        .img-zoom:hover img {
+            transform: scale(1.05);
+        }
+        .text-balance {
+            text-wrap: balance;
+        }
+        .accent-gradient {
+            background: linear-gradient(to right, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="text-slate-900 antialiased">
+
+    <!-- Navigation -->
+    <nav class="glass-nav fixed w-full z-50 top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center space-x-2">
+                    <span class="text-2xl font-extrabold tracking-tighter text-slate-900">ACN<span class="text-blue-600">.</span></span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#services" class="text-sm font-semibold hover:text-blue-600 transition-colors">Prestations</a>
+                    <a href="#immobilier" class="text-sm font-semibold hover:text-blue-600 transition-colors">Vente Immobilière</a>
+                    <a href="#corporate" class="text-sm font-semibold hover:text-blue-600 transition-colors">Corporate</a>
+                    <a href="#contact" class="bg-slate-900 text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-blue-600 transition-all shadow-lg">Demander un devis</a>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="p-2"><i data-lucide="menu"></i></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="inline-flex items-center space-x-2 bg-slate-100 px-4 py-1.5 rounded-full mb-8">
+                    <i data-lucide="camera" class="w-4 h-4 text-blue-600"></i>
+                    <span class="text-xs font-bold uppercase tracking-widest text-slate-600">Drone • Photo • Vidéo • Montage</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 mb-8 text-balance">
+                    L'excellence visuelle pour <span class="accent-gradient">sublimer</span> vos projets.
+                </h1>
+                <p class="text-lg md:text-xl text-slate-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+                    De la prise de vue aérienne par drone au montage dynamique, nous créons des contenus audiovisuels haute définition pour accélérer vos ventes immobilières et booster votre image corporate.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="#immobilier" class="w-full sm:w-auto bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-blue-700 transition-all shadow-xl shadow-blue-200 flex items-center justify-center">
+                        Vendre mon bien
+                        <i data-lucide="chevron-right" class="ml-2 w-5 h-5"></i>
+                    </a>
+                    <a href="#services" class="w-full sm:w-auto bg-white border-2 border-slate-200 text-slate-900 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 transition-all flex items-center justify-center">
+                        Voir nos services
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Background Elements -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-0 opacity-10 pointer-events-none">
+            <div class="absolute top-20 left-10 w-64 h-64 bg-blue-400 rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-10 right-10 w-96 h-96 bg-purple-400 rounded-full blur-[120px]"></div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section id="services" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-4 gap-8">
+                <div class="lg:col-span-2 flex flex-col justify-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Une expertise complète du ciel au sol.</h2>
+                    <p class="text-slate-600 mb-8 text-lg">Nous maîtrisons l'intégralité de la chaîne de production pour vous livrer des visuels prêts à l'emploi, optimisés pour vos réseaux et plateformes de vente.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl transition-all">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="send"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Drone 4K</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Prises de vues aériennes spectaculaires pour situer un bien dans son environnement ou inspecter des structures.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl transition-all">
+                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="aperture"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Photo & Vidéo Sol</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Matériel professionnel pour capturer les détails, les volumes et l'ambiance intérieure avec une lumière parfaite.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl transition-all">
+                    <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="film"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Post-Production</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Montage dynamique, étalonnage des couleurs et animations motion design pour un rendu cinéma.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl transition-all">
+                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="layers"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Animation & 3D</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Intégration de textes, logos et éléments graphiques pour expliquer vos projets ou valoriser vos chiffres clés.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Immobilier Focus -->
+    <section id="immobilier" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-4 pt-12">
+                            <div class="rounded-3xl overflow-hidden shadow-lg img-zoom">
+                                <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&q=80&w=600" alt="Villa de luxe drone" class="w-full h-64 object-cover transition-transform duration-500">
+                            </div>
+                            <div class="rounded-3xl overflow-hidden shadow-lg img-zoom text-center bg-blue-600 p-6 text-white">
+                                <p class="text-3xl font-bold mb-1">-30%</p>
+                                <p class="text-xs uppercase font-bold opacity-80">Temps de vente moyen</p>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="rounded-3xl overflow-hidden shadow-lg img-zoom">
+                                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=600" alt="Intérieur moderne" class="w-full h-80 object-cover transition-transform duration-500">
+                            </div>
+                            <div class="rounded-3xl overflow-hidden shadow-lg img-zoom">
+                                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=600" alt="Terrain aérien" class="w-full h-48 object-cover transition-transform duration-500">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-blue-600 font-bold uppercase tracking-widest text-sm mb-4">Focus Immobilier P2P</h2>
+                    <h3 class="text-4xl font-bold text-slate-900 mb-6 leading-tight">Vendez comme un pro, économisez les commissions.</h3>
+                    <p class="text-lg text-slate-600 mb-8">
+                        Le premier contact avec votre acheteur est visuel. Dans la vente de particulier à particulier, la qualité de vos photos et vidéos fait la différence entre un bien qui stagne et un bien qui se vend au prix fort.
+                    </p>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-start space-x-3">
+                            <div class="mt-1 bg-blue-100 p-1 rounded-full"><i data-lucide="check" class="w-4 h-4 text-blue-600"></i></div>
+                            <span class="font-medium text-slate-700">Valorisation maximale des volumes et de la luminosité.</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <div class="mt-1 bg-blue-100 p-1 rounded-full"><i data-lucide="check" class="w-4 h-4 text-blue-600"></i></div>
+                            <span class="font-medium text-slate-700">Vidéo de présentation immersive pour filtrer les curieux.</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <div class="mt-1 bg-blue-100 p-1 rounded-full"><i data-lucide="check" class="w-4 h-4 text-blue-600"></i></div>
+                            <span class="font-medium text-slate-700">Prises de vues drone pour montrer l'environnement et le terrain.</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="inline-flex items-center text-blue-600 font-bold hover:translate-x-2 transition-transform">
+                        Voir un exemple de reportage immobilier
+                        <i data-lucide="arrow-right" class="ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Corporate Section -->
+    <section id="corporate" class="py-24 bg-slate-900 text-white overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="lg:flex items-center justify-between gap-12">
+                <div class="lg:w-1/2 mb-12 lg:mb-0">
+                    <h2 class="text-4xl font-bold mb-6">Expertise Corporate</h2>
+                    <p class="text-slate-400 text-lg mb-8">
+                        Donnez une nouvelle dimension à votre communication d'entreprise. Reportages événementiels, vidéos de marque, suivis de chantier ou présentations industrielles.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="border-l-2 border-blue-500 pl-4">
+                            <h4 class="font-bold text-xl mb-2">Publicité</h4>
+                            <p class="text-slate-500 text-sm">Contenus impactants pour vos réseaux sociaux et campagnes ADS.</p>
+                        </div>
+                        <div class="border-l-2 border-purple-500 pl-4">
+                            <h4 class="font-bold text-xl mb-2">Suivi de Chantier</h4>
+                            <p class="text-slate-500 text-sm">Documentation précise par drone pour les promoteurs et architectes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="aspect-video bg-slate-800 rounded-3xl overflow-hidden border border-slate-700 group relative">
+                        <img src="https://images.unsplash.com/photo-1492691523567-6170f0295dbd?auto=format&fit=crop&q=80&w=1000" alt="Tournage professionnel" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-1000">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <button class="w-20 h-20 bg-white text-slate-900 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
+                                <i data-lucide="play" class="fill-current ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-slate-50 rounded-[3rem] p-8 md:p-16 border border-slate-100">
+                <div class="max-w-3xl">
+                    <h2 class="text-4xl font-bold text-slate-900 mb-6">Parlons de votre prochain projet.</h2>
+                    <p class="text-lg text-slate-600 mb-12">Remplissez le formulaire ci-dessous, nous vous répondons avec une proposition chiffrée sous 24h.</p>
+                    
+                    <form class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <input type="text" placeholder="Nom complet" class="w-full px-6 py-4 rounded-2xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none">
+                            <input type="email" placeholder="Email" class="w-full px-6 py-4 rounded-2xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <select class="w-full px-6 py-4 rounded-2xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none bg-white">
+                            <option>Type de projet</option>
+                            <option>Vente Immobilière (Particulier)</option>
+                            <option>Projet Corporate / Entreprise</option>
+                            <option>Prestation Drone uniquement</option>
+                            <option>Autre</option>
+                        </select>
+                        <textarea rows="4" placeholder="Votre message ou détails du bien (localisation, surface...)" class="w-full px-6 py-4 rounded-2xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none"></textarea>
+                        <button class="bg-blue-600 text-white px-10 py-4 rounded-2xl font-bold text-lg hover:bg-blue-700 transition-all shadow-xl shadow-blue-200">
+                            Envoyer ma demande
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-100 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <span class="text-2xl font-black tracking-tighter">ACN<span class="text-blue-600">.</span></span>
+                    <p class="text-sm text-slate-500 mt-2">Production Audiovisuelle de Haute Précision.</p>
+                </div>
+                <div class="flex space-x-8 text-sm font-semibold text-slate-600">
+                    <a href="#" class="hover:text-blue-600">Instagram</a>
+                    <a href="#" class="hover:text-blue-600">YouTube</a>
+                    <a href="#" class="hover:text-blue-600">LinkedIn</a>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-slate-50 text-center text-xs text-slate-400">
+                &copy; 2024 ACN Production. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        
+        // Mobile menu simple toggle
+        const btn = document.getElementById('menu-toggle');
+        const nav = document.querySelector('.hidden.md\\:flex');
+        
+        btn.addEventListener('click', () => {
+            // Logique simple pour l'exemple
+            alert("Menu mobile : Prestations, Immobilier, Corporate, Contact");
+        });
+    </script>
+</body>
+</html>
