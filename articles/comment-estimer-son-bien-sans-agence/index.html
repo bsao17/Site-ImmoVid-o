@@ -238,6 +238,7 @@
     /* ── TOOL CARDS ── */
     .tool-grid {
       display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 16px;
       margin: 24px 0 36px;
     }
@@ -416,10 +417,27 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       .hero { height: 340px; }
+      .hero-content { padding: 28px 18px; }
+      .hero h1 { font-size: clamp(22px, 6vw, 30px); }
       .stat-callout { flex-direction: column; gap: 12px; text-align: center; }
       .stat-callout .stat-number { font-size: 40px; }
       .cta-box { padding: 28px 20px; }
+      .cta-box h2 { font-size: 20px; }
+      .cta-box form { border-radius: 16px !important; }
+      .cta-box button { border-radius: 16px !important; }
       .article-wrap { padding: 36px 18px 60px; }
+      .tool-card { padding: 18px 18px; }
+      .tool-card-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .factors-list li { padding: 12px 14px; }
+      .step { gap: 14px; padding: 16px 0; }
+      .dpe-alert { padding: 14px 16px; }
+      .intro-block { padding: 18px 18px; font-size: 15px; }
+      .site-footer { padding: 24px 18px; font-size: 12px; }
+    }
+    @media (max-width: 480px) {
+      .hero { height: 280px; min-height: 40vh; }
+      .tool-grid { grid-template-columns: 1fr !important; }
+      .factors-list { gap: 8px; }
     }
   </style>
 </head>

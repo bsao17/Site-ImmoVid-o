@@ -232,11 +232,24 @@
 
     @media (max-width: 600px) {
       .hero { height: 260px; }
+      .hero-content { padding: 28px 18px; }
       .page-wrap { padding: 36px 18px 60px; }
       .legal-block { padding: 20px; }
       .cta-box { padding: 28px 20px; }
+      .cta-box h2 { font-size: 20px; }
+      .cta-box form { border-radius: 16px !important; }
+      .cta-box button { border-radius: 16px !important; }
       .info-grid { grid-template-columns: 1fr; gap: 2px; }
       .info-grid .label { margin-top: 8px; }
+      .site-footer { padding: 24px 18px; font-size: 12px; }
+    }
+    @media (max-width: 480px) {
+      .hero { height: 220px; min-height: 40vh; }
+      .hero h1 { font-size: clamp(22px, 6vw, 30px); }
+      .page-wrap { padding: 28px 14px 48px; }
+      .legal-block { padding: 16px; }
+      .cta-box { padding: 24px 16px; }
+      .cta-box form input { min-width: 140px !important; }
     }
   </style>
 </head>
