@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- SEO -->
+  <title>Comment estimer son bien sans agence — ACN Immobilier</title>
+  <meta name="description" content="Découvrez comment estimer votre bien immobilier sans agence grâce aux outils publics gratuits (DVF, Patrim) et aux plateformes privées. Méthode, facteurs correctifs et pièges à éviter." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://acn-immo.fr/articles/comment-estimer-son-bien-sans-agence/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Comment estimer son bien sans agence" />
+  <meta property="og:description" content="DVF, Patrim, MeilleursAgents… Les bons outils, la bonne méthode pour fixer un prix juste — et éviter l'erreur qui coûte 45 jours de vente." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80" />
+  <meta property="og:url" content="https://acn-immo.fr/articles/comment-estimer-son-bien-sans-agence/" />
+  <meta property="og:site_name" content="ACN — Production audiovisuelle immobilière" />
+  <meta property="article:published_time" content="2026-05-18" />
+  <meta property="article:author" content="ACN" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Comment estimer son bien sans agence" />
+  <meta name="twitter:description" content="DVF, Patrim, MeilleursAgents… Les bons outils pour fixer un prix juste et vendre sans agence." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --acn-orange: #ff5a1f;
+      --acn-orange-light: #fff1ec;
+      --acn-dark: #1a1a1a;
+      --acn-gray: #6b6b6b;
+      --acn-light-gray: #e8e8e4;
+      --acn-bg: #fafaf7;
+      --max-width: 760px;
+      --font: 'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--acn-bg);
+      color: var(--acn-dark);
+      font-family: var(--font);
+      font-size: 17px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--acn-orange); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    ::selection { background: var(--acn-orange); color: #fff; }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 250, 247, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--acn-light-gray);
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--acn-dark);
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span { color: var(--acn-orange); }
+    .nav-cta {
+      background: var(--acn-orange);
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.88; text-decoration: none; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 420px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 60%;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.18) 60%, transparent 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 40px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: var(--acn-orange);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: clamp(26px, 5vw, 42px);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      max-width: 640px;
+      margin-bottom: 12px;
+    }
+    .hero-meta {
+      color: rgba(255,255,255,0.75);
+      font-size: 14px;
+    }
+    .hero-meta strong { color: rgba(255,255,255,0.95); }
+
+    /* ── ARTICLE LAYOUT ── */
+    .article-wrap {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
+
+    /* ── INTRO BLOCK ── */
+    .intro-block {
+      background: var(--acn-orange-light);
+      border-left: 4px solid var(--acn-orange);
+      border-radius: 0 10px 10px 0;
+      padding: 20px 24px;
+      margin-bottom: 48px;
+      font-size: 16px;
+      color: #4a2000;
+    }
+
+    /* ── HEADINGS ── */
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--acn-dark);
+      margin: 48px 0 16px;
+      letter-spacing: -0.3px;
+    }
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 20px;
+      background: var(--acn-orange);
+      border-radius: 2px;
+      margin-right: 12px;
+      vertical-align: middle;
+      position: relative;
+      top: -2px;
+    }
+    h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--acn-dark);
+      margin: 28px 0 10px;
+    }
+
+    /* ── PARAGRAPHS ── */
+    p { margin-bottom: 20px; color: #2e2e2e; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── STAT CALLOUT ── */
+    .stat-callout {
+      background: var(--acn-dark);
+      color: #fff;
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin: 36px 0;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    .stat-callout .stat-number {
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--acn-orange);
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .stat-callout .stat-text {
+      font-size: 15px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+    }
+    .stat-callout .stat-text strong { color: #fff; }
+
+    /* ── TOOL CARDS ── */
+    .tool-grid {
+      display: grid;
+      gap: 16px;
+      margin: 24px 0 36px;
+    }
+    .tool-card {
+      background: #fff;
+      border: 1px solid var(--acn-light-gray);
+      border-radius: 12px;
+      padding: 22px 24px;
+      transition: box-shadow 0.2s;
+    }
+    .tool-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .tool-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .tool-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+    .badge-free { background: #e6f9ef; color: #1a7f4b; }
+    .badge-private { background: #fff1ec; color: #c04000; }
+    .tool-name {
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .tool-url {
+      font-size: 13px;
+      color: var(--acn-orange);
+      word-break: break-all;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .tool-desc {
+      font-size: 15px;
+      color: #4a4a4a;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .tool-limit {
+      margin-top: 8px;
+      font-size: 13px;
+      color: var(--acn-gray);
+      font-style: italic;
+    }
+
+    /* ── STEPS ── */
+    .steps { margin: 24px 0 36px; display: flex; flex-direction: column; gap: 0; }
+    .step {
+      display: flex;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--acn-light-gray);
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: var(--acn-orange);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 15px;
+      margin-top: 2px;
+    }
+    .step-content h3 { margin-top: 0; margin-bottom: 6px; }
+    .step-content p { margin: 0; font-size: 15px; color: #4a4a4a; }
+
+    /* ── FACTORS LIST ── */
+    .factors-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 20px 0 36px;
+    }
+    .factors-list li {
+      background: #fff;
+      border: 1px solid var(--acn-light-gray);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 15px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .factor-icon {
+      font-size: 20px;
+      line-height: 1.3;
+      flex-shrink: 0;
+    }
+    .factor-text strong { display: block; font-size: 15px; margin-bottom: 2px; }
+    .factor-text span { color: var(--acn-gray); font-size: 14px; }
+
+    /* ── DPE ALERT ── */
+    .dpe-alert {
+      background: #fffbea;
+      border: 1px solid #f5c842;
+      border-radius: 10px;
+      padding: 18px 20px;
+      font-size: 15px;
+      color: #5a4200;
+      margin-bottom: 36px;
+    }
+    .dpe-alert strong { color: #3d2c00; }
+
+    /* ── CTA BOX ── */
+    .cta-box {
+      background: var(--acn-dark);
+      border-radius: 16px;
+      padding: 40px 36px;
+      text-align: center;
+      margin-top: 56px;
+    }
+    .cta-box .cta-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--acn-orange);
+      margin-bottom: 12px;
+    }
+    .cta-box h2 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 14px;
+      letter-spacing: -0.3px;
+    }
+    .cta-box h2::before { display: none; }
+    .cta-box p {
+      color: rgba(255,255,255,0.75);
+      font-size: 16px;
+      max-width: 500px;
+      margin: 0 auto 28px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: var(--acn-orange);
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .cta-btn:hover { opacity: 0.9; transform: translateY(-1px); text-decoration: none; }
+    .cta-sub {
+      display: block;
+      margin-top: 14px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      border-top: 1px solid var(--acn-light-gray);
+      padding: 28px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--acn-gray);
+    }
+    .site-footer a { color: var(--acn-gray); }
+    .site-footer a:hover { color: var(--acn-orange); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .hero { height: 340px; }
+      .stat-callout { flex-direction: column; gap: 12px; text-align: center; }
+      .stat-callout .stat-number { font-size: 40px; }
+      .cta-box { padding: 28px 20px; }
+      .article-wrap { padding: 36px 18px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav class="nav" aria-label="Navigation principale">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">ACN<span>.</span></a>
+    <a href="/#contact" class="nav-cta">Obtenir un devis</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <img
+    class="hero-img"
+    src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80"
+    alt="Clés d'appartement posées sur un contrat immobilier"
+    loading="eager"
+    decoding="async"
+    width="1200"
+    height="630"
+  />
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-content">
+    <span class="hero-tag">Guide pratique</span>
+    <h1>Comment estimer son bien sans agence</h1>
+    <p class="hero-meta">Publié le <strong>18 mai 2026</strong> &nbsp;·&nbsp; Lecture : <strong>5 min</strong></p>
+  </div>
+</header>
+
+<!-- ── ARTICLE ── -->
+<main class="article-wrap">
+
+  <div class="intro-block" role="note">
+    <strong>En résumé :</strong> 70&nbsp;% des vendeurs tentent de vendre entre particuliers, mais seulement 28&nbsp;% y parviennent — souvent à cause d'un prix mal calibré dès le départ. Voici les outils et la méthode pour ne pas faire partie des 72&nbsp;%.
+  </div>
+
+  <!-- Section 1 -->
+  <h2>L'estimation, l'erreur fatale numéro&nbsp;1</h2>
+
+  <p>
+    Vendre son bien sans agence, c'est une ambition légitime. Économiser 3 à 5&nbsp;% de commission sur une vente à 300&nbsp;000&nbsp;€, ça représente jusqu'à 15&nbsp;000&nbsp;€ dans la poche. Mais cette économie potentielle peut se transformer en piège si le prix de départ est mal positionné.
+  </p>
+  <p>
+    Un bien surestimé de seulement 10&nbsp;% reste en moyenne <strong>45 jours de plus sur le marché</strong>. Ces semaines perdues, c'est de la méfiance qui s'installe chez les acheteurs — «&nbsp;pourquoi ce bien traîne-t-il&nbsp;?&nbsp;» — et un rapport de force qui se retourne contre le vendeur au moment de la négociation. La surestimation ne fait pas de mal qu'au timing&nbsp;: elle nuit souvent au prix final obtenu.
+  </p>
+  <p>
+    L'erreur vient rarement de mauvaise foi. Elle vient du fait que la valeur sentimentale d'un bien — les 20 ans de souvenirs, la terrasse refaite à neuf, le quartier qu'on aime — ne correspond pas à la valeur de marché. Pour trouver cette valeur de marché, il existe des outils publics fiables, gratuits, et accessibles à tous.
+  </p>
+
+  <div class="stat-callout" aria-label="Statistique clé">
+    <div class="stat-number">+45&nbsp;j</div>
+    <div class="stat-text">
+      <strong>Un bien surestimé de 10&nbsp;% reste 45 jours de plus sur le marché.</strong><br />
+      Le bon prix dès le départ, c'est la condition numéro un d'une vente réussie.
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <h2>Les 3 outils publics gratuits</h2>
+
+  <p>
+    Ces bases de données s'appuient sur des actes notariés et des déclarations fiscales réelles. Pas des estimations, pas des algorithmes opaques — des transactions effectivement réalisées.
+  </p>
+
+  <div class="tool-grid">
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <span class="tool-badge badge-free">Gratuit &amp; officiel</span>
+        <span class="tool-name">DVF — Demandes de Valeurs Foncières</span>
+      </div>
+      <a class="tool-url" href="https://app.dvf.etalab.gouv.fr" target="_blank" rel="noopener noreferrer">app.dvf.etalab.gouv.fr</a>
+      <p class="tool-desc">
+        La référence absolue. Le DVF recense <strong>toutes les ventes réelles des 5 dernières années</strong> en France métropolitaine et dans les départements et régions d'outre-mer — hors Alsace-Moselle et Mayotte, qui disposent d'un régime cadastral distinct. La dernière mise à jour (avril&nbsp;2026) couvre les transactions jusqu'à décembre&nbsp;2025. L'interface cartographique permet de pointer directement votre adresse et de voir les ventes réalisées rue par rue, immeuble par immeuble.
+      </p>
+      <p class="tool-limit">Limite : pas de filtre sur l'état du bien ou les équipements. Le prix brut s'interprète — il ne se lit pas seul.</p>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <span class="tool-badge badge-free">Gratuit &amp; officiel</span>
+        <span class="tool-name">Patrim</span>
+      </div>
+      <a class="tool-url" href="https://www.impots.gouv.fr/particulier/patrim" target="_blank" rel="noopener noreferrer">impots.gouv.fr → Mon espace → Patrim</a>
+      <p class="tool-desc">
+        Accessible via votre espace personnel sur le site du Trésor public (impots.gouv.fr), Patrim donne accès aux prix exacts de ventes similaires dans votre secteur, issus des mêmes données fiscales que le DVF. L'avantage&nbsp;: vous pouvez filtrer par surface, type de bien, période et périmètre géographique. Idéal pour comparer des pommes avec des pommes.
+      </p>
+      <p class="tool-limit">Limite : nécessite un compte impots.gouv.fr. Connexion via FranceConnect disponible.</p>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <span class="tool-badge badge-free">Gratuit &amp; officiel</span>
+        <span class="tool-name">Statistiques des notaires de France</span>
+      </div>
+      <a class="tool-url" href="https://www.notaires.fr/fr/immobilier-fiscalite/prix-et-tendances-de-limmobilier" target="_blank" rel="noopener noreferrer">notaires.fr → Prix et tendances de l'immobilier</a>
+      <p class="tool-desc">
+        Les Notaires de France publient des indices de prix trimestriels par département, par type de bien et par taille. Moins précis à l'adresse que DVF ou Patrim, ces données permettent de situer votre bien dans une tendance de marché locale et de comprendre si les prix montent ou baissent dans votre secteur.
+      </p>
+      <p class="tool-limit">Limite : données agrégées à l'échelle départementale ou de l'agglomération — pas d'information rue par rue.</p>
+    </div>
+
+  </div>
+
+  <!-- Section 3 -->
+  <h2>Les plateformes privées gratuites</h2>
+
+  <p>
+    Ces outils croisent les données DVF avec les annonces actives pour produire une estimation algorithmique. Aucun ne remplace une lecture humaine du marché, mais utilisés ensemble, ils affinent considérablement la fourchette.
+  </p>
+
+  <div class="tool-grid">
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <span class="tool-badge badge-private">Privé — gratuit</span>
+        <span class="tool-name">MeilleursAgents</span>
+      </div>
+      <a class="tool-url" href="https://www.meilleursagents.com/prix-immobilier/" target="_blank" rel="noopener noreferrer">meilleursagents.com</a>
+      <p class="tool-desc">
+        L'estimateur le plus populaire en France. Il intègre les données DVF, les annonces SeLoger et Logic-Immo, et propose une fourchette basse/haute avec un indice de confiance par secteur. Très utile pour les grandes villes et les zones denses.
+      </p>
+      <p class="tool-limit">Limite : moins précis en zone rurale ou périurbaine peu dense. L'estimation est indicative — elle ne tient pas compte de l'état réel du bien.</p>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <span class="tool-badge badge-private">Privé — gratuit</span>
+        <span class="tool-name">SeLoger — Estimation</span>
+      </div>
+      <a class="tool-url" href="https://www.seloger.com/estimation-immobiliere/" target="_blank" rel="noopener noreferrer">seloger.com/estimation-immobiliere/</a>
+      <p class="tool-desc">
+        Accessible directement depuis SeLoger, cet outil génère une estimation en quelques questions (adresse, surface, nombre de pièces, étage, état). Il s'appuie sur les annonces récentes du réseau SeLoger et les données de ventes réelles. Utile pour calibrer le prix par rapport aux biens concurrents actuellement en vente.
+      </p>
+      <p class="tool-limit">Limite : tendance à légèrement surestimer pour inciter au mandat. À croiser impérativement.</p>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <span class="tool-badge badge-private">Privé — gratuit</span>
+        <span class="tool-name">PAP.fr</span>
+      </div>
+      <a class="tool-url" href="https://www.pap.fr/estimation-immobiliere" target="_blank" rel="noopener noreferrer">pap.fr/estimation-immobiliere</a>
+      <p class="tool-desc">
+        Particulier à Particulier propose un outil d'estimation orienté vendeurs PAP. Son intérêt&nbsp;: il reflète les prix pratiqués dans les transactions de particulier à particulier, sans la marge d'agence intégrée dans les prix affichés sur d'autres plateformes. Pertinent pour ceux qui visent une vente en direct.
+      </p>
+      <p class="tool-limit">Limite : base de données plus restreinte, particulièrement en dehors des grandes métropoles.</p>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <span class="tool-badge badge-private">Privé — gratuit</span>
+        <span class="tool-name">Bien'ici &amp; Homki</span>
+      </div>
+      <a class="tool-url" href="https://www.bienici.com/estimation-immobiliere" target="_blank" rel="noopener noreferrer">bienici.com &nbsp;·&nbsp; homki.fr</a>
+      <p class="tool-desc">
+        Bien'ici et Homki proposent des estimations gratuites en ligne en quelques minutes. Homki est particulièrement détaillé&nbsp;: il prend en compte l'exposition, la présence d'un extérieur, l'étage, l'ascenseur — des critères qui impactent réellement la valeur.
+      </p>
+      <p class="tool-limit">Limite : algorithmes propriétaires non audités. À utiliser comme point de comparaison supplémentaire, pas comme référence principale.</p>
+    </div>
+
+  </div>
+
+  <!-- Section 4 -->
+  <h2>La méthode des 3 croisements pour affiner son prix</h2>
+
+  <p>
+    Aucune source prise seule ne suffit. La méthode recommandée consiste à croiser au minimum trois sources complémentaires, puis à raisonner sur l'intersection.
+  </p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num" aria-hidden="true">1</div>
+      <div class="step-content">
+        <h3>Ancrage dans le réel — DVF ou Patrim</h3>
+        <p>Repérez les 5 à 10 ventes réalisées les plus proches de votre bien (adresse, surface, type) sur les 12&nbsp;à&nbsp;24 derniers mois. Calculez le prix au m² médian. C'est votre point de départ factuel.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num" aria-hidden="true">2</div>
+      <div class="step-content">
+        <h3>Lecture du marché actif — plateformes en ligne</h3>
+        <p>Comparez ce médian avec les estimations de MeilleursAgents, PAP et SeLoger. Si les trois estimateurs convergent à ±5&nbsp;% de votre médian DVF, votre fourchette est solide. Si l'écart est plus large, creusez les raisons (secteur en évolution, pénurie d'offre, biens atypiques).</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num" aria-hidden="true">3</div>
+      <div class="step-content">
+        <h3>Validation humaine — avis notaire</h3>
+        <p>De nombreux notaires proposent une consultation d'estimation sans engagement, souvent gratuite pour un premier échange. C'est la seule source qui combine données réelles et regard professionnel sur les spécificités de votre bien. Elle est particulièrement précieuse pour les biens atypiques (maison de ville, loft, propriété agricole).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5 -->
+  <h2>Les facteurs correctifs à ne pas oublier</h2>
+
+  <p>
+    Le prix au m² médian de votre quartier est un plancher de réflexion, pas un prix. Plusieurs éléments viennent le corriger à la hausse ou à la baisse.
+  </p>
+
+  <div class="dpe-alert" role="alert">
+    <strong>Réforme DPE — 1er janvier 2026&nbsp;:</strong> La nouvelle méthode de calcul du Diagnostic de Performance Énergétique a reclassé <strong>850&nbsp;000 logements</strong> en France. Un bien reclassé G (passoire thermique) peut perdre une part significative de sa valeur et, depuis le 1er janvier 2028, ne pourra plus être loué. Si votre DPE a été établi avant 2026, il peut ne plus refléter la réalité réglementaire actuelle. Faites-le mettre à jour avant de fixer votre prix.
+  </div>
+
+  <ul class="factors-list">
+    <li>
+      <span class="factor-icon" aria-hidden="true">⚡</span>
+      <span class="factor-text">
+        <strong>DPE et performance énergétique</strong>
+        <span>Un bien classé A ou B peut se vendre au-dessus du marché. Un bien classé F ou G, avec la réforme 2026, subit une décote croissante selon le profil de l'acheteur (propriétaire occupant vs. investisseur).</span>
+      </span>
+    </li>
+    <li>
+      <span class="factor-icon" aria-hidden="true">🏗️</span>
+      <span class="factor-text">
+        <strong>État général et travaux</strong>
+        <span>Un logement nécessitant une remise à niveau (électricité, plomberie, isolation) intègre dans le prix le coût des travaux estimé — avec une décote supplémentaire pour le risque perçu par l'acheteur.</span>
+      </span>
+    </li>
+    <li>
+      <span class="factor-icon" aria-hidden="true">🏢</span>
+      <span class="factor-text">
+        <strong>Étage et ascenseur (appartements)</strong>
+        <span>Un rez-de-chaussée se vend généralement 5 à 15&nbsp;% moins cher qu'un étage élevé avec vue dégagée. En l'absence d'ascenseur, les derniers étages peuvent aussi subir une décote.</span>
+      </span>
+    </li>
+    <li>
+      <span class="factor-icon" aria-hidden="true">👁️</span>
+      <span class="factor-text">
+        <strong>Vis-à-vis et luminosité</strong>
+        <span>Un appartement sur cour sombre, ou avec une vue directe sur un immeuble à 5&nbsp;mètres, ne se valorise pas comme un appartement traversant ou orienté sud.</span>
+      </span>
+    </li>
+    <li>
+      <span class="factor-icon" aria-hidden="true">🌿</span>
+      <span class="factor-text">
+        <strong>Extérieur, garage, cave</strong>
+        <span>Une terrasse, un jardin, un parking ou une cave sont des actifs qui se valorisent séparément selon le marché local. Dans certaines villes, une place de parking intérieure représente 20&nbsp;000 à 40&nbsp;000&nbsp;€ à elle seule.</span>
+      </span>
+    </li>
+  </ul>
+
+  <!-- Section 6 — CTA -->
+  <h2>Ce que l'estimation ne fait pas pour vous</h2>
+
+  <p>
+    Savoir à quel prix vendre, c'est indispensable. Mais fixer le bon prix ne suffit pas à déclencher une vente. Une annonce immobilière en ligne, c'est une compétition visuelle. En quelques secondes, l'acheteur potentiel décide de cliquer ou de passer. Ce qui emporte la décision&nbsp;: la qualité des photos, la présence d'une visite vidéo, parfois un survol drone qui contextualise le bien dans son environnement.
+  </p>
+  <p>
+    Les annonces avec photos professionnelles et vidéo génèrent significativement plus de demandes de visite que les annonces avec photos de smartphone. Une annonce bien produite, c'est moins de visites inutiles — et plus d'acheteurs réellement qualifiés au rendez-vous.
+  </p>
+
+  <div class="cta-box" role="complementary" aria-label="Appel à l'action ACN">
+    <p class="cta-label">ACN — Production audiovisuelle immobilière</p>
+    <h2>Votre bien mérite une mise en valeur professionnelle</h2>
+    <p>
+      Photo, vidéo, drone&nbsp;: ACN produit vos supports visuels immobiliers pour que votre annonce attire les bons acheteurs — sans vous faire payer une commission d'agence.
+    </p>
+    <a href="/#contact" class="cta-btn">Obtenir un devis gratuit</a>
+    <span class="cta-sub">Réponse sous 24h &nbsp;·&nbsp; Intervention partout en France</span>
+  </div>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <p>
+    &copy; 2026 ACN &mdash; Production audiovisuelle immobilière &nbsp;·&nbsp;
+    <a href="/">Accueil</a> &nbsp;·&nbsp;
+    <a href="/blog/">Blog</a> &nbsp;·&nbsp;
+    <a href="/#contact">Contact</a>
+  </p>
+</footer>
+
+</body>
+</html>

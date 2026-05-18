@@ -1577,11 +1577,12 @@ function Blog({ brand, brandSoft, brandText }) {
     time: '8 min',
     date: '12 mai 2026',
     photo: '1560518883-ce09059eeffa',
+    url: 'articles/vendre-sans-agence-methode-2026/',
   };
   const small = [
-    { cat: 'Lumière', t: '5 erreurs photo qui font fuir les acheteurs',   time: '4 min', date: '28 avr.', photo: '1545324418-cc1a3fa10c00' },
-    { cat: 'Drone',   t: 'Quand le drone change vraiment la donne',        time: '5 min', date: '15 avr.', photo: '1469474968028-56623f02e42e' },
-    { cat: 'Prix',    t: 'Comment estimer son bien sans agence',           time: '6 min', date: '02 avr.', photo: '1556909114-f6e7ad7d3136' },
+    { cat: 'Lumière', t: '5 erreurs photo qui font fuir les acheteurs',   time: '4 min', date: '28 avr.', photo: '1545324418-cc1a3fa10c00', url: 'articles/5-erreurs-photo-qui-font-fuir-les-acheteurs/' },
+    { cat: 'Drone',   t: 'Quand le drone change vraiment la donne',        time: '5 min', date: '15 avr.', photo: '1469474968028-56623f02e42e', url: 'articles/quand-le-drone-change-vraiment-la-donne/' },
+    { cat: 'Prix',    t: 'Comment estimer son bien sans agence',           time: '6 min', date: '02 avr.', photo: '1556909114-f6e7ad7d3136', url: 'articles/comment-estimer-son-bien-sans-agence/' },
   ];
   return (
     <section id="blog" style={{ background: '#f3f1eb', padding: 'var(--pad-y) var(--pad-x)' }}>
@@ -1593,46 +1594,50 @@ function Blog({ brand, brandSoft, brandText }) {
               Conseils pour <span style={{ color: brand }}>bien vendre</span>.
             </h2>
           </div>
-          <Pill variant="ghost" size="md" brand={brand} href="#">Tous les articles →</Pill>
+          <Pill variant="ghost" size="md" brand={brand} href="articles/vendre-sans-agence-methode-2026/">Tous les articles →</Pill>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 18 }}>
-          <article style={{ background: '#fff', borderRadius: 28, overflow: 'hidden', border: '1px solid #e5e5e0', cursor: 'pointer' }}>
-            <Photo src={unsplash(featured.photo, 1000)} alt={featured.t} style={{ aspectRatio: '16/9', borderRadius: 0 }} />
-            <div style={{ padding: 28 }}>
-              <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
-                <Tag tone="brand" brand={brand} brandSoft={brandSoft} brandText={brandText}>🔥 À la une</Tag>
-                <Tag tone="ghost">{featured.cat}</Tag>
+          <a href={featured.url} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
+            <article style={{ background: '#fff', borderRadius: 28, overflow: 'hidden', border: '1px solid #e5e5e0', cursor: 'pointer' }}>
+              <Photo src={unsplash(featured.photo, 1000)} alt={featured.t} style={{ aspectRatio: '16/9', borderRadius: 0 }} />
+              <div style={{ padding: 28 }}>
+                <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
+                  <Tag tone="brand" brand={brand} brandSoft={brandSoft} brandText={brandText}>🔥 À la une</Tag>
+                  <Tag tone="ghost">{featured.cat}</Tag>
+                </div>
+                <h3 style={{ margin: 0, fontSize: 28, fontWeight: 800, letterSpacing: '-0.025em', lineHeight: 1.15 }}>
+                  {featured.t}
+                </h3>
+                <p style={{ marginTop: 12, color: '#5a5a5a', fontSize: 15, lineHeight: 1.55 }}>{featured.sub}</p>
+                <div style={{ marginTop: 18, fontSize: 12, color: '#6b6b6b', letterSpacing: '0.05em', display: 'flex', gap: 16, whiteSpace: 'nowrap' }}>
+                  <span>{featured.date}</span>
+                  <span>·</span>
+                  <span>{featured.time} de lecture</span>
+                </div>
               </div>
-              <h3 style={{ margin: 0, fontSize: 28, fontWeight: 800, letterSpacing: '-0.025em', lineHeight: 1.15 }}>
-                {featured.t}
-              </h3>
-              <p style={{ marginTop: 12, color: '#5a5a5a', fontSize: 15, lineHeight: 1.55 }}>{featured.sub}</p>
-              <div style={{ marginTop: 18, fontSize: 12, color: '#6b6b6b', letterSpacing: '0.05em', display: 'flex', gap: 16, whiteSpace: 'nowrap' }}>
-                <span>{featured.date}</span>
-                <span>·</span>
-                <span>{featured.time} de lecture</span>
-              </div>
-            </div>
-          </article>
+            </article>
+          </a>
 
           <div style={{ display: 'grid', gridTemplateRows: 'repeat(3, 1fr)', gap: 12 }}>
             {small.map((a, i) => (
-              <article key={i} style={{
-                background: '#fff', borderRadius: 20, padding: 14,
-                border: '1px solid #e5e5e0',
-                display: 'grid', gridTemplateColumns: '120px 1fr', gap: 16, alignItems: 'center',
-                cursor: 'pointer', transition: 'transform .2s',
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateX(4px)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = ''}>
-                <Photo src={unsplash(a.photo, 400)} alt={a.t} style={{ aspectRatio: '1', borderRadius: 12 }} />
-                <div>
-                  <div style={{ fontSize: 10, fontWeight: 800, color: brand, letterSpacing: '0.1em', textTransform: 'uppercase' }}>{a.cat}</div>
-                  <h4 style={{ margin: '6px 0 0', fontSize: 16, fontWeight: 800, lineHeight: 1.3, letterSpacing: '-0.01em' }}>{a.t}</h4>
-                  <div style={{ marginTop: 10, fontSize: 11, color: '#6b6b6b' }}>{a.date} · {a.time}</div>
-                </div>
-              </article>
+              <a key={i} href={a.url} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
+                <article style={{
+                  background: '#fff', borderRadius: 20, padding: 14,
+                  border: '1px solid #e5e5e0',
+                  display: 'grid', gridTemplateColumns: '120px 1fr', gap: 16, alignItems: 'center',
+                  cursor: 'pointer', transition: 'transform .2s',
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.transform = 'translateX(4px)'}
+                onMouseLeave={(e) => e.currentTarget.style.transform = ''}>
+                  <Photo src={unsplash(a.photo, 400)} alt={a.t} style={{ aspectRatio: '1', borderRadius: 12 }} />
+                  <div>
+                    <div style={{ fontSize: 10, fontWeight: 800, color: brand, letterSpacing: '0.1em', textTransform: 'uppercase' }}>{a.cat}</div>
+                    <h4 style={{ margin: '6px 0 0', fontSize: 16, fontWeight: 800, lineHeight: 1.3, letterSpacing: '-0.01em' }}>{a.t}</h4>
+                    <div style={{ marginTop: 10, fontSize: 11, color: '#6b6b6b' }}>{a.date} · {a.time}</div>
+                  </div>
+                </article>
+              </a>
             ))}
           </div>
         </div>

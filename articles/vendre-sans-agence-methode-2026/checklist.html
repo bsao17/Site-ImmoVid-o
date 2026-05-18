@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checklist : Vendre sans agence 2026 | ACN Immo</title>
+  <meta name="description" content="Checklist complète et imprimable pour vendre votre bien immobilier sans agence en 2026. Toutes les étapes de l'estimation à la signature chez le notaire." />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #ff5a1f;
+      --orange-light: #fff3ee;
+      --bg: #fafaf7;
+      --text: #1a1a1a;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --white: #ffffff;
+      --check-size: 20px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* SCREEN HEADER */
+    .screen-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .logo {
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--orange);
+      text-decoration: none;
+    }
+    .logo span { color: var(--text); }
+    .print-btn {
+      background: var(--orange);
+      color: var(--white);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s;
+    }
+    .print-btn:hover { background: #e04a12; }
+    .back-link {
+      color: var(--text-muted);
+      font-size: 14px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .back-link:hover { color: var(--orange); }
+
+    /* PAGE */
+    .page {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    /* DOC HEADER */
+    .doc-header {
+      text-align: center;
+      margin-bottom: 36px;
+      padding-bottom: 28px;
+      border-bottom: 3px solid var(--orange);
+    }
+    .doc-header .acn-tag {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 4px;
+      margin-bottom: 14px;
+    }
+    .doc-header h1 {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .doc-header p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    .doc-header .meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* SECTION */
+    .section {
+      margin-bottom: 28px;
+      break-inside: avoid;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--orange);
+      color: var(--white);
+      padding: 10px 16px;
+      border-radius: 8px 8px 0 0;
+    }
+    .section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.25);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .section-header h2 {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+    .section-body {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      overflow: hidden;
+    }
+
+    /* ITEMS */
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 12px 16px;
+      border-bottom: 1px solid #f3f4f6;
+      transition: background 0.15s;
+    }
+    .check-item:last-child { border-bottom: none; }
+    .check-item:hover { background: #f9fafb; }
+
+    .check-item input[type="checkbox"] {
+      width: var(--check-size);
+      height: var(--check-size);
+      border: 2px solid #d1d5db;
+      border-radius: 5px;
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+      background: var(--white);
+      transition: background 0.15s, border-color 0.15s;
+      position: relative;
+    }
+    .check-item input[type="checkbox"]:checked {
+      background: var(--orange);
+      border-color: var(--orange);
+    }
+    .check-item input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 1px;
+      width: 7px;
+      height: 11px;
+      border: 2px solid var(--white);
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg);
+    }
+
+    .check-label {
+      flex: 1;
+    }
+    .check-label strong {
+      display: block;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 1px;
+    }
+    .check-label span {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* NOTES */
+    .note-box {
+      background: var(--orange-light);
+      border: 1px solid #ffd4be;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 13px;
+      color: #7c3300;
+    }
+    .note-box strong { color: var(--orange); }
+
+    /* SIGNATURE BLOCK */
+    .signature-block {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-top: 32px;
+    }
+    .signature-block h3 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .sig-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .sig-field label {
+      display: block;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .sig-field .line {
+      border-bottom: 1px solid #d1d5db;
+      height: 36px;
+    }
+
+    /* ACN FOOTER */
+    .acn-footer {
+      background: #111;
+      text-align: center;
+      padding: 20px 24px;
+      color: rgba(255,255,255,0.6);
+      font-size: 13px;
+    }
+    .acn-footer a { color: var(--orange); text-decoration: none; }
+
+    /* SCREEN ONLY */
+    .screen-only { display: block; }
+
+    /* ===== PRINT STYLES ===== */
+    @media print {
+      @page {
+        size: A4;
+        margin: 16mm 14mm 20mm 14mm;
+      }
+
+      body {
+        background: #ffffff;
+        font-size: 11pt;
+        color: #000;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .screen-header,
+      .screen-only,
+      .acn-footer {
+        display: none !important;
+      }
+
+      .page {
+        padding: 0;
+        max-width: 100%;
+      }
+
+      .doc-header {
+        margin-bottom: 20px;
+        padding-bottom: 16px;
+      }
+      .doc-header h1 { font-size: 22pt; }
+
+      .section {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 18px;
+      }
+
+      .section-header {
+        background: #ff5a1f !important;
+        color: #ffffff !important;
+        padding: 7px 12px;
+      }
+
+      .section-num {
+        background: rgba(255,255,255,0.25) !important;
+      }
+
+      .check-item {
+        padding: 8px 12px;
+      }
+
+      .check-item:hover { background: none; }
+
+      .check-item input[type="checkbox"] {
+        border: 1.5pt solid #999;
+        background: #fff !important;
+        print-color-adjust: exact;
+      }
+      .check-item input[type="checkbox"]:checked {
+        background: #ff5a1f !important;
+        border-color: #ff5a1f !important;
+      }
+
+      .check-label strong { font-size: 10pt; }
+      .check-label span { font-size: 9pt; }
+
+      .note-box {
+        background: #fff8f5 !important;
+        border-color: #ffb899 !important;
+      }
+
+      .signature-block { break-inside: avoid; }
+      .sig-grid { grid-template-columns: 1fr 1fr; }
+
+      .print-footer {
+        display: block !important;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 8pt;
+        color: #999;
+        border-top: 1pt solid #e5e7eb;
+        padding: 6px 0;
+        background: #fff;
+      }
+    }
+
+    .print-footer { display: none; }
+
+    @media (max-width: 600px) {
+      .sig-grid { grid-template-columns: 1fr; }
+      .doc-header h1 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION ÉCRAN -->
+<header class="screen-header">
+  <div style="display:flex;align-items:center;gap:20px;">
+    <a href="/" class="logo">ACN<span> Immo</span></a>
+    <a href="index.html" class="back-link">&#8592; Retour à l'article</a>
+  </div>
+  <button class="print-btn" onclick="window.print()">&#128438; Imprimer / Enregistrer en PDF</button>
+</header>
+
+<div class="page">
+
+  <!-- EN-TÊTE DU DOCUMENT -->
+  <div class="doc-header">
+    <span class="acn-tag">ACN &mdash; Guide vendeur 2026</span>
+    <h1>Vendre sans agence&nbsp;: ma checklist complète</h1>
+    <p>Suivez chaque étape pour sécuriser votre vente entre particuliers</p>
+    <div class="meta">
+      <span>&#128197; Mise à jour&nbsp;: mai 2026</span>
+      <span>&#128203; 5 étapes &bull; 38 points de contrôle</span>
+    </div>
+  </div>
+
+  <!-- NOTE INTRO -->
+  <div class="note-box">
+    <strong>Rappel :</strong> En France, environ 30&nbsp;% des ventes se font entre particuliers. Sur un bien à 500&nbsp;000&nbsp;€, les frais d'agence représentent en moyenne <strong>24&nbsp;350&nbsp;€</strong> (soit 4,87&nbsp;% du prix). Cette checklist vous guide pas à pas pour réussir votre vente sans intermédiaire.
+  </div>
+
+  <!-- ======== ÉTAPE 1 ======== -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">1</span>
+      <h2>Estimer le prix juste</h2>
+    </div>
+    <div class="section-body">
+      <div class="check-item">
+        <input type="checkbox" id="c1" />
+        <label class="check-label" for="c1">
+          <strong>Consulter le DVF (Demandes de Valeurs Foncières)</strong>
+          <span>Dernière mise à jour&nbsp;: avril 2026 — transactions jusqu'à décembre 2025. Disponible sur data.gouv.fr</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c2" />
+        <label class="check-label" for="c2">
+          <strong>Analyser les annonces actives similaires</strong>
+          <span>Comparer surface, état, étage, exposition, équipements dans un rayon pertinent</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c3" />
+        <label class="check-label" for="c3">
+          <strong>Obtenir 2 ou 3 estimations gratuites en agence</strong>
+          <span>Sans engagement — pour calibrer votre fourchette avec une lecture professionnelle du marché local</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c4" />
+        <label class="check-label" for="c4">
+          <strong>Fixer un prix cohérent avec le marché réel</strong>
+          <span>Un bien surestimé de 10&nbsp;% reste 45 jours de plus en ligne — signal négatif pour les acheteurs</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c5" />
+        <label class="check-label" for="c5">
+          <strong>Préparer une fourchette de négociation</strong>
+          <span>Définir le prix plancher acceptable avant d'afficher, pour ne pas négocier sous la pression</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======== ÉTAPE 2 ======== -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">2</span>
+      <h2>Constituer le Dossier de Diagnostic Technique (DDT)</h2>
+    </div>
+    <div class="section-body">
+      <div class="check-item">
+        <input type="checkbox" id="c6" />
+        <label class="check-label" for="c6">
+          <strong>DPE (Diagnostic de Performance Énergétique) — OBLIGATOIRE</strong>
+          <span>Réforme entrée en vigueur au 1er jan. 2026 : 850&nbsp;000 logements reclassés. Vérifiez la validité du vôtre</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c7" />
+        <label class="check-label" for="c7">
+          <strong>Diagnostic amiante (si construction avant 1997)</strong>
+          <span>Valable 3 ans si présence détectée, illimité si absence confirmée</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c8" />
+        <label class="check-label" for="c8">
+          <strong>Diagnostic plomb / CREP (si construction avant 1949)</strong>
+          <span>Valable 1 an si présence détectée, illimité si absence confirmée</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c9" />
+        <label class="check-label" for="c9">
+          <strong>Diagnostic électricité (si installation &gt; 15 ans)</strong>
+          <span>Valable 3 ans en cas de vente</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c10" />
+        <label class="check-label" for="c10">
+          <strong>Diagnostic gaz (si installation &gt; 15 ans)</strong>
+          <span>Valable 3 ans en cas de vente</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c11" />
+        <label class="check-label" for="c11">
+          <strong>Diagnostic termites (si zone à risque)</strong>
+          <span>Valable 6 mois — vérifier si votre commune est en zone délimitée par arrêté préfectoral</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c12" />
+        <label class="check-label" for="c12">
+          <strong>ERP (État des Risques et Pollutions)</strong>
+          <span>Valable 6 mois — document à compléter sur georisques.gouv.fr</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c13" />
+        <label class="check-label" for="c13">
+          <strong>Loi Carrez (si copropriété)</strong>
+          <span>Métrage certifié de la surface privative — valable indéfiniment si aucun travaux depuis</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c14" />
+        <label class="check-label" for="c14">
+          <strong>Choisir un diagnostiqueur certifié et comparer les devis</strong>
+          <span>Demander au moins 2 devis — prix variables selon région et nombre de diagnostics groupés</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======== ÉTAPE 3 ======== -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">3</span>
+      <h2>Créer et diffuser l'annonce</h2>
+    </div>
+    <div class="section-body">
+      <div class="check-item">
+        <input type="checkbox" id="c15" />
+        <label class="check-label" for="c15">
+          <strong>Faire réaliser des photos professionnelles</strong>
+          <span>77&nbsp;% des acheteurs trouvent leur bien sur Internet — la qualité visuelle est votre premier filtre</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c16" />
+        <label class="check-label" for="c16">
+          <strong>Réaliser une vidéo de présentation du bien</strong>
+          <span>Augmente significativement le temps passé sur l'annonce et le taux de prise de contact</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c17" />
+        <label class="check-label" for="c17">
+          <strong>Ajouter une vue drone (maison, terrain, environnement)</strong>
+          <span>Contextualise le bien dans son quartier — fort différenciateur vs. les annonces concurrentes</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c18" />
+        <label class="check-label" for="c18">
+          <strong>Rédiger une description précise et factuelle</strong>
+          <span>Surface, pièces, année de construction, DPE, orientation, charges, travaux récents</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c19" />
+        <label class="check-label" for="c19">
+          <strong>Publier sur Leboncoin</strong>
+          <span>Première plateforme grand public en France — indispensable</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c20" />
+        <label class="check-label" for="c20">
+          <strong>Publier sur PAP.fr</strong>
+          <span>Spécialiste du particulier à particulier — forte audience d'acheteurs qualifiés</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c21" />
+        <label class="check-label" for="c21">
+          <strong>Publier sur SeLoger Particuliers / Logic-Immo Particuliers</strong>
+          <span>Audience de portails leaders — visibilité complémentaire</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c22" />
+        <label class="check-label" for="c22">
+          <strong>Partager sur les réseaux sociaux locaux</strong>
+          <span>Groupes Facebook du quartier, Nextdoor, pages de voisinage — effet bouche-à-oreille digital</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c23" />
+        <label class="check-label" for="c23">
+          <strong>Mentionner le prix incluant l'étiquette DPE dans l'annonce</strong>
+          <span>Obligatoire depuis 2022 — le DPE influence directement la décision d'achat</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======== ÉTAPE 4 ======== -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">4</span>
+      <h2>Organiser et réussir les visites</h2>
+    </div>
+    <div class="section-body">
+      <div class="check-item">
+        <input type="checkbox" id="c24" />
+        <label class="check-label" for="c24">
+          <strong>Qualifier les candidats par téléphone avant la visite</strong>
+          <span>Vérifier la situation financière (apport, prêt, courtier contacté&nbsp;?), le délai et la motivation</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c25" />
+        <label class="check-label" for="c25">
+          <strong>Préparer le bien pour chaque visite</strong>
+          <span>Rangement, nettoyage, aération, éclairage optimal, petites réparations visibles</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c26" />
+        <label class="check-label" for="c26">
+          <strong>Avoir le DDT complet disponible pour le montrer</strong>
+          <span>Les acheteurs sérieux demandent systématiquement à consulter les diagnostics</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c27" />
+        <label class="check-label" for="c27">
+          <strong>Préparer les réponses aux questions clés</strong>
+          <span>Charges, taxe foncière, travaux récents et prévus, voisinage, raison de vente, délai souhaité</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c28" />
+        <label class="check-label" for="c28">
+          <strong>Déclarer les vices et défauts connus</strong>
+          <span>Obligation légale — toute dissimulation peut entraîner la nullité de vente ou des recours</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c29" />
+        <label class="check-label" for="c29">
+          <strong>Sécuriser les offres reçues par écrit</strong>
+          <span>Demander une offre d'achat écrite avec prix proposé, conditions et délai de validité</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c30" />
+        <label class="check-label" for="c30">
+          <strong>Négocier dans votre fourchette préalablement définie</strong>
+          <span>Rester factuel&nbsp;: appuyer vos arguments sur les comparables DVF et l'état du bien</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======== ÉTAPE 5 ======== -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">5</span>
+      <h2>Finaliser la vente chez le notaire</h2>
+    </div>
+    <div class="section-body">
+      <div class="check-item">
+        <input type="checkbox" id="c31" />
+        <label class="check-label" for="c31">
+          <strong>Choisir un notaire (ou accepter celui de l'acheteur)</strong>
+          <span>Vous pouvez avoir votre propre notaire — les honoraires sont partagés, sans surcoût pour les parties</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c32" />
+        <label class="check-label" for="c32">
+          <strong>Signer le compromis de vente (ou promesse synallagmatique)</strong>
+          <span>Formalise l'accord entre les deux parties avec prix, conditions suspensives et date limite</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c33" />
+        <label class="check-label" for="c33">
+          <strong>Attendre l'expiration du délai de rétractation de l'acheteur</strong>
+          <span>10 jours à compter de la notification du compromis — délai légal incompressible</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c34" />
+        <label class="check-label" for="c34">
+          <strong>Transmettre tous les documents demandés par le notaire</strong>
+          <span>Titre de propriété, dernières factures, charges de copropriété, diagnostics, travaux, etc.</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c35" />
+        <label class="check-label" for="c35">
+          <strong>Vérifier la levée des conditions suspensives (prêt, etc.)</strong>
+          <span>Confirmer que le financement de l'acheteur est obtenu avant de libérer le bien</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c36" />
+        <label class="check-label" for="c36">
+          <strong>Signer l'acte authentique de vente</strong>
+          <span>Généralement 2 à 3 mois après le compromis — transfert de propriété officiel</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c37" />
+        <label class="check-label" for="c37">
+          <strong>Remettre les clés et les documents du bien</strong>
+          <span>Clés, codes, notices d'équipements, garanties, dernières factures eau/gaz/électricité</span>
+        </label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c38" />
+        <label class="check-label" for="c38">
+          <strong>Calculer et déclarer la plus-value immobilière si applicable</strong>
+          <span>Résidence principale&nbsp;: exonérée. Autre bien&nbsp;: imposable — simulateur disponible sur service-public.fr</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOC SIGNATURE / NOTES -->
+  <div class="signature-block">
+    <h3>Mes informations</h3>
+    <div class="sig-grid">
+      <div class="sig-field">
+        <label>Adresse du bien</label>
+        <div class="line"></div>
+      </div>
+      <div class="sig-field">
+        <label>Prix de vente visé</label>
+        <div class="line"></div>
+      </div>
+      <div class="sig-field">
+        <label>Date de mise en vente</label>
+        <div class="line"></div>
+      </div>
+      <div class="sig-field">
+        <label>Notaire choisi</label>
+        <div class="line"></div>
+      </div>
+      <div class="sig-field">
+        <label>Diagnostiqueur contacté</label>
+        <div class="line"></div>
+      </div>
+      <div class="sig-field">
+        <label>Date limite souhaitée</label>
+        <div class="line"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA ACN (écran seulement) -->
+  <div class="screen-only" style="margin-top:40px; background: linear-gradient(135deg, #ff5a1f 0%, #ff8c42 100%); border-radius:14px; padding:32px; text-align:center; color:#fff;">
+    <p style="font-weight:800; font-size:20px; margin-bottom:10px;">Vos visuels immobiliers, clés en main</p>
+    <p style="opacity:0.9; margin-bottom:22px; font-size:15px;">Photo &bull; Vidéo &bull; Drone &mdash; Spécialistes particuliers-vendeurs</p>
+    <a href="https://acn-immo.fr/contact" style="display:inline-block; background:#fff; color:#ff5a1f; font-weight:700; padding:12px 28px; border-radius:8px; text-decoration:none; font-size:15px;">Obtenir un devis gratuit &rarr;</a>
+  </div>
+
+</div>
+
+<!-- FOOTER ÉCRAN -->
+<footer class="acn-footer">
+  <p>&copy; 2026 ACN &mdash; Production audiovisuelle immobilière &mdash; <a href="https://acn-immo.fr">acn-immo.fr</a></p>
+  <p style="margin-top:6px; font-size:12px; opacity:0.7;">Document mis à jour en mai 2026 &bull; Données&nbsp;: DVF avril 2026, réforme DPE 1er jan. 2026</p>
+</footer>
+
+<!-- FOOTER IMPRESSION -->
+<div class="print-footer">
+  Checklist "Vendre sans agence 2026" &bull; ACN Immo &bull; acn-immo.fr &bull; Document mis à jour en mai 2026
+</div>
+
+</body>
+</html>

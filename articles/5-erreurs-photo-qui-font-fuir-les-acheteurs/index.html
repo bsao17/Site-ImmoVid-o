@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>5 erreurs photo qui font fuir les acheteurs | Blog ACN</title>
+  <meta name="description" content="84 % des acheteurs jugent un bien sur ses photos. Découvrez les 5 erreurs photographiques qui torpillent votre vente — et comment les éviter pour vendre vite et au bon prix." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://acn-immovideo.fr/articles/5-erreurs-photo-qui-font-fuir-les-acheteurs/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="5 erreurs photo qui font fuir les acheteurs | Blog ACN" />
+  <meta property="og:description" content="84 % des acheteurs jugent un bien sur ses photos. Découvrez les 5 erreurs qui torpillent votre vente et les solutions concrètes pour vendre plus vite." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80" />
+  <meta property="og:url" content="https://acn-immovideo.fr/articles/5-erreurs-photo-qui-font-fuir-les-acheteurs/" />
+  <meta property="og:site_name" content="ACN — ImmoVidéo" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="5 erreurs photo qui font fuir les acheteurs" />
+  <meta name="twitter:description" content="84 % des acheteurs jugent un bien sur ses photos. Les 5 erreurs à éviter absolument." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --acn-orange: #ff5a1f;
+      --acn-orange-dark: #e04a12;
+      --acn-orange-light: #fff1ec;
+      --bg: #fafaf7;
+      --text: #1a1a1a;
+      --text-muted: #555;
+      --border: #e8e8e3;
+      --white: #ffffff;
+      --radius: 12px;
+      --max-width: 780px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 17px;
+    }
+
+    /* ─── HEADER / NAV ─── */
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--acn-orange);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: var(--text);
+    }
+
+    nav a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 28px;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--acn-orange);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      height: 480px;
+      overflow: hidden;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.62) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--acn-orange);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.2;
+      max-width: 680px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-meta {
+      margin-top: 18px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.75);
+    }
+
+    /* ─── ARTICLE LAYOUT ─── */
+    .article-wrapper {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
+
+    /* ─── INTRO STAT BANNER ─── */
+    .stat-banner {
+      background: var(--acn-orange-light);
+      border-left: 4px solid var(--acn-orange);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 20px 24px;
+      margin-bottom: 40px;
+    }
+
+    .stat-banner p {
+      font-size: 1rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .stat-banner strong {
+      color: var(--acn-orange);
+    }
+
+    /* ─── INTRO TEXT ─── */
+    .intro {
+      margin-bottom: 52px;
+    }
+
+    .intro p {
+      margin-bottom: 18px;
+      color: var(--text-muted);
+    }
+
+    .intro p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ─── SECTION ERRORS ─── */
+    .error-list {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .error-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .error-card-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 24px 28px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .error-number {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--acn-orange);
+      color: var(--white);
+      font-size: 1.15rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .error-card-header h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .error-card-body {
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .error-card-body p {
+      color: var(--text-muted);
+    }
+
+    .error-block {
+      background: var(--bg);
+      border-radius: 8px;
+      padding: 14px 18px;
+    }
+
+    .error-block-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .error-block.cost .error-block-label {
+      color: #c0392b;
+    }
+
+    .error-block.solution .error-block-label {
+      color: #27ae60;
+    }
+
+    .error-block p {
+      font-size: 0.95rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ─── CONCLUSION ─── */
+    .conclusion {
+      margin-bottom: 48px;
+    }
+
+    .conclusion h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+      color: var(--text);
+      letter-spacing: -0.3px;
+    }
+
+    .conclusion p {
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    /* ─── CTA ─── */
+    .cta-block {
+      background: var(--text);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      text-align: center;
+      color: var(--white);
+    }
+
+    .cta-block h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+
+    .cta-block p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 28px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: var(--acn-orange);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 15px 34px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .cta-btn:hover {
+      background: var(--acn-orange-dark);
+      transform: translateY(-1px);
+    }
+
+    .cta-note {
+      margin-top: 14px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--acn-orange);
+      text-decoration: none;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 640px) {
+      .hero {
+        height: 360px;
+      }
+
+      .error-card-header {
+        padding: 18px 20px;
+      }
+
+      .error-card-body {
+        padding: 18px 20px;
+      }
+
+      .cta-block {
+        padding: 32px 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAVIGATION ─── -->
+  <header>
+    <div class="nav-inner">
+      <a class="logo" href="/">ACN <span>ImmoVidéo</span></a>
+      <nav>
+        <a href="/services/">Nos services</a>
+        <a href="/blog/">Blog</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <img
+      src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80"
+      alt="Intérieur d'un appartement photographié en lumière naturelle"
+      loading="eager"
+    />
+    <div class="hero-overlay">
+      <span class="hero-tag">Conseils vente</span>
+      <h1>5 erreurs photo qui font fuir les acheteurs</h1>
+      <p class="hero-meta">Publié le 18 mai 2026 &mdash; 5 min de lecture</p>
+    </div>
+  </section>
+
+  <!-- ─── CONTENU ─── -->
+  <main class="article-wrapper">
+
+    <!-- Bannière stat accroche -->
+    <div class="stat-banner">
+      <p><strong>84 %</strong> des acheteurs considèrent les photos comme l'élément le plus important lors de leurs recherches en ligne. Vos visuels font ou défont votre vente avant même la première visite.</p>
+    </div>
+
+    <!-- Introduction -->
+    <div class="intro">
+      <p>
+        Aujourd'hui, <strong>77 % des acheteurs trouvent leur futur bien sur Internet</strong>. Ce chiffre signifie une chose concrète : votre annonce est jugée, filtrée — et parfois immédiatement fermée — en quelques secondes, sur un écran de téléphone, avant que quiconque franchisse votre porte.
+      </p>
+      <p>
+        Dans ce contexte, la qualité photographique n'est plus un détail esthétique. C'est un levier commercial direct. Les biens mis en valeur par des photos de qualité se vendent <strong>jusqu'à 32 % plus rapidement</strong> que les autres. Pourtant, de nombreux vendeurs commettent encore les mêmes erreurs visuelles — des erreurs qui coûtent cher, en temps comme en argent.
+      </p>
+      <p>
+        Voici les cinq plus fréquentes, et surtout, comment les corriger.
+      </p>
+    </div>
+
+    <!-- ─── LES 5 ERREURS ─── -->
+    <div class="error-list">
+
+      <!-- Erreur 1 -->
+      <article class="error-card">
+        <div class="error-card-header">
+          <div class="error-number">1</div>
+          <h2>Manque de luminosité — les pièces sombres suggèrent des problèmes cachés</h2>
+        </div>
+        <div class="error-card-body">
+          <p>
+            Une pièce mal éclairée ne se contente pas d'être peu flatteuse : elle déclenche une méfiance instinctive chez l'acheteur. L'obscurité est inconsciemment associée à l'humidité, au mauvais état général, ou à une orientation défavorable. L'acheteur ne le formulera pas ainsi — il dira simplement que "l'appartement ne lui plaît pas" et passera à l'annonce suivante.
+          </p>
+          <div class="error-block cost">
+            <div class="error-block-label">Ce que ca coute</div>
+            <p>Des clics perdus dès les premières secondes. Votre bien reste en ligne sans visites, et la durée d'exposition s'allonge — ce qui nuit à votre pouvoir de négociation.</p>
+          </div>
+          <div class="error-block solution">
+            <div class="error-block-label">La solution</div>
+            <p>Photographiez en journée avec un maximum de lumière naturelle. Ouvrez tous les volets, retirez les rideaux épais, allumez tous les points lumineux. Un photographe professionnel maîtrise l'exposition et peut corriger en post-traitement ce que l'oeil ne voit pas à l'appareil.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Erreur 2 -->
+      <article class="error-card">
+        <div class="error-card-header">
+          <div class="error-number">2</div>
+          <h2>Angles mal choisis — ils réduisent visuellement l'espace</h2>
+        </div>
+        <div class="error-card-body">
+          <p>
+            Photographier depuis le milieu d'une pièce, à hauteur d'épaule, avec un smartphone tenu à la verticale : c'est la recette garantie pour qu'un salon de 25 m² ressemble à un couloir. L'angle de prise de vue est l'un des outils les plus puissants du photographe immobilier — et le plus souvent négligé par le vendeur amateur.
+          </p>
+          <div class="error-block cost">
+            <div class="error-block-label">Ce que ca coute</div>
+            <p>L'acheteur sous-estime la superficie réelle. Il arrive en visite avec de fausses attentes — ou n'y va pas du tout, convaincu que le bien est trop petit pour lui.</p>
+          </div>
+          <div class="error-block solution">
+            <div class="error-block-label">La solution</div>
+            <p>Positionnez l'appareil dans un coin de la pièce, au niveau de la ceinture ou légèrement en dessous, en cadrant vers l'angle opposé. Un objectif grand-angle (sans distorsion excessive) restitue fidèlement le volume. Un trépied stabilise le cadre et libère les deux mains pour composer l'image.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Erreur 3 -->
+      <article class="error-card">
+        <div class="error-card-header">
+          <div class="error-number">3</div>
+          <h2>Pièces mal preparees et desordre visible — l'acheteur ne peut pas se projeter</h2>
+        </div>
+        <div class="error-card-body">
+          <p>
+            Une assiette sale sur l'évier, un tas de linge sur le canapé, des jouets éparpillés au sol : l'acheteur voit votre quotidien, pas son futur chez-lui. La projection mentale — "est-ce que je me vois vivre ici ?" — est bloquée dès la première image. L'encombrement visuel est l'ennemi numéro un de la mise en valeur immobilière.
+          </p>
+          <div class="error-block cost">
+            <div class="error-block-label">Ce que ca coute</div>
+            <p>Un bien perçu comme mal entretenu justifie une offre basse. Le désordre suggère aussi, à tort, un manque de soin sur l'ensemble du logement — y compris sur des points techniques qui ne se voient pas.</p>
+          </div>
+          <div class="error-block solution">
+            <div class="error-block-label">La solution</div>
+            <p>Avant toute séance, dégagez les plans de travail, rangez les effets personnels, neutralisez la décoration trop marquée. Misez sur des éléments simples : un bouquet frais, des coussins bien disposés, une table de salle à manger mise sobrement. Moins il y a de bruit visuel, plus l'espace respire.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Erreur 4 -->
+      <article class="error-card">
+        <div class="error-card-header">
+          <div class="error-number">4</div>
+          <h2>Photos floues ou mal exposees — elles signalent un manque de serieux</h2>
+        </div>
+        <div class="error-card-body">
+          <p>
+            Une photo surexposée qui brule les fenêtres, un cliché flou pris en mouvement, une image granuleuse faute de lumière suffisante : ces défauts techniques ne passent pas inaperçus. Pour l'acheteur, ils valent un signal fort — si le vendeur n'a pas pris la peine de soigner ses photos, que peut-on attendre du soin apporté au bien lui-même ?
+          </p>
+          <div class="error-block cost">
+            <div class="error-block-label">Ce que ca coute</div>
+            <p>Une annonce visuellement négligée reçoit moins de clics, moins de sauvegardes, moins de demandes de visite. Elle finit par stagner en bas des résultats de recherche à mesure que les plateformes favorisent les annonces performantes.</p>
+          </div>
+          <div class="error-block solution">
+            <div class="error-block-label">La solution</div>
+            <p>Utilisez un appareil photo reflex ou hybride avec stabilisation, réglez manuellement l'exposition, et travaillez sur trépied pour garantir la netteté. Le traitement RAW en post-production permet de récupérer les détails dans les zones claires et sombres simultanément — une technique standard en photographie immobilière professionnelle.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Erreur 5 -->
+      <article class="error-card">
+        <div class="error-card-header">
+          <div class="error-number">5</div>
+          <h2>Negliger l'exterieur et la facade — c'est la premiere impression</h2>
+        </div>
+        <div class="error-card-body">
+          <p>
+            Dans une annonce immobilière, la photo de façade est souvent la première image visible — celle qui apparaît en miniature dans les résultats de recherche. Si elle est prise sous un angle défavorable, par temps gris, avec une poubelle au premier plan ou une voiture garée devant l'entrée, elle compromet l'intérêt de toutes les photos qui suivent.
+          </p>
+          <div class="error-block cost">
+            <div class="error-block-label">Ce que ca coute</div>
+            <p>L'acheteur ne clique jamais sur l'annonce. La façade, le jardin, la terrasse, la vue — tous ces atouts extérieurs qui justifient parfois une part importante du prix — restent invisibles.</p>
+          </div>
+          <div class="error-block solution">
+            <div class="error-block-label">La solution</div>
+            <p>Choisissez une journée ensoleillée, dégagez l'entrée, tondez la pelouse si besoin. Variez les prises de vue : façade de face, angle trois-quarts, jardin ou terrasse mis en scène. Pour les maisons individuelles, une prise de vue drone offre une perspective unique qui valorise immédiatement le bien et son environnement — un vrai différenciateur sur les portails immobiliers.</p>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /error-list -->
+
+    <!-- ─── CONCLUSION ─── -->
+    <div class="conclusion">
+      <h2>Des photos qui vendent : un investissement, pas une depense</h2>
+      <p>
+        Ces cinq erreurs sont évitables. Elles ne nécessitent pas de budget astronomique — mais elles demandent une chose que beaucoup de vendeurs particuliers n'ont pas le temps ou le matériel de réunir : de la préparation, du bon équipement, et un regard exercé.
+      </p>
+      <p>
+        Il est frappant de constater que, selon le Journal de l'Agence, <strong>80 % des agents immobiliers sous-estiment encore l'importance de la qualité des photos</strong> dans le processus de vente. Si même les professionnels du secteur passent à côté, le vendeur particulier, lui, part avec un désavantage supplémentaire — sauf s'il décide de faire appel à des spécialistes de la mise en valeur visuelle.
+      </p>
+      <p>
+        Chez ACN, nous accompagnons les vendeurs particuliers qui souhaitent vendre sans agence mais sans sacrifier la qualité de leur présentation. Photo professionnelle, vidéo, visite virtuelle, drone : nous mettons à votre service les mêmes outils que les agences haut de gamme, pour valoriser votre bien et attirer les bons acheteurs dès le premier regard.
+      </p>
+    </div>
+
+    <!-- ─── CTA ─── -->
+    <div class="cta-block">
+      <h3>Votre bien merite des photos qui font la difference</h3>
+      <p>Confiez la mise en valeur de votre bien a ACN et vendez plus vite, au juste prix — sans agence.</p>
+      <a class="cta-btn" href="/contact/">Demander un devis gratuit</a>
+      <p class="cta-note">Reponse sous 24 h &mdash; Devis sans engagement</p>
+    </div>
+
+  </main>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <p>&copy; 2026 ACN ImmoVidéo &mdash; <a href="/mentions-legales/">Mentions légales</a> &mdash; <a href="/politique-confidentialite/">Politique de confidentialité</a></p>
+  </footer>
+
+</body>
+</html>
