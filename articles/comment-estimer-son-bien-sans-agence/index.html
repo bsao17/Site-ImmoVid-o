@@ -686,7 +686,7 @@
     <p>
       Photo, vidéo, drone&nbsp;: ACN produit vos supports visuels immobiliers pour que votre annonce attire les bons acheteurs — sans vous faire payer une commission d'agence.
     </p>
-    <form action="https://formsubmit.co/declic62@protonmail.com" method="POST" onsubmit="event.preventDefault();var t=this;fetch(t.action,{method:'POST',body:new FormData(t)}).then(function(){t.innerHTML='<div style=\"padding:20px;color:#fff;font-weight:600\">Merci ! On vous repond sous 24h.</div>';})" style="display:flex;flex-wrap:wrap;gap:10px;max-width:620px;margin:20px auto 0;background:rgba(255,255,255,0.06);padding:8px;border-radius:100px;border:1px solid rgba(255,255,255,0.12)">
+    <form action="https://formsubmit.co/declic62@protonmail.com" method="POST" style="display:flex;flex-wrap:wrap;gap:10px;max-width:620px;margin:20px auto 0;background:rgba(255,255,255,0.06);padding:8px;border-radius:100px;border:1px solid rgba(255,255,255,0.12)">
       <input type="hidden" name="_subject" value="Nouveau devis ACN">
       <input type="hidden" name="_captcha" value="false">
       <input name="email" type="email" required placeholder="votre.email@exemple.com" style="flex:1;min-width:220px;padding:12px 20px;background:transparent;border:none;outline:none;color:#fff;font-size:14px;font-family:inherit">
@@ -707,5 +707,6 @@
   </p>
 </footer>
 
+<script>document.querySelectorAll('form[action*="formsubmit"]').forEach(function(f){f.addEventListener("submit",function(e){e.preventDefault();var t=this;fetch(t.action,{method:"POST",body:new FormData(t)}).then(function(){t.innerHTML='<div style="padding:20px;color:#fff;font-weight:600">Merci ! On vous repond sous 24h.</div>'})})})</script>
 </body>
 </html>
