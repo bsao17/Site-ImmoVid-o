@@ -42,8 +42,8 @@
       line-height: 1.75;
     }
 
-    /* NAV */
-    nav {
+    /* ─── HEADER / NAV ─── */
+    header {
       background: var(--white);
       border-bottom: 1px solid var(--border);
       padding: 0 24px;
@@ -51,7 +51,8 @@
       top: 0;
       z-index: 100;
     }
-    nav .nav-inner {
+
+    .nav-inner {
       max-width: 1100px;
       margin: 0 auto;
       display: flex;
@@ -59,25 +60,31 @@
       justify-content: space-between;
       height: 64px;
     }
-    .nav-logo {
+
+    .logo {
+      font-size: 1.25rem;
       font-weight: 800;
-      font-size: 20px;
       color: var(--orange);
       text-decoration: none;
       letter-spacing: -0.5px;
     }
-    .nav-logo span { color: var(--text); }
-    .nav-cta {
-      background: var(--orange);
-      color: var(--white);
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 14px;
-      text-decoration: none;
-      transition: background 0.2s;
+
+    .logo span {
+      color: var(--text);
     }
-    .nav-cta:hover { background: var(--orange-dark); }
+
+    nav a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 28px;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--orange);
+    }
 
     /* HERO */
     .hero {
@@ -335,12 +342,16 @@
 </head>
 <body>
 
-<nav>
+<header>
   <div class="nav-inner">
-    <a href="/" class="nav-logo">ACN<span> Immo</span></a>
-    <a href="#contact" class="nav-cta">Obtenir un devis</a>
+    <a href="/" class="logo">ACN <span>ImmoVidéo</span></a>
+    <nav>
+      <a href="/services/">Nos services</a>
+      <a href="/blog/">Blog</a>
+      <a href="/contact/">Contact</a>
+    </nav>
   </div>
-</nav>
+</header>
 
 <section class="hero">
   <img
