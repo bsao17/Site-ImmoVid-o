@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conditions Générales de Vente | ACN</title>
+  <meta name="description" content="Conditions Générales de Vente d'ACN Studio — Production audiovisuelle immobilière. Tarifs, prestations, livraison, droit de rétractation." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://acn-immovideo.fr/cgv/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --acn-orange: #ff5a1f;
+      --acn-orange-light: #fff1ec;
+      --acn-dark: #1a1a1a;
+      --acn-gray: #6b6b6b;
+      --acn-light-gray: #e8e8e4;
+      --acn-bg: #fafaf7;
+      --max-width: 760px;
+      --font: 'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--acn-bg);
+      color: var(--acn-dark);
+      font-family: var(--font);
+      font-size: 17px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--acn-orange); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    ::selection { background: var(--acn-orange); color: #fff; }
+
+    header {
+      background: var(--acn-bg);
+      border-bottom: 1px solid var(--acn-light-gray);
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--acn-orange);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span { color: var(--acn-dark); }
+
+    nav a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--acn-gray);
+      text-decoration: none;
+      margin-left: 28px;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--acn-orange); }
+
+    .hero {
+      position: relative;
+      height: 320px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.18) 60%, transparent 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 40px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--acn-orange);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(26px, 5vw, 42px);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      max-width: 640px;
+      margin-bottom: 12px;
+    }
+
+    .hero-meta {
+      color: rgba(255,255,255,0.75);
+      font-size: 14px;
+    }
+
+    .page-wrap {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
+
+    .article h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 40px 0 12px;
+      letter-spacing: -0.3px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--acn-orange);
+    }
+
+    .article h2:first-of-type { margin-top: 0; }
+
+    .article h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin: 24px 0 8px;
+    }
+
+    .article p { margin-bottom: 16px; color: #2e2e2e; }
+    .article ul { margin: 0 0 16px 24px; }
+    .article ul li { margin-bottom: 6px; color: #2e2e2e; }
+
+    .article .highlight {
+      background: var(--acn-orange-light);
+      border-left: 4px solid var(--acn-orange);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 15px;
+    }
+
+    .pricing-ref {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0 24px;
+    }
+
+    .pricing-ref div {
+      background: #fff;
+      border: 1px solid var(--acn-light-gray);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .pricing-ref .name { font-weight: 700; font-size: 15px; }
+    .pricing-ref .price { font-size: 24px; font-weight: 800; color: var(--acn-orange); }
+    .pricing-ref .price small { font-size: 14px; color: var(--acn-gray); }
+
+    .cta-box {
+      background: var(--acn-dark);
+      border-radius: 16px;
+      padding: 40px 36px;
+      text-align: center;
+      margin-top: 56px;
+    }
+
+    .cta-box h2 {
+      color: #fff;
+      margin: 0 0 14px;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .cta-box p {
+      color: rgba(255,255,255,0.75);
+      font-size: 16px;
+      max-width: 500px;
+      margin: 0 auto 28px;
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--acn-light-gray);
+      padding: 28px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--acn-gray);
+    }
+
+    .site-footer a { color: var(--acn-gray); }
+    .site-footer a:hover { color: var(--acn-orange); }
+
+    @media (max-width: 600px) {
+      .hero { height: 260px; }
+      .page-wrap { padding: 36px 18px 60px; }
+      .cta-box { padding: 28px 20px; }
+      .pricing-ref { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="/" class="logo">ACN <span>ImmoVidéo</span></a>
+    <nav>
+      <a href="/">Accueil</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <img class="hero-img" src="https://images.unsplash.com/photo-1553729459-afe8f2e0b0d8?w=1200&q=80" alt="Contrat et signature" loading="eager" />
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-content">
+    <span class="hero-tag">Documents légaux</span>
+    <h1>Conditions Générales de Vente</h1>
+    <p class="hero-meta">Dernière mise à jour : <strong>mai 2026</strong></p>
+  </div>
+</section>
+
+<main class="page-wrap">
+
+  <div class="article">
+
+    <div class="highlight">
+      Les présentes Conditions Générales de Vente (CGV) régissent les relations contractuelles entre ACN Studio et le client particulier ou professionnel pour la réalisation de prestations de production audiovisuelle immobilière. Elles prévalent sur tout document contraire.
+    </div>
+
+    <h2>Article 1 — Objet</h2>
+    <p>ACN Studio est un service de production audiovisuelle spécialisé dans l'immobilier : photographie HDR, vidéo cinéma, prise de vue par drone et montage. Les présentes CGV ont pour objet de définir les droits et obligations des parties dans le cadre de la commande et de la réalisation de ces prestations.</p>
+
+    <h2>Article 2 — Prestations</h2>
+    <p>ACN Studio propose les prestations suivantes, dont le détail est communiqué sur le site et dans le devis :</p>
+    <ul>
+      <li><strong>Drone 4K</strong> — vues aériennes, certification DGAC, DJI Mavic / Avata</li>
+      <li><strong>Photo HDR</strong> — Sony &alpha;7 IV, bracketing HDR, retouche professionnelle</li>
+      <li><strong>Vidéo cinéma</strong> — visite immersive 4K, Ronin RS3, slider</li>
+      <li><strong>Montage</strong> — DaVinci Resolve, étalonnage cinéma, formats web & réseaux sociaux</li>
+    </ul>
+    <p>Les prestations sont réalisées dans un rayon de 50 km autour des bases d'ACN (Royan, La Rochelle, Bordeaux). Au-delà, un devis spécifique est établi.</p>
+
+    <h2>Article 3 — Tarifs</h2>
+    <p>Les tarifs en vigueur sont ceux affichés sur le site au moment de la commande :</p>
+
+    <div class="pricing-ref">
+      <div>
+        <div class="name">Essentiel</div>
+        <div class="price">190 <small>€</small></div>
+        <div style="font-size:12px;color:var(--acn-gray);margin-top:4px">Photo HDR · 15 visuels</div>
+      </div>
+      <div>
+        <div class="name">Signature</div>
+        <div class="price">390 <small>€</small></div>
+        <div style="font-size:12px;color:var(--acn-gray);margin-top:4px">Photo + Vidéo + Drone</div>
+      </div>
+      <div>
+        <div class="name">Premium</div>
+        <div class="price">590 <small>€</small></div>
+        <div style="font-size:12px;color:var(--acn-gray);margin-top:4px">Tout inclus + site dédié</div>
+      </div>
+    </div>
+
+    <p>Les prix s'entendent TTC (TVA non applicable, micro-entreprise). Le déplacement est inclus dans un rayon de 50 km. Les frais supplémentaires éventuels (hébergement, péage, stationnement) sont facturés en sus sur justificatif.</p>
+
+    <h2>Article 4 — Devis et commande</h2>
+    <p>Le devis est établi gratuitement sous 24h ouvrées. Il est valable 30 jours à compter de son émission. La commande est ferme et définitive à réception du devis signé et du paiement de l'acompte, le cas échéant.</p>
+    <p>Aucune commande ne sera prise en compte sans un échange préalable ayant permis de déterminer les besoins précis du client (brief, visite du bien, plan de tournage).</p>
+
+    <h2>Article 5 — Modalités de paiement</h2>
+    <p>Le paiement s'effectue par virement bancaire ou tout autre moyen convenu entre les parties. Les modalités sont les suivantes :</p>
+    <ul>
+      <li>Pour les forfaits <strong>Essentiel</strong> : paiement intégral à la commande</li>
+      <li>Pour les forfaits <strong>Signature</strong> et <strong>Premium</strong> : acompte de 50 % à la commande, solde à la livraison</li>
+    </ul>
+    <p>En cas de retard de paiement, des pénalités de retard égales à trois fois le taux d'intérêt légal sont applicables, ainsi qu'une indemnité forfaitaire de recouvrement de 40 €.</p>
+
+    <h2>Article 6 — Livraison</h2>
+    <p>Le délai de livraison standard est de <strong>48 heures ouvrées</strong> à compter de la date de tournage, sauf contrainte technique ou météorologique mentionnée au client. Les fichiers sont livrés sous forme de lien de téléchargement sécurisé (WeTransfer ou équivalent).</p>
+    <p>En cas de retard imputable à ACN Studio, le client peut demander une réduction proportionnelle du prix, sans que celle-ci n'excède 15 % du montant total de la prestation.</p>
+
+    <h2>Article 7 — Droit de rétractation et annulation</h2>
+    <p>Conformément à l'article L.221-28 du Code de la consommation, le droit de rétractation ne s'applique pas aux prestations de services audiovisuels pleinement exécutées avant la fin du délai de rétractation (14 jours), avec l'accord exprès du client et renonciation à son droit de rétractation.</p>
+    <p>En cas d'annulation par le client moins de 48h avant le tournage, l'acompte versé reste acquis à ACN Studio à titre d'indemnité forfaitaire. En cas d'annulation par ACN Studio, l'acompte est intégralement remboursé.</p>
+
+    <h2>Article 8 — Propriété intellectuelle</h2>
+    <p>Les photographies et vidéos réalisées par ACN Studio sont protégées par le droit d'auteur. Le client bénéficie d'une cession des droits d'exploitation limitée à la vente et à la promotion du bien concerné, pour une durée illimitée et sur tous supports (web, papier, réseaux sociaux).</p>
+    <p>ACN Studio se réserve le droit d'utiliser les productions réalisées à titre de démonstration de son travail (portfolio, site web, réseaux sociaux), sauf opposition expresse du client formulée par écrit avant la livraison.</p>
+    <p>Toute utilisation commerciale au-delà du cadre défini (revente des fichiers, usage par un tiers, exploitation pour un autre bien) nécessite un accord écrit préalable et peut donner lieu à une facturation complémentaire.</p>
+
+    <h2>Article 9 — Responsabilité et assurances</h2>
+    <p>ACN Studio est titulaire d'une assurance responsabilité civile professionnelle. Les vols de drone sont réalisés par un pilote certifié DGAC, en conformité avec la réglementation en vigueur (arrêté du 17 décembre 2015 modifié).</p>
+    <p>En cas d'impossibilité de tournage liée aux conditions météorologiques (pluie, vent fort) ou à une restriction aérienne imprévue, un nouveau créneau est proposé au client dans les meilleurs délais, sans frais supplémentaires.</p>
+    <p>La responsabilité d'ACN Studio est limitée au montant de la prestation commandée. ACN Studio ne saurait être tenu responsable d'un préjudice commercial indirect (baisse du prix de vente, délai de vente allongé, etc.).</p>
+
+    <h2>Article 10 — Données personnelles</h2>
+    <p>Les informations collectées dans le cadre de la commande (nom, email, adresse du bien) sont utilisées exclusivement pour la gestion de la relation commerciale. Conformément au RGPD, le client dispose d'un droit d'accès, de rectification et de suppression de ses données. Pour plus d'informations, consultez notre <a href="/politique-confidentialite/">Politique de confidentialité</a>.</p>
+
+    <h2>Article 11 — Litiges</h2>
+    <p>Les présentes CGV sont soumises au droit français. En cas de litige persistant après une réclamation écrite, les parties s'engagent à rechercher une solution amiable avant toute action judiciaire. Le tribunal compétent est celui du ressort du siège social d'ACN Studio.</p>
+
+    <h2>Article 12 — Acceptation des CGV</h2>
+    <p>Le fait de commander une prestation auprès d'ACN Studio vaut acceptation pleine et entière des présentes Conditions Générales de Vente. Le client déclare en avoir pris connaissance et les accepter sans réserve.</p>
+
+  </div>
+
+  <div class="cta-box" id="contact">
+    <h2>Prêt à passer commande ?</h2>
+    <p>Demandez un devis gratuit — réponse sous 24h.</p>
+    <form action="https://formsubmit.co/declic62@protonmail.com" method="POST" style="display:flex;flex-wrap:wrap;gap:10px;max-width:620px;margin:20px auto 0;background:rgba(255,255,255,0.06);padding:8px;border-radius:100px;border:1px solid rgba(255,255,255,0.12)">
+      <input type="hidden" name="_subject" value="Contact depuis CGV">
+      <input type="hidden" name="_captcha" value="false">
+      <input name="email" type="email" required placeholder="votre.email@exemple.com" style="flex:1;min-width:220px;padding:12px 20px;background:transparent;border:none;outline:none;color:#fff;font-size:14px;font-family:inherit">
+      <button type="submit" style="padding:12px 24px;background:#fff;color:#ff5a1f;border:none;border-radius:100px;font-weight:700;font-size:14px;font-family:inherit;cursor:pointer">Demander un devis gratuit</button>
+    </form>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>
+    &copy; 2026 ACN &mdash; Production audiovisuelle immobilière &nbsp;·&nbsp;
+    <a href="/">Accueil</a> &nbsp;·&nbsp;
+    <a href="/mentions-legales/">Mentions légales</a> &nbsp;·&nbsp;
+    <a href="/politique-confidentialite/">Politique de confidentialité</a>
+  </p>
+</footer>
+
+<script>document.querySelectorAll('form[action*="formsubmit"]').forEach(function(f){f.addEventListener("submit",function(e){e.preventDefault();var t=this;fetch(t.action,{method:"POST",body:new FormData(t)}).then(function(){t.innerHTML='<div style="padding:20px;color:#fff;font-weight:600">Merci ! On vous repond sous 24h.</div>'})})})</script>
+</body>
+</html>
