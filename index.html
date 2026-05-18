@@ -1577,11 +1577,12 @@ function Blog({ brand, brandSoft, brandText }) {
     time: '8 min',
     date: '12 mai 2026',
     photo: '1560518883-ce09059eeffa',
+    url: 'articles/vendre-sans-agence-methode-2026/',
   };
   const small = [
-    { cat: 'Lumière', t: '5 erreurs photo qui font fuir les acheteurs',   time: '4 min', date: '28 avr.', photo: '1545324418-cc1a3fa10c00' },
-    { cat: 'Drone',   t: 'Quand le drone change vraiment la donne',        time: '5 min', date: '15 avr.', photo: '1469474968028-56623f02e42e' },
-    { cat: 'Prix',    t: 'Comment estimer son bien sans agence',           time: '6 min', date: '02 avr.', photo: '1556909114-f6e7ad7d3136' },
+    { cat: 'Lumière', t: '5 erreurs photo qui font fuir les acheteurs',   time: '4 min', date: '28 avr.', photo: '1545324418-cc1a3fa10c00', url: 'articles/5-erreurs-photo-qui-font-fuir-les-acheteurs/' },
+    { cat: 'Drone',   t: 'Quand le drone change vraiment la donne',        time: '5 min', date: '15 avr.', photo: '1469474968028-56623f02e42e', url: 'articles/quand-le-drone-change-vraiment-la-donne/' },
+    { cat: 'Prix',    t: 'Comment estimer son bien sans agence',           time: '6 min', date: '02 avr.', photo: '1556909114-f6e7ad7d3136', url: 'articles/comment-estimer-son-bien-sans-agence/' },
   ];
   return (
     <section id="blog" style={{ background: '#f3f1eb', padding: 'var(--pad-y) var(--pad-x)' }}>
@@ -1593,46 +1594,50 @@ function Blog({ brand, brandSoft, brandText }) {
               Conseils pour <span style={{ color: brand }}>bien vendre</span>.
             </h2>
           </div>
-          <Pill variant="ghost" size="md" brand={brand} href="#">Tous les articles →</Pill>
+          <Pill variant="ghost" size="md" brand={brand} href="articles/vendre-sans-agence-methode-2026/">Tous les articles →</Pill>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 18 }}>
-          <article style={{ background: '#fff', borderRadius: 28, overflow: 'hidden', border: '1px solid #e5e5e0', cursor: 'pointer' }}>
-            <Photo src={unsplash(featured.photo, 1000)} alt={featured.t} style={{ aspectRatio: '16/9', borderRadius: 0 }} />
-            <div style={{ padding: 28 }}>
-              <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
-                <Tag tone="brand" brand={brand} brandSoft={brandSoft} brandText={brandText}>🔥 À la une</Tag>
-                <Tag tone="ghost">{featured.cat}</Tag>
+          <a href={featured.url} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
+            <article style={{ background: '#fff', borderRadius: 28, overflow: 'hidden', border: '1px solid #e5e5e0', cursor: 'pointer' }}>
+              <Photo src={unsplash(featured.photo, 1000)} alt={featured.t} style={{ aspectRatio: '16/9', borderRadius: 0 }} />
+              <div style={{ padding: 28 }}>
+                <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
+                  <Tag tone="brand" brand={brand} brandSoft={brandSoft} brandText={brandText}>🔥 À la une</Tag>
+                  <Tag tone="ghost">{featured.cat}</Tag>
+                </div>
+                <h3 style={{ margin: 0, fontSize: 28, fontWeight: 800, letterSpacing: '-0.025em', lineHeight: 1.15 }}>
+                  {featured.t}
+                </h3>
+                <p style={{ marginTop: 12, color: '#5a5a5a', fontSize: 15, lineHeight: 1.55 }}>{featured.sub}</p>
+                <div style={{ marginTop: 18, fontSize: 12, color: '#6b6b6b', letterSpacing: '0.05em', display: 'flex', gap: 16, whiteSpace: 'nowrap' }}>
+                  <span>{featured.date}</span>
+                  <span>·</span>
+                  <span>{featured.time} de lecture</span>
+                </div>
               </div>
-              <h3 style={{ margin: 0, fontSize: 28, fontWeight: 800, letterSpacing: '-0.025em', lineHeight: 1.15 }}>
-                {featured.t}
-              </h3>
-              <p style={{ marginTop: 12, color: '#5a5a5a', fontSize: 15, lineHeight: 1.55 }}>{featured.sub}</p>
-              <div style={{ marginTop: 18, fontSize: 12, color: '#6b6b6b', letterSpacing: '0.05em', display: 'flex', gap: 16, whiteSpace: 'nowrap' }}>
-                <span>{featured.date}</span>
-                <span>·</span>
-                <span>{featured.time} de lecture</span>
-              </div>
-            </div>
-          </article>
+            </article>
+          </a>
 
           <div style={{ display: 'grid', gridTemplateRows: 'repeat(3, 1fr)', gap: 12 }}>
             {small.map((a, i) => (
-              <article key={i} style={{
-                background: '#fff', borderRadius: 20, padding: 14,
-                border: '1px solid #e5e5e0',
-                display: 'grid', gridTemplateColumns: '120px 1fr', gap: 16, alignItems: 'center',
-                cursor: 'pointer', transition: 'transform .2s',
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateX(4px)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = ''}>
-                <Photo src={unsplash(a.photo, 400)} alt={a.t} style={{ aspectRatio: '1', borderRadius: 12 }} />
-                <div>
-                  <div style={{ fontSize: 10, fontWeight: 800, color: brand, letterSpacing: '0.1em', textTransform: 'uppercase' }}>{a.cat}</div>
-                  <h4 style={{ margin: '6px 0 0', fontSize: 16, fontWeight: 800, lineHeight: 1.3, letterSpacing: '-0.01em' }}>{a.t}</h4>
-                  <div style={{ marginTop: 10, fontSize: 11, color: '#6b6b6b' }}>{a.date} · {a.time}</div>
-                </div>
-              </article>
+              <a key={i} href={a.url} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
+                <article style={{
+                  background: '#fff', borderRadius: 20, padding: 14,
+                  border: '1px solid #e5e5e0',
+                  display: 'grid', gridTemplateColumns: '120px 1fr', gap: 16, alignItems: 'center',
+                  cursor: 'pointer', transition: 'transform .2s',
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.transform = 'translateX(4px)'}
+                onMouseLeave={(e) => e.currentTarget.style.transform = ''}>
+                  <Photo src={unsplash(a.photo, 400)} alt={a.t} style={{ aspectRatio: '1', borderRadius: 12 }} />
+                  <div>
+                    <div style={{ fontSize: 10, fontWeight: 800, color: brand, letterSpacing: '0.1em', textTransform: 'uppercase' }}>{a.cat}</div>
+                    <h4 style={{ margin: '6px 0 0', fontSize: 16, fontWeight: 800, lineHeight: 1.3, letterSpacing: '-0.01em' }}>{a.t}</h4>
+                    <div style={{ marginTop: 10, fontSize: 11, color: '#6b6b6b' }}>{a.date} · {a.time}</div>
+                  </div>
+                </article>
+              </a>
             ))}
           </div>
         </div>
@@ -1665,14 +1670,19 @@ function CTAFooter({ brand, brandSoft, brandText }) {
           </p>
 
           <form
-            onSubmit={(e) => { e.preventDefault(); alert('Merci ! On vous répond sous 24h.'); }}
+            action="https://formsubmit.co/declic62@protonmail.com"
+            method="POST"
+            onSubmit={(e) => { e.preventDefault(); const f = e.target; fetch(f.action, { method: 'POST', body: new FormData(f) }).then(() => { f.innerHTML = '<div style=\"padding:20px;color:#fff;font-weight:600\">Merci ! On vous répond sous 24h.</div>'; }); }}
             style={{
               display: 'flex', flexWrap: 'wrap', gap: 10, maxWidth: 620, margin: '0 auto',
               background: 'rgba(255,255,255,0.06)',
               padding: 8, borderRadius: 100,
               border: '1px solid rgba(255,255,255,0.12)',
             }}>
+            <input type="hidden" name="_subject" value="Nouveau devis ACN" />
+            <input type="hidden" name="_captcha" value="false" />
             <input
+              name="email"
               type="email"
               required
               placeholder="votre.email@exemple.com"
@@ -1698,7 +1708,7 @@ function CTAFooter({ brand, brandSoft, brandText }) {
           </form>
 
           <div style={{ marginTop: 28, display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 28, fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>
-            <a href="mailto:hello@acn-studio.fr" style={{ color: 'inherit', textDecoration: 'none', display: 'inline-flex', gap: 8, alignItems: 'center' }}>✉ hello@acn-studio.fr</a>
+            <a href="mailto:declic62@protonmail.com" style={{ color: 'inherit', textDecoration: 'none', display: 'inline-flex', gap: 8, alignItems: 'center' }}>✉ declic62@protonmail.com</a>
           </div>
         </div>
       </div>
@@ -1737,7 +1747,7 @@ function CTAFooter({ brand, brandSoft, brandText }) {
           <div>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: 14 }}>Contact</div>
             <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)', lineHeight: 1.7 }}>
-              hello@acn-studio.fr<br />
+              declic62@protonmail.com<br />
               Royan · La Rochelle · Bordeaux
             </div>
           </div>
@@ -1751,7 +1761,7 @@ function CTAFooter({ brand, brandSoft, brandText }) {
         }}>
           <span>© 2026 ACN Production · Tous droits réservés</span>
           <span>Pilote certifié DGAC · SIRET 000 000 000 00000</span>
-          <span><a href="#" style={{ color: 'inherit' }}>Mentions légales</a> · <a href="#" style={{ color: 'inherit' }}>CGV</a></span>
+          <span><a href="mentions-legales/" style={{ color: 'inherit' }}>Mentions légales</a></span>
         </div>
       </div>
     </footer>
@@ -1766,21 +1776,33 @@ function StickyCTA({ brand }) {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+  const containerStyle = {
+    position: 'fixed', bottom: 24, right: 24, zIndex: 50,
+    display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4,
+    transform: visible ? 'translateY(0)' : 'translateY(120px)',
+    opacity: visible ? 1 : 0,
+    transition: 'transform .35s cubic-bezier(.2,.7,.3,1), opacity .25s',
+  };
   return (
-    <a href="#contact" style={{
-      position: 'fixed', bottom: 24, right: 24, zIndex: 50,
-      padding: '14px 22px', borderRadius: 100,
-      background: brand, color: '#fff',
-      fontWeight: 700, fontSize: 14,
-      boxShadow: `0 16px 40px ${brand}66`,
-      textDecoration: 'none',
-      display: 'inline-flex', alignItems: 'center', gap: 8,
-      transform: visible ? 'translateY(0)' : 'translateY(120px)',
-      opacity: visible ? 1 : 0,
-      transition: 'transform .35s cubic-bezier(.2,.7,.3,1), opacity .25s',
-    }}>
-      💬 Devis sous 24h
-    </a>
+    <div style={containerStyle}>
+      <a href="#contact" style={{
+        padding: '14px 22px', borderRadius: 100,
+        background: brand, color: '#fff',
+        fontWeight: 700, fontSize: 14,
+        boxShadow: `0 16px 40px ${brand}66`,
+        textDecoration: 'none',
+        display: 'inline-flex', alignItems: 'center', gap: 8,
+      }}>
+        💬 Devis sous 24h
+      </a>
+      <a href="cgv/" style={{
+        fontSize: 9, color: 'rgba(255,255,255,0.4)',
+        textDecoration: 'none', textAlign: 'right',
+        letterSpacing: '0.05em', paddingRight: 4,
+      }}>
+        CGV — Conditions générales
+      </a>
+    </div>
   );
 }
 
