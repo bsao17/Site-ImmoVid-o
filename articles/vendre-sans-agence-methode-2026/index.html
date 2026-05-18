@@ -348,7 +348,7 @@
     <nav>
       <a href="/#prestations">Nos services</a>
       <a href="/#blog">Blog</a>
-      <a href="/#contact">Contact</a>
+      <a href="#contact">Contact</a>
     </nav>
   </div>
 </header>
@@ -543,7 +543,12 @@
     <p>
       Vous faites l'effort de vendre sans agence pour économiser des dizaines de milliers d'euros. Ne laissez pas de mauvaises photos saboter vos chances. ACN propose des reportages photo, vidéo et drone professionnels pensés pour les particuliers&nbsp;: tarifs accessibles, rendu agence haut de gamme.
     </p>
-    <a href="https://acn-immo.fr/contact" class="cta-btn">Obtenir un devis gratuit &rarr;</a>
+    <form action="https://formsubmit.co/declic62@protonmail.com" method="POST" onsubmit="event.preventDefault();var t=this;fetch(t.action,{method:'POST',body:new FormData(t)}).then(function(){t.innerHTML='<div style=\"padding:20px;color:#fff;font-weight:600\">Merci ! On vous repond sous 24h.</div>';})" style="display:flex;flex-wrap:wrap;gap:10px;max-width:620px;margin:20px auto 0;background:rgba(255,255,255,0.15);padding:8px;border-radius:100px;border:1px solid rgba(255,255,255,0.25)">
+      <input type="hidden" name="_subject" value="Nouveau devis ACN">
+      <input type="hidden" name="_captcha" value="false">
+      <input name="email" type="email" required placeholder="votre.email@exemple.com" style="flex:1;min-width:220px;padding:12px 20px;background:transparent;border:none;outline:none;color:#fff;font-size:14px;font-family:inherit">
+      <button type="submit" style="padding:12px 24px;background:#fff;color:#ff5a1f;border:none;border-radius:100px;font-weight:700;font-size:14px;font-family:inherit;cursor:pointer">Demander un devis gratuit →</button>
+    </form>
   </div>
 
 </main>

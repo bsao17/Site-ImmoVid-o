@@ -393,7 +393,7 @@
       <nav>
         <a href="/#prestations">Nos services</a>
         <a href="/#blog">Blog</a>
-        <a href="/#contact">Contact</a>
+        <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -558,11 +558,16 @@
     </div>
 
     <!-- ─── CTA ─── -->
-    <div class="cta-block">
+    <div class="cta-block" id="contact">
       <h3>Votre bien merite des photos qui font la difference</h3>
       <p>Confiez la mise en valeur de votre bien a ACN et vendez plus vite, au juste prix — sans agence.</p>
-      <a class="cta-btn" href="/contact/">Demander un devis gratuit</a>
-      <p class="cta-note">Reponse sous 24 h &mdash; Devis sans engagement</p>
+      <form action="https://formsubmit.co/declic62@protonmail.com" method="POST" onsubmit="event.preventDefault();var t=this;fetch(t.action,{method:'POST',body:new FormData(t)}).then(function(){t.innerHTML='<div style=\"padding:20px;color:#fff;font-weight:600\">Merci ! On vous repond sous 24h.</div>';})" style="display:flex;flex-wrap:wrap;gap:10px;max-width:620px;margin:20px auto 0;background:rgba(255,255,255,0.06);padding:8px;border-radius:100px;border:1px solid rgba(255,255,255,0.12)">
+        <input type="hidden" name="_subject" value="Nouveau devis ACN">
+        <input type="hidden" name="_captcha" value="false">
+        <input name="email" type="email" required placeholder="votre.email@exemple.com" style="flex:1;min-width:220px;padding:12px 20px;background:transparent;border:none;outline:none;color:#fff;font-size:14px;font-family:inherit">
+        <button type="submit" style="padding:12px 24px;background:#fff;color:#ff5a1f;border:none;border-radius:100px;font-weight:700;font-size:14px;font-family:inherit;cursor:pointer">Demander un devis gratuit →</button>
+      </form>
+      <p class="cta-note" style="margin-top:14px;font-size:0.82rem;color:rgba(255,255,255,0.45)">Reponse sous 24 h &mdash; Devis sans engagement</p>
     </div>
 
   </main>

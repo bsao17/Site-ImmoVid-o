@@ -432,7 +432,7 @@
     <nav>
       <a href="/#prestations">Nos services</a>
       <a href="/#blog">Blog</a>
-      <a href="/#contact">Contact</a>
+      <a href="#contact">Contact</a>
     </nav>
   </div>
 </header>
@@ -680,14 +680,19 @@
     Les annonces avec photos professionnelles et vidéo génèrent significativement plus de demandes de visite que les annonces avec photos de smartphone. Une annonce bien produite, c'est moins de visites inutiles — et plus d'acheteurs réellement qualifiés au rendez-vous.
   </p>
 
-  <div class="cta-box" role="complementary" aria-label="Appel à l'action ACN">
+  <div class="cta-box" id="contact" role="complementary" aria-label="Appel à l'action ACN">
     <p class="cta-label">ACN — Production audiovisuelle immobilière</p>
     <h2>Votre bien mérite une mise en valeur professionnelle</h2>
     <p>
       Photo, vidéo, drone&nbsp;: ACN produit vos supports visuels immobiliers pour que votre annonce attire les bons acheteurs — sans vous faire payer une commission d'agence.
     </p>
-    <a href="/#contact" class="cta-btn">Obtenir un devis gratuit</a>
-    <span class="cta-sub">Réponse sous 24h &nbsp;·&nbsp; Intervention partout en France</span>
+    <form action="https://formsubmit.co/declic62@protonmail.com" method="POST" onsubmit="event.preventDefault();var t=this;fetch(t.action,{method:'POST',body:new FormData(t)}).then(function(){t.innerHTML='<div style=\"padding:20px;color:#fff;font-weight:600\">Merci ! On vous repond sous 24h.</div>';})" style="display:flex;flex-wrap:wrap;gap:10px;max-width:620px;margin:20px auto 0;background:rgba(255,255,255,0.06);padding:8px;border-radius:100px;border:1px solid rgba(255,255,255,0.12)">
+      <input type="hidden" name="_subject" value="Nouveau devis ACN">
+      <input type="hidden" name="_captcha" value="false">
+      <input name="email" type="email" required placeholder="votre.email@exemple.com" style="flex:1;min-width:220px;padding:12px 20px;background:transparent;border:none;outline:none;color:#fff;font-size:14px;font-family:inherit">
+      <button type="submit" style="padding:12px 24px;background:#fff;color:#ff5a1f;border:none;border-radius:100px;font-weight:700;font-size:14px;font-family:inherit;cursor:pointer">Obtenir un devis gratuit</button>
+    </form>
+    <span class="cta-sub" style="display:block;margin-top:14px;font-size:13px;color:rgba(255,255,255,0.45)">Réponse sous 24h &nbsp;·&nbsp; Intervention partout en France</span>
   </div>
 
 </main>
