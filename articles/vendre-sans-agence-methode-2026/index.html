@@ -333,10 +333,29 @@
 
     @media (max-width: 600px) {
       .hero { height: 360px; }
+      .hero-overlay { padding: 32px 20px; }
+      .hero h1 { font-size: clamp(24px, 6vw, 32px); }
       .step-block { padding: 20px; }
       .cta-block { padding: 28px 20px; }
+      .cta-block h2 { font-size: 22px; }
+      .cta-block form { border-radius: 16px !important; }
+      .cta-block button { border-radius: 16px !important; }
       .checklist-cta { flex-wrap: wrap; }
       .stat-grid { grid-template-columns: 1fr 1fr; }
+      .tools-list li { font-size: 14px; padding: 10px 0; }
+      .tip-box, .warning-box { padding: 14px 16px; }
+      .intro-stat { font-size: 16px; padding: 18px 20px; }
+      footer { padding: 28px 18px; }
+    }
+    @media (max-width: 480px) {
+      .hero { height: 300px; min-height: 40vh; }
+      .stat-grid { grid-template-columns: 1fr; }
+      .step-block { padding: 16px 14px; }
+      .step-block h2 { font-size: 22px; }
+      .cta-block { padding: 24px 16px; }
+      .section-sep { margin: 32px 0; }
+      .tools-list li { flex-direction: column; gap: 6px; }
+      .checklist-cta { padding: 18px 20px; }
     }
   </style>
 </head>
