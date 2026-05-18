@@ -1665,14 +1665,19 @@ function CTAFooter({ brand, brandSoft, brandText }) {
           </p>
 
           <form
-            onSubmit={(e) => { e.preventDefault(); alert('Merci ! On vous répond sous 24h.'); }}
+            action="https://formsubmit.co/declic62@protonmail.com"
+            method="POST"
+            onSubmit={(e) => { e.preventDefault(); const f = e.target; fetch(f.action, { method: 'POST', body: new FormData(f) }).then(() => { f.innerHTML = '<div style=\"padding:20px;color:#fff;font-weight:600\">Merci ! On vous répond sous 24h.</div>'; }); }}
             style={{
               display: 'flex', flexWrap: 'wrap', gap: 10, maxWidth: 620, margin: '0 auto',
               background: 'rgba(255,255,255,0.06)',
               padding: 8, borderRadius: 100,
               border: '1px solid rgba(255,255,255,0.12)',
             }}>
+            <input type="hidden" name="_subject" value="Nouveau devis ACN" />
+            <input type="hidden" name="_captcha" value="false" />
             <input
+              name="email"
               type="email"
               required
               placeholder="votre.email@exemple.com"
@@ -1698,7 +1703,7 @@ function CTAFooter({ brand, brandSoft, brandText }) {
           </form>
 
           <div style={{ marginTop: 28, display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 28, fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>
-            <a href="mailto:hello@acn-studio.fr" style={{ color: 'inherit', textDecoration: 'none', display: 'inline-flex', gap: 8, alignItems: 'center' }}>✉ hello@acn-studio.fr</a>
+            <a href="mailto:declic62@protonmail.com" style={{ color: 'inherit', textDecoration: 'none', display: 'inline-flex', gap: 8, alignItems: 'center' }}>✉ declic62@protonmail.com</a>
           </div>
         </div>
       </div>
@@ -1737,7 +1742,7 @@ function CTAFooter({ brand, brandSoft, brandText }) {
           <div>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: 14 }}>Contact</div>
             <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)', lineHeight: 1.7 }}>
-              hello@acn-studio.fr<br />
+              declic62@protonmail.com<br />
               Royan · La Rochelle · Bordeaux
             </div>
           </div>
