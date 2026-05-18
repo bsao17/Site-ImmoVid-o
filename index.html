@@ -1,0 +1,1864 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ACN — Production audiovisuelle immobilière</title>
+<meta name="description" content="ACN — Drone, photo & vidéo pour vendre votre bien 4× plus vite. Sans commission d'agence. Réponse sous 24h." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #fafaf7; font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  body { overflow-x: hidden; }
+  a { color: inherit; }
+  button { font-family: inherit; }
+  h1, h2, h3, h4 { font-family: 'Inter', sans-serif; }
+  input[type="range"] { -webkit-appearance: none; appearance: none; height: 6px; background: rgba(255,255,255,0.15); border-radius: 100px; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%; background: #fff; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 3px solid currentColor; }
+  input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: #fff; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 3px solid currentColor; }
+  ::selection { background: #ff5a1f; color: #fff; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel">
+
+// ─── TWEAKS PANEL ────────────────────────────────────────────────────────────
+
+const __TWEAKS_STYLE = `
+  .twk-panel{position:fixed;right:16px;bottom:16px;z-index:2147483646;width:280px;
+    max-height:calc(100vh - 32px);display:flex;flex-direction:column;
+    transform:scale(var(--dc-inv-zoom,1));transform-origin:bottom right;
+    background:rgba(250,249,247,.78);color:#29261b;
+    -webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
+    border:.5px solid rgba(255,255,255,.6);border-radius:14px;
+    box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 12px 40px rgba(0,0,0,.18);
+    font:11.5px/1.4 ui-sans-serif,system-ui,-apple-system,sans-serif;overflow:hidden}
+  .twk-hd{display:flex;align-items:center;justify-content:space-between;
+    padding:10px 8px 10px 14px;cursor:move;user-select:none}
+  .twk-hd b{font-size:12px;font-weight:600;letter-spacing:.01em}
+  .twk-x{appearance:none;border:0;background:transparent;color:rgba(41,38,27,.55);
+    width:22px;height:22px;border-radius:6px;cursor:default;font-size:13px;line-height:1}
+  .twk-x:hover{background:rgba(0,0,0,.06);color:#29261b}
+  .twk-body{padding:2px 14px 14px;display:flex;flex-direction:column;gap:10px;
+    overflow-y:auto;overflow-x:hidden;min-height:0;
+    scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.15) transparent}
+  .twk-body::-webkit-scrollbar{width:8px}
+  .twk-body::-webkit-scrollbar-track{background:transparent;margin:2px}
+  .twk-body::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:4px;
+    border:2px solid transparent;background-clip:content-box}
+  .twk-body::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.25);
+    border:2px solid transparent;background-clip:content-box}
+  .twk-row{display:flex;flex-direction:column;gap:5px}
+  .twk-row-h{flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
+  .twk-lbl{display:flex;justify-content:space-between;align-items:baseline;
+    color:rgba(41,38,27,.72)}
+  .twk-lbl>span:first-child{font-weight:500}
+  .twk-val{color:rgba(41,38,27,.5);font-variant-numeric:tabular-nums}
+  .twk-sect{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:rgba(41,38,27,.45);padding:10px 0 0}
+  .twk-sect:first-child{padding-top:0}
+  .twk-field{appearance:none;box-sizing:border-box;width:100%;min-width:0;height:26px;padding:0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;
+    background:rgba(255,255,255,.6);color:inherit;font:inherit;outline:none}
+  .twk-field:focus{border-color:rgba(0,0,0,.25);background:rgba(255,255,255,.85)}
+  select.twk-field{padding-right:22px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='rgba(0,0,0,.5)' d='M0 0h10L5 6z'/></svg>");
+    background-repeat:no-repeat;background-position:right 8px center}
+  .twk-slider{appearance:none;-webkit-appearance:none;width:100%;height:4px;margin:6px 0;
+    border-radius:999px;background:rgba(0,0,0,.12);outline:none}
+  .twk-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
+    width:14px;height:14px;border-radius:50%;background:#fff;
+    border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+  .twk-slider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;
+    background:#fff;border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+  .twk-seg{position:relative;display:flex;padding:2px;border-radius:8px;
+    background:rgba(0,0,0,.06);user-select:none}
+  .twk-seg-thumb{position:absolute;top:2px;bottom:2px;border-radius:6px;
+    background:rgba(255,255,255,.9);box-shadow:0 1px 2px rgba(0,0,0,.12);
+    transition:left .15s cubic-bezier(.3,.7,.4,1),width .15s}
+  .twk-seg.dragging .twk-seg-thumb{transition:none}
+  .twk-seg button{appearance:none;position:relative;z-index:1;flex:1;border:0;
+    background:transparent;color:inherit;font:inherit;font-weight:500;min-height:22px;
+    border-radius:6px;cursor:default;padding:4px 6px;line-height:1.2;
+    overflow-wrap:anywhere}
+  .twk-toggle{position:relative;width:32px;height:18px;border:0;border-radius:999px;
+    background:rgba(0,0,0,.15);transition:background .15s;cursor:default;padding:0}
+  .twk-toggle[data-on="1"]{background:#34c759}
+  .twk-toggle i{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;
+    background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
+  .twk-toggle[data-on="1"] i{transform:translateX(14px)}
+  .twk-num{display:flex;align-items:center;box-sizing:border-box;min-width:0;height:26px;padding:0 0 0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;background:rgba(255,255,255,.6)}
+  .twk-num-lbl{font-weight:500;color:rgba(41,38,27,.6);cursor:ew-resize;
+    user-select:none;padding-right:8px}
+  .twk-num input{flex:1;min-width:0;height:100%;border:0;background:transparent;
+    font:inherit;font-variant-numeric:tabular-nums;text-align:right;padding:0 8px 0 0;
+    outline:none;color:inherit;-moz-appearance:textfield}
+  .twk-num input::-webkit-inner-spin-button,.twk-num input::-webkit-outer-spin-button{
+    -webkit-appearance:none;margin:0}
+  .twk-num-unit{padding-right:8px;color:rgba(41,38,27,.45)}
+  .twk-btn{appearance:none;height:26px;padding:0 12px;border:0;border-radius:7px;
+    background:rgba(0,0,0,.78);color:#fff;font:inherit;font-weight:500;cursor:default}
+  .twk-btn:hover{background:rgba(0,0,0,.88)}
+  .twk-btn.secondary{background:rgba(0,0,0,.06);color:inherit}
+  .twk-btn.secondary:hover{background:rgba(0,0,0,.1)}
+  .twk-swatch{appearance:none;-webkit-appearance:none;width:56px;height:22px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:6px;padding:0;cursor:default;
+    background:transparent;flex-shrink:0}
+  .twk-swatch::-webkit-color-swatch-wrapper{padding:0}
+  .twk-swatch::-webkit-color-swatch{border:0;border-radius:5.5px}
+  .twk-swatch::-moz-color-swatch{border:0;border-radius:5.5px}
+  .twk-chips{display:flex;gap:6px}
+  .twk-chip{position:relative;appearance:none;flex:1;min-width:0;height:46px;
+    padding:0;border:0;border-radius:6px;overflow:hidden;cursor:default;
+    box-shadow:0 0 0 .5px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.06);
+    transition:transform .12s cubic-bezier(.3,.7,.4,1),box-shadow .12s}
+  .twk-chip:hover{transform:translateY(-1px);
+    box-shadow:0 0 0 .5px rgba(0,0,0,.18),0 4px 10px rgba(0,0,0,.12)}
+  .twk-chip[data-on="1"]{box-shadow:0 0 0 1.5px rgba(0,0,0,.85),
+    0 2px 6px rgba(0,0,0,.15)}
+  .twk-chip>span{position:absolute;top:0;bottom:0;right:0;width:34%;
+    display:flex;flex-direction:column;box-shadow:-1px 0 0 rgba(0,0,0,.1)}
+  .twk-chip>span>i{flex:1;box-shadow:0 -1px 0 rgba(0,0,0,.1)}
+  .twk-chip>span>i:first-child{box-shadow:none}
+  .twk-chip svg{position:absolute;top:6px;left:6px;width:13px;height:13px;
+    filter:drop-shadow(0 1px 1px rgba(0,0,0,.3))}
+`;
+
+function useTweaks(defaults) {
+  const [values, setValues] = React.useState(defaults);
+  const setTweak = React.useCallback((keyOrEdits, val) => {
+    const edits = typeof keyOrEdits === 'object' && keyOrEdits !== null
+      ? keyOrEdits : { [keyOrEdits]: val };
+    setValues((prev) => ({ ...prev, ...edits }));
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits }, '*');
+    window.dispatchEvent(new CustomEvent('tweakchange', { detail: edits }));
+  }, []);
+  return [values, setTweak];
+}
+
+function TweaksPanel({ title = 'Tweaks', noDeckControls = false, children }) {
+  const [open, setOpen] = React.useState(false);
+  const dragRef = React.useRef(null);
+  const offsetRef = React.useRef({ x: 16, y: 16 });
+  const PAD = 16;
+
+  const clampToViewport = React.useCallback(() => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const w = panel.offsetWidth, h = panel.offsetHeight;
+    const maxRight = Math.max(PAD, window.innerWidth - w - PAD);
+    const maxBottom = Math.max(PAD, window.innerHeight - h - PAD);
+    offsetRef.current = {
+      x: Math.min(maxRight, Math.max(PAD, offsetRef.current.x)),
+      y: Math.min(maxBottom, Math.max(PAD, offsetRef.current.y)),
+    };
+    panel.style.right = offsetRef.current.x + 'px';
+    panel.style.bottom = offsetRef.current.y + 'px';
+  }, []);
+
+  React.useEffect(() => {
+    if (!open) return;
+    clampToViewport();
+    if (typeof ResizeObserver === 'undefined') {
+      window.addEventListener('resize', clampToViewport);
+      return () => window.removeEventListener('resize', clampToViewport);
+    }
+    const ro = new ResizeObserver(clampToViewport);
+    ro.observe(document.documentElement);
+    return () => ro.disconnect();
+  }, [open, clampToViewport]);
+
+  React.useEffect(() => {
+    const onMsg = (e) => {
+      const t = e?.data?.type;
+      if (t === '__activate_edit_mode') setOpen(true);
+      else if (t === '__deactivate_edit_mode') setOpen(false);
+    };
+    window.addEventListener('message', onMsg);
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
+
+  const dismiss = () => {
+    setOpen(false);
+    window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+  };
+
+  const onDragStart = (e) => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const r = panel.getBoundingClientRect();
+    const sx = e.clientX, sy = e.clientY;
+    const startRight = window.innerWidth - r.right;
+    const startBottom = window.innerHeight - r.bottom;
+    const move = (ev) => {
+      offsetRef.current = {
+        x: startRight - (ev.clientX - sx),
+        y: startBottom - (ev.clientY - sy),
+      };
+      clampToViewport();
+    };
+    const up = () => {
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseup', up);
+    };
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', up);
+  };
+
+  if (!open) return null;
+  return (
+    <>
+      <style>{__TWEAKS_STYLE}</style>
+      <div ref={dragRef} className="twk-panel" data-noncommentable=""
+           style={{ right: offsetRef.current.x, bottom: offsetRef.current.y }}>
+        <div className="twk-hd" onMouseDown={onDragStart}>
+          <b>{title}</b>
+          <button className="twk-x" aria-label="Close tweaks"
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onClick={dismiss}>✕</button>
+        </div>
+        <div className="twk-body">
+          {children}
+        </div>
+      </div>
+    </>
+  );
+}
+
+function TweakSection({ label, children }) {
+  return (
+    <>
+      <div className="twk-sect">{label}</div>
+      {children}
+    </>
+  );
+}
+
+function TweakRow({ label, value, children, inline = false }) {
+  return (
+    <div className={inline ? 'twk-row twk-row-h' : 'twk-row'}>
+      <div className="twk-lbl">
+        <span>{label}</span>
+        {value != null && <span className="twk-val">{value}</span>}
+      </div>
+      {children}
+    </div>
+  );
+}
+
+function TweakSlider({ label, value, min = 0, max = 100, step = 1, unit = '', onChange }) {
+  return (
+    <TweakRow label={label} value={`${value}${unit}`}>
+      <input type="range" className="twk-slider" min={min} max={max} step={step}
+             value={value} onChange={(e) => onChange(Number(e.target.value))} />
+    </TweakRow>
+  );
+}
+
+function TweakToggle({ label, value, onChange }) {
+  return (
+    <div className="twk-row twk-row-h">
+      <div className="twk-lbl"><span>{label}</span></div>
+      <button type="button" className="twk-toggle" data-on={value ? '1' : '0'}
+              role="switch" aria-checked={!!value}
+              onClick={() => onChange(!value)}><i /></button>
+    </div>
+  );
+}
+
+function TweakRadio({ label, value, options, onChange }) {
+  const trackRef = React.useRef(null);
+  const [dragging, setDragging] = React.useState(false);
+  const valueRef = React.useRef(value);
+  valueRef.current = value;
+
+  const labelLen = (o) => String(typeof o === 'object' ? o.label : o).length;
+  const maxLen = options.reduce((m, o) => Math.max(m, labelLen(o)), 0);
+  const fitsAsSegments = maxLen <= ({ 2: 16, 3: 10 }[options.length] ?? 0);
+  if (!fitsAsSegments) {
+    const resolve = (s) => {
+      const m = options.find((o) => String(typeof o === 'object' ? o.value : o) === s);
+      return m === undefined ? s : typeof m === 'object' ? m.value : m;
+    };
+    return <TweakSelect label={label} value={value} options={options}
+                        onChange={(s) => onChange(resolve(s))} />;
+  }
+  const opts = options.map((o) => (typeof o === 'object' ? o : { value: o, label: o }));
+  const idx = Math.max(0, opts.findIndex((o) => o.value === value));
+  const n = opts.length;
+
+  const segAt = (clientX) => {
+    const r = trackRef.current.getBoundingClientRect();
+    const inner = r.width - 4;
+    const i = Math.floor(((clientX - r.left - 2) / inner) * n);
+    return opts[Math.max(0, Math.min(n - 1, i))].value;
+  };
+
+  const onPointerDown = (e) => {
+    setDragging(true);
+    const v0 = segAt(e.clientX);
+    if (v0 !== valueRef.current) onChange(v0);
+    const move = (ev) => {
+      if (!trackRef.current) return;
+      const v = segAt(ev.clientX);
+      if (v !== valueRef.current) onChange(v);
+    };
+    const up = () => {
+      setDragging(false);
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+
+  return (
+    <TweakRow label={label}>
+      <div ref={trackRef} role="radiogroup" onPointerDown={onPointerDown}
+           className={dragging ? 'twk-seg dragging' : 'twk-seg'}>
+        <div className="twk-seg-thumb"
+             style={{ left: `calc(2px + ${idx} * (100% - 4px) / ${n})`,
+                      width: `calc((100% - 4px) / ${n})` }} />
+        {opts.map((o) => (
+          <button key={o.value} type="button" role="radio" aria-checked={o.value === value}>
+            {o.label}
+          </button>
+        ))}
+      </div>
+    </TweakRow>
+  );
+}
+
+function TweakSelect({ label, value, options, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <select className="twk-field" value={value} onChange={(e) => onChange(e.target.value)}>
+        {options.map((o) => {
+          const v = typeof o === 'object' ? o.value : o;
+          const l = typeof o === 'object' ? o.label : o;
+          return <option key={v} value={v}>{l}</option>;
+        })}
+      </select>
+    </TweakRow>
+  );
+}
+
+function __twkIsLight(hex) {
+  const h = String(hex).replace('#', '');
+  const x = h.length === 3 ? h.replace(/./g, (c) => c + c) : h.padEnd(6, '0');
+  const n = parseInt(x.slice(0, 6), 16);
+  if (Number.isNaN(n)) return true;
+  const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+  return r * 299 + g * 587 + b * 114 > 148000;
+}
+
+const __TwkCheck = ({ light }) => (
+  <svg viewBox="0 0 14 14" aria-hidden="true">
+    <path d="M3 7.2 5.8 10 11 4.2" fill="none" strokeWidth="2.2"
+          strokeLinecap="round" strokeLinejoin="round"
+          stroke={light ? 'rgba(0,0,0,.78)' : '#fff'} />
+  </svg>
+);
+
+function TweakColor({ label, value, options, onChange }) {
+  if (!options || !options.length) {
+    return (
+      <div className="twk-row twk-row-h">
+        <div className="twk-lbl"><span>{label}</span></div>
+        <input type="color" className="twk-swatch" value={value}
+               onChange={(e) => onChange(e.target.value)} />
+      </div>
+    );
+  }
+  const key = (o) => String(JSON.stringify(o)).toLowerCase();
+  const cur = key(value);
+  return (
+    <TweakRow label={label}>
+      <div className="twk-chips" role="radiogroup">
+        {options.map((o, i) => {
+          const colors = Array.isArray(o) ? o : [o];
+          const [hero, ...rest] = colors;
+          const sup = rest.slice(0, 4);
+          const on = key(o) === cur;
+          return (
+            <button key={i} type="button" className="twk-chip" role="radio"
+                    aria-checked={on} data-on={on ? '1' : '0'}
+                    aria-label={colors.join(', ')} title={colors.join(' · ')}
+                    style={{ background: hero }}
+                    onClick={() => onChange(o)}>
+              {sup.length > 0 && (
+                <span>
+                  {sup.map((c, j) => <i key={j} style={{ background: c }} />)}
+                </span>
+              )}
+              {on && <__TwkCheck light={__twkIsLight(hero)} />}
+            </button>
+          );
+        })}
+      </div>
+    </TweakRow>
+  );
+}
+
+// ─── ATOMS ───────────────────────────────────────────────────────────────────
+
+const densityTokens = {
+  compact:  { padY: 48,  padX: 28, gap: 12, fontMul: 0.92, heroPad: 28,  headlineMul: 0.92 },
+  standard: { padY: 88,  padX: 56, gap: 16, fontMul: 1.0,  heroPad: 56,  headlineMul: 1.0  },
+  comfy:    { padY: 120, padX: 76, gap: 22, fontMul: 1.06, heroPad: 76,  headlineMul: 1.08 },
+};
+
+const palettes = {
+  orange: ['#ff5a1f', '#fff1ea', '#b3340a'],
+  blue:   ['#2563eb', '#eaf0ff', '#1d3fad'],
+  green:  ['#10b981', '#e6f8f1', '#067a55'],
+  red:    ['#dc2626', '#fdecec', '#9d1414'],
+  amber:  ['#f59e0b', '#fff5e0', '#a26a04'],
+};
+
+function Logo({ size = 28, dark = false, withWord = true, brand = '#ff5a1f' }) {
+  const ink = dark ? '#fff' : '#0a0a0a';
+  return (
+    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>
+      <svg width={size} height={size} viewBox="0 0 56 56" aria-label="ACN">
+        <circle cx="28" cy="28" r="24" fill="none" stroke={ink} strokeWidth="3" />
+        {Array.from({ length: 6 }).map((_, i) => {
+          const a = (i * 60 - 90) * Math.PI / 180;
+          const x1 = 28 + Math.cos(a) * 6;
+          const y1 = 28 + Math.sin(a) * 6;
+          const x2 = 28 + Math.cos(a) * 20;
+          const y2 = 28 + Math.sin(a) * 20;
+          return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke={ink} strokeWidth="3" strokeLinecap="round" />;
+        })}
+        <circle cx="28" cy="28" r="5.5" fill={brand} />
+      </svg>
+      {withWord && (
+        <span style={{
+          fontFamily: 'Inter, sans-serif',
+          fontWeight: 900,
+          fontSize: Math.round(size * 0.62),
+          letterSpacing: '-0.04em',
+          color: ink,
+          lineHeight: 1,
+        }}>
+          ACN<span style={{ color: brand }}>.</span>
+        </span>
+      )}
+    </div>
+  );
+}
+
+function Pill({ children, variant = 'solid', size = 'md', onClick, href, icon, brand = '#ff5a1f', style }) {
+  const sizes = {
+    sm: { p: '8px 14px',  fs: 11 },
+    md: { p: '12px 20px', fs: 13 },
+    lg: { p: '16px 26px', fs: 14 },
+  };
+  const s = sizes[size];
+  const variants = {
+    solid:  { bg: brand,                       color: '#fff',    border: 'transparent' },
+    dark:   { bg: '#0a0a0a',                   color: '#fff',    border: 'transparent' },
+    ghost:  { bg: 'transparent',               color: '#0a0a0a', border: '#0a0a0a' },
+    light:  { bg: '#fff',                      color: '#0a0a0a', border: 'transparent' },
+    onDark: { bg: 'rgba(255,255,255,0.1)',      color: '#fff',    border: 'rgba(255,255,255,0.3)' },
+  };
+  const v = variants[variant];
+  const Tag = href ? 'a' : 'button';
+  return (
+    <Tag
+      href={href}
+      onClick={onClick}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 8,
+        padding: s.p,
+        fontFamily: 'Inter, sans-serif',
+        fontSize: s.fs,
+        fontWeight: 700,
+        borderRadius: 100,
+        background: v.bg,
+        color: v.color,
+        border: `1.5px solid ${v.border}`,
+        cursor: 'pointer',
+        textDecoration: 'none',
+        transition: 'transform .15s, box-shadow .15s, background .15s',
+        whiteSpace: 'nowrap',
+        ...style,
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'translateY(-1px)';
+        if (variant === 'solid') e.currentTarget.style.boxShadow = `0 8px 24px ${brand}55`;
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = '';
+        e.currentTarget.style.boxShadow = '';
+      }}
+    >
+      {children}
+      {icon}
+    </Tag>
+  );
+}
+
+function Tag({ children, tone = 'brand', brand = '#ff5a1f', brandSoft = '#fff1ea', brandText = '#b3340a' }) {
+  const tones = {
+    brand:   { bg: brandSoft,                    fg: brandText,                  border: 'transparent' },
+    dark:    { bg: '#0a0a0a',                    fg: '#fff',                     border: 'transparent' },
+    ghost:   { bg: 'transparent',               fg: '#0a0a0a',                  border: '#0a0a0a' },
+    light:   { bg: 'rgba(255,255,255,0.15)',     fg: '#fff',                     border: 'rgba(255,255,255,0.3)' },
+    success: { bg: '#dcfce7',                    fg: '#15803d',                  border: 'transparent' },
+    onDark:  { bg: 'rgba(255,255,255,0.08)',     fg: 'rgba(255,255,255,0.85)',   border: 'rgba(255,255,255,0.18)' },
+  };
+  const t = tones[tone] || tones.brand;
+  return (
+    <span style={{
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: 6,
+      padding: '5px 12px',
+      borderRadius: 100,
+      background: t.bg,
+      color: t.fg,
+      border: `1px solid ${t.border}`,
+      fontFamily: 'Inter, sans-serif',
+      fontSize: 11,
+      fontWeight: 700,
+      letterSpacing: '0.04em',
+      lineHeight: 1.4,
+      whiteSpace: 'nowrap',
+    }}>{children}</span>
+  );
+}
+
+function Eyebrow({ children, num, brand = '#ff5a1f' }) {
+  return (
+    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+      {num && (
+        <span style={{
+          width: 28, height: 28, borderRadius: '50%',
+          background: brand, color: '#fff',
+          display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: 11, fontWeight: 800,
+        }}>{num}</span>
+      )}
+      <span style={{
+        fontFamily: 'Inter, sans-serif',
+        fontSize: 12, fontWeight: 700,
+        letterSpacing: '0.18em', textTransform: 'uppercase',
+        color: '#6b6b6b',
+      }}>{children}</span>
+    </div>
+  );
+}
+
+function useCountUp(target, opts = {}) {
+  const { duration = 1400, start = 0, decimals = 0 } = opts;
+  const ref = React.useRef(null);
+  const [val, setVal] = React.useState(start);
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let started = false;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting && !started) {
+          started = true;
+          const t0 = performance.now();
+          const tick = (now) => {
+            const p = Math.min(1, (now - t0) / duration);
+            const eased = 1 - Math.pow(1 - p, 3);
+            setVal(start + (target - start) * eased);
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        }
+      });
+    }, { threshold: 0.4 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [target, duration]);
+  return [ref, decimals ? val.toFixed(decimals) : Math.round(val)];
+}
+
+function Photo({ src, alt, ratio, style, rounded = 20, overlay, kenburns }) {
+  const wrap = {
+    position: 'relative',
+    overflow: 'hidden',
+    borderRadius: rounded,
+    aspectRatio: ratio,
+    background: '#e5e5e0',
+    ...style,
+  };
+  return (
+    <div style={wrap}>
+      <img
+        src={src}
+        alt={alt || ''}
+        loading="lazy"
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          display: 'block',
+          transition: 'transform .8s ease',
+          animation: kenburns ? 'kenburns 14s ease-in-out infinite alternate' : undefined,
+        }}
+      />
+      {overlay}
+    </div>
+  );
+}
+
+if (!document.getElementById('acn-kf')) {
+  const s = document.createElement('style');
+  s.id = 'acn-kf';
+  s.textContent = `
+    @keyframes kenburns { 0% { transform: scale(1.02); } 100% { transform: scale(1.12); } }
+    @keyframes marquee  { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    @keyframes pulse    { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    @keyframes fadeUp   { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: none; } }
+    .acn-fadeup { animation: fadeUp .8s ease both; }
+    .acn-noscrollbar::-webkit-scrollbar { display: none; }
+    .acn-noscrollbar { scrollbar-width: none; }
+    html { scroll-behavior: smooth; }
+    .acn-h { text-wrap: balance; }
+  `;
+  document.head.appendChild(s);
+}
+
+// ─── SECTIONS TOP ─────────────────────────────────────────────────────────────
+
+const unsplash = (id, w = 1200) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&q=80&w=${w}`;
+
+function Nav({ brand }) {
+  const [scrolled, setScrolled] = React.useState(false);
+  const [progress, setProgress] = React.useState(0);
+  React.useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24);
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(h > 0 ? (window.scrollY / h) * 100 : 0);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  return (
+    <header style={{
+      position: 'sticky',
+      top: 0,
+      zIndex: 60,
+      background: scrolled ? 'rgba(250,250,247,0.86)' : 'transparent',
+      backdropFilter: scrolled ? 'blur(14px) saturate(1.2)' : 'none',
+      WebkitBackdropFilter: scrolled ? 'blur(14px) saturate(1.2)' : 'none',
+      borderBottom: scrolled ? '1px solid rgba(0,0,0,0.06)' : '1px solid transparent',
+      transition: 'background .25s, border-color .25s',
+    }}>
+      <div style={{
+        maxWidth: 1280,
+        margin: '0 auto',
+        padding: '16px 28px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: 24,
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+          <Logo brand={brand} size={30} />
+          <Tag tone="success">● Dispo mai-juin</Tag>
+        </div>
+        <nav style={{ display: 'flex', gap: 26, fontSize: 14, fontWeight: 600, color: '#3a3a3a' }}>
+          {[
+            ['Prestations', '#prestations'],
+            ['Vendre seul', '#pap'],
+            ['Tarifs', '#tarifs'],
+            ['Showreel', '#portfolio'],
+            ['Blog', '#blog'],
+          ].map(([t, h]) => (
+            <a key={t} href={h} style={{ color: 'inherit', textDecoration: 'none', transition: 'color .15s' }}
+               onMouseEnter={(e) => e.currentTarget.style.color = brand}
+               onMouseLeave={(e) => e.currentTarget.style.color = '#3a3a3a'}>{t}</a>
+          ))}
+        </nav>
+        <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+          <Pill href="#contact" variant="dark" size="md" brand={brand}>
+            Devis gratuit →
+          </Pill>
+        </div>
+      </div>
+      <div style={{ height: 2, background: 'rgba(0,0,0,0.05)' }}>
+        <div style={{ width: `${progress}%`, height: '100%', background: brand, transition: 'width .1s linear' }}></div>
+      </div>
+    </header>
+  );
+}
+
+function Hero({ brand, brandSoft, brandText }) {
+  return (
+    <section style={{
+      position: 'relative',
+      minHeight: 'min(820px, 92vh)',
+      display: 'flex',
+      flexDirection: 'column',
+      overflow: 'hidden',
+      color: '#fff',
+    }}>
+      <Photo
+        src={unsplash('1613490493576-7fde63acd811', 2400)}
+        alt="Villa avec piscine, prise de vue par drone"
+        kenburns
+        rounded={0}
+        style={{ position: 'absolute', inset: 0, aspectRatio: 'auto' }}
+      />
+      <div style={{
+        position: 'absolute', inset: 0,
+        background: 'linear-gradient(110deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.15) 100%)',
+      }}></div>
+      <div style={{
+        position: 'absolute', inset: 0,
+        background: 'linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, transparent 30%, transparent 60%, rgba(0,0,0,0.55) 100%)',
+      }}></div>
+
+      <div style={{
+        position: 'relative',
+        maxWidth: 1280,
+        width: '100%',
+        margin: '0 auto',
+        padding: '40px 28px',
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+      }}>
+        <div style={{ marginTop: 'auto', maxWidth: 880 }}>
+          <div style={{ display: 'flex', gap: 8, marginBottom: 26 }} className="acn-fadeup">
+            <Tag tone="light"><span style={{ color: brand }}>●</span> Vente Particulier-à-Particulier</Tag>
+            <Tag tone="light">Bordeaux · La Rochelle · Royan</Tag>
+          </div>
+
+          <h1 className="acn-h acn-fadeup" style={{
+            fontSize: 'clamp(48px, 8.4vw, 116px)',
+            fontWeight: 900,
+            letterSpacing: '-0.045em',
+            lineHeight: 0.9,
+            margin: '0 0 24px',
+            animationDelay: '.08s',
+          }}>
+            Vendez votre bien <span style={{ color: brand }}>4 fois plus</span> vite.
+          </h1>
+
+          <p className="acn-fadeup" style={{
+            fontSize: 'clamp(15px, 1.4vw, 19px)',
+            maxWidth: 560,
+            color: 'rgba(255,255,255,0.88)',
+            lineHeight: 1.55,
+            margin: '0 0 32px',
+            animationDelay: '.16s',
+          }}>
+            Drone 4K, photo HDR & visite vidéo cinéma. Livré sous 48h. Économisez la commission d'agence — vous gardez la marge.
+          </p>
+
+          <div className="acn-fadeup" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center', animationDelay: '.24s' }}>
+            <Pill href="#contact" variant="solid" size="lg" brand={brand}>
+              Vendre mon bien <span>→</span>
+            </Pill>
+            <Pill href="#portfolio" variant="onDark" size="lg" brand={brand}>
+              <span style={{
+                width: 24, height: 24, borderRadius: '50%', background: '#fff', color: '#0a0a0a',
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: 9, paddingLeft: 1,
+              }}>▶</span>
+              Voir le showreel
+              <span style={{ opacity: 0.6, fontSize: 12 }}>2:14</span>
+            </Pill>
+            <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', marginLeft: 4 }}>
+              <span style={{ color: '#fff', fontWeight: 700 }}>à partir de 190 €</span>
+              <span style={{ opacity: 0.65 }}> · tout inclus</span>
+            </span>
+          </div>
+
+          <div className="acn-fadeup" style={{
+            marginTop: 40,
+            display: 'flex',
+            gap: 28,
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            fontSize: 12,
+            color: 'rgba(255,255,255,0.78)',
+            animationDelay: '.32s',
+          }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+              <span style={{ color: '#facc15', letterSpacing: '0.1em' }}>★★★★★</span>
+              <strong style={{ color: '#fff' }}>4,9/5</strong>
+              <span style={{ opacity: 0.7 }}>· 86 avis vérifiés</span>
+            </span>
+            <span style={{ width: 1, height: 16, background: 'rgba(255,255,255,0.2)' }}></span>
+            <span>🛡️ Pilote certifié DGAC</span>
+            <span style={{ width: 1, height: 16, background: 'rgba(255,255,255,0.2)' }}></span>
+            <span>⚡️ Réponse sous 24h</span>
+            <span style={{ width: 1, height: 16, background: 'rgba(255,255,255,0.2)' }}></span>
+            <span>📍 50 km autour de Royan, La Rochelle & Bordeaux</span>
+          </div>
+        </div>
+
+        <div style={{
+          position: 'absolute',
+          right: 28, bottom: 24,
+          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10,
+          fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)',
+        }}>
+          <span>scroll</span>
+          <span style={{ width: 1, height: 36, background: 'rgba(255,255,255,0.4)' }}></span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Marquee({ brand }) {
+  const items = ['LeBonCoin', 'SeLoger', 'PAP.fr', 'BienIci', 'Ouest-France', 'Sud Ouest', 'Logic-Immo', 'AVendreALouer'];
+  const doubled = [...items, ...items];
+  return (
+    <div style={{
+      background: '#0a0a0a',
+      color: '#fff',
+      padding: '22px 0',
+      overflow: 'hidden',
+      position: 'relative',
+    }}>
+      <div style={{
+        display: 'flex',
+        gap: 60,
+        whiteSpace: 'nowrap',
+        animation: 'marquee 28s linear infinite',
+        width: 'max-content',
+      }}>
+        {doubled.map((x, i) => (
+          <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 14, fontSize: 14, fontWeight: 600, opacity: 0.7 }}>
+            <span style={{ color: brand, fontSize: 18 }}>✦</span>
+            <span style={{ letterSpacing: '0.05em' }}>Visible sur <strong style={{ opacity: 1, fontWeight: 800 }}>{x}</strong></span>
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Services({ brand, brandSoft, brandText }) {
+  const services = [
+    {
+      n: '01',
+      title: 'Drone 4K',
+      sub: 'Vues aériennes spectaculaires',
+      body: 'DJI Mavic, Avata, Pocket & Air Unit O4 Pro. Autorisations DGAC en règle. Idéal pour vues aériennes, panoramiques et environnement.',
+      photo: '1502672260266-1c1ef2d93688',
+      bg: brand,
+      fg: '#fff',
+    },
+    {
+      n: '02',
+      title: 'Photo HDR',
+      sub: 'Intérieurs lumineux',
+      body: 'Sony α7 IV · 24 Mpx. Bracketing HDR, retouche pro. Volumes valorisés, lumière parfaite — même par temps gris.',
+      photo: '1600585154340-be6161a56a0c',
+      bg: '#0a0a0a',
+      fg: '#fff',
+    },
+    {
+      n: '03',
+      title: 'Vidéo cinéma',
+      sub: 'Visite immersive 4K',
+      body: 'Ronin RS3 · slider · objectifs grand-angle. Visite qui filtre les curieux et fait basculer les bonnes visites.',
+      photo: '1600596542815-ffad4c1539a9',
+      bg: '#f59e0b',
+      fg: '#fff',
+    },
+    {
+      n: '04',
+      title: 'Montage',
+      sub: 'Prêt réseaux sociaux',
+      body: 'DaVinci Resolve · étalonnage cinéma. Formats Insta, TikTok, YouTube, MP4 HD pour les annonces. Livré sous 48h.',
+      photo: '1493809842364-78817add7ffb',
+      bg: '#e5e5e0',
+      fg: '#0a0a0a',
+    },
+  ];
+
+  return (
+    <section id="prestations" style={{ padding: 'var(--pad-y) var(--pad-x)', maxWidth: 1280, margin: '0 auto' }}>
+      <div style={{
+        display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap',
+        gap: 24, marginBottom: 40,
+      }}>
+        <div style={{ maxWidth: 640 }}>
+          <Eyebrow num="01" brand={brand}>Prestations</Eyebrow>
+          <h2 className="acn-h" style={{
+            fontSize: 'clamp(36px, 5vw, 64px)',
+            fontWeight: 900, letterSpacing: '-0.035em', lineHeight: 1, margin: 0,
+          }}>
+            Une équipe. <span style={{ color: brand }}>Quatre</span> super-pouvoirs.
+          </h2>
+        </div>
+        <p style={{ maxWidth: 360, color: '#6b6b6b', fontSize: 15, lineHeight: 1.55, margin: 0 }}>
+          Une seule équipe pour tout produire — du tournage à la livraison finale. Aucun sous-traitant, aucune perte de qualité.
+        </p>
+      </div>
+
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(4, 1fr)',
+        gap: 'var(--gap)',
+      }}>
+        {services.map((s, i) => (
+          <article key={i} style={{
+            position: 'relative',
+            borderRadius: 28,
+            overflow: 'hidden',
+            background: s.bg,
+            color: s.fg,
+            padding: 24,
+            aspectRatio: '3 / 4.4',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            cursor: 'pointer',
+            transition: 'transform .3s cubic-bezier(.2,.7,.3,1), box-shadow .3s',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-6px)';
+            e.currentTarget.style.boxShadow = '0 30px 60px rgba(0,0,0,0.18)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = '';
+            e.currentTarget.style.boxShadow = '';
+          }}>
+            <img
+              src={unsplash(s.photo, 600)}
+              alt=""
+              style={{
+                position: 'absolute', inset: 0, width: '100%', height: '100%',
+                objectFit: 'cover', mixBlendMode: 'overlay', opacity: 0.35,
+              }}
+            />
+            <div style={{ position: 'relative', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+              <span style={{ fontSize: 13, fontWeight: 800, letterSpacing: '0.1em' }}>{s.n}</span>
+              <span style={{
+                width: 32, height: 32, borderRadius: '50%',
+                background: 'rgba(255,255,255,0.15)',
+                border: `1px solid ${s.fg === '#fff' ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.15)'}`,
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: 14,
+              }}>↗</span>
+            </div>
+            <div style={{ position: 'relative' }}>
+              <div style={{ fontSize: 28, fontWeight: 900, letterSpacing: '-0.025em', marginBottom: 6 }}>{s.title}</div>
+              <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', opacity: 0.75, marginBottom: 14 }}>{s.sub}</div>
+              <div style={{ fontSize: 13, lineHeight: 1.5, opacity: 0.85 }}>{s.body}</div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function FeaturePAP({ brand, brandSoft, brandText }) {
+  const [price, setPrice] = React.useState(350000);
+  const commission = Math.round(price * 0.04);
+  const acnPrice = 590;
+  const savings = commission - acnPrice;
+
+  const fmt = (n) => n.toLocaleString('fr-FR');
+
+  return (
+    <section id="pap" style={{
+      background: '#0a0a0a',
+      color: '#fff',
+      padding: 'var(--pad-y) var(--pad-x)',
+    }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+        <Eyebrow num="02" brand={brand}>Vendre seul, mieux qu'avec une agence</Eyebrow>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: 60,
+          alignItems: 'center',
+        }}>
+          <div>
+            <h2 className="acn-h" style={{
+              fontSize: 'clamp(40px, 5.4vw, 80px)',
+              fontWeight: 900, letterSpacing: '-0.04em', lineHeight: 0.95, margin: '0 0 22px',
+            }}>
+              Économisez <span style={{ color: brand }}>{fmt(savings)} €</span> sur votre vente.
+            </h2>
+            <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.72)', lineHeight: 1.6, maxWidth: 500, margin: '0 0 28px' }}>
+              Sur un bien à <strong style={{ color: '#fff' }}>{fmt(price)} €</strong>, la commission d'agence vous coûte <strong style={{ color: '#fff' }}>{fmt(commission)} €</strong>.
+              Notre formule Premium tout compris : <strong style={{ color: brand }}>{acnPrice} €</strong>.
+            </p>
+
+            <div style={{
+              background: 'rgba(255,255,255,0.05)',
+              borderRadius: 16,
+              padding: 20,
+              marginBottom: 24,
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12 }}>
+                <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>Prix de votre bien</span>
+                <span style={{ fontSize: 18, fontWeight: 800 }}>{fmt(price)} €</span>
+              </div>
+              <input
+                type="range"
+                min="100000" max="2000000" step="10000"
+                value={price}
+                onChange={(e) => setPrice(parseInt(e.target.value))}
+                style={{ width: '100%', accentColor: brand, cursor: 'pointer' }}
+              />
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8, fontSize: 11, color: 'rgba(255,255,255,0.5)' }}>
+                <span>100 k€</span>
+                <span>2 M€</span>
+              </div>
+            </div>
+
+            <Pill href="#contact" variant="solid" size="lg" brand={brand}>
+              Calculer mon devis →
+            </Pill>
+          </div>
+
+          <div style={{
+            background: '#161614',
+            borderRadius: 28,
+            padding: 24,
+            border: '1px solid rgba(255,255,255,0.08)',
+          }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 12 }}>
+              <div style={{
+                padding: 22, background: 'rgba(255,255,255,0.04)', borderRadius: 20,
+                opacity: 0.65, position: 'relative',
+              }}>
+                <div style={{ fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', opacity: 0.7, marginBottom: 14 }}>Agence classique</div>
+                <div style={{ fontSize: 42, fontWeight: 900, letterSpacing: '-0.03em', lineHeight: 1 }}>
+                  {fmt(commission)}<span style={{ fontSize: 20, opacity: 0.7 }}> €</span>
+                </div>
+                <div style={{ fontSize: 11, opacity: 0.6, marginTop: 4 }}>≈ 4 % du prix de vente</div>
+                <div style={{ marginTop: 16, fontSize: 12, lineHeight: 1.7, opacity: 0.85 }}>
+                  ✕ Mandat (souvent exclusif)<br />
+                  ✕ Photos parfois moyennes<br />
+                  ✕ Décision lente
+                </div>
+              </div>
+              <div style={{
+                padding: 22, background: brand, color: '#fff', borderRadius: 20, position: 'relative',
+                boxShadow: `0 20px 50px ${brand}55`,
+              }}>
+                <Tag tone="light">● ACN</Tag>
+                <div style={{ fontSize: 42, fontWeight: 900, letterSpacing: '-0.03em', lineHeight: 1, marginTop: 14 }}>
+                  590<span style={{ fontSize: 20, opacity: 0.85 }}> €</span>
+                </div>
+                <div style={{ fontSize: 11, opacity: 0.85, marginTop: 4 }}>Formule Premium, tout compris</div>
+                <div style={{ marginTop: 16, fontSize: 12, lineHeight: 1.7 }}>
+                  ✓ Zéro engagement<br />
+                  ✓ Drone + photo + vidéo<br />
+                  ✓ Livré sous 48 h
+                </div>
+              </div>
+            </div>
+            <div style={{
+              padding: 18,
+              background: 'rgba(255,255,255,0.06)',
+              borderRadius: 16,
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}>
+              <span style={{ fontSize: 13, opacity: 0.7 }}>Économie nette</span>
+              <span style={{ fontSize: 28, fontWeight: 900, color: brand, letterSpacing: '-0.025em' }}>
+                +{fmt(savings)} €
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Stats({ brand }) {
+  const stats = [
+    { target: 127, suffix: '',    label: 'Biens shootés',     sub: '+ 12 ce mois-ci' },
+    { target: 30,  prefix: '−',  suffix: ' %', label: 'Temps de vente',    sub: 'vs. annonces sans vidéo' },
+    { target: 4,   prefix: '×',  suffix: '',   label: 'Vues sur annonces', sub: 'mesuré sur LeBonCoin' },
+    { target: 98,  suffix: ' %', label: 'Clients satisfaits', sub: '86 avis vérifiés' },
+  ];
+  return (
+    <section style={{
+      maxWidth: 1280, margin: '0 auto',
+      padding: 'calc(var(--pad-y) * 0.7) var(--pad-x)',
+      borderTop: '1px solid #e5e5e0', borderBottom: '1px solid #e5e5e0',
+    }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0 }}>
+        {stats.map((s, i) => {
+          const [ref, val] = useCountUp(s.target);
+          return (
+            <div key={i} ref={ref} style={{
+              padding: '28px 22px',
+              borderRight: i !== 3 ? '1px solid #e5e5e0' : 'none',
+              position: 'relative',
+            }}>
+              <div style={{
+                fontSize: 'clamp(48px, 5.5vw, 76px)',
+                fontWeight: 900, letterSpacing: '-0.04em', lineHeight: 1,
+                color: i === 1 ? brand : '#0a0a0a',
+              }}>
+                {s.prefix || ''}{val}{s.suffix || ''}
+              </div>
+              <div style={{ fontSize: 14, fontWeight: 700, marginTop: 14 }}>{s.label}</div>
+              <div style={{ fontSize: 12, color: '#6b6b6b', marginTop: 4 }}>{s.sub}</div>
+              <span style={{
+                position: 'absolute', top: 26, right: 22,
+                fontSize: 9, padding: '3px 8px', borderRadius: 100,
+                background: '#dcfce7', color: '#15803d', fontWeight: 800, letterSpacing: '0.08em',
+                display: 'inline-flex', alignItems: 'center', gap: 4,
+              }}>
+                <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#22c55e', animation: 'pulse 1.6s infinite' }}></span>
+                LIVE
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+// ─── SECTIONS BOTTOM ──────────────────────────────────────────────────────────
+
+function Portfolio({ brand, brandSoft, brandText }) {
+  const scrollerRef = React.useRef(null);
+  const projects = [
+    { t: 'Villa P130',        loc: 'Arcachon',        d: '2:14', tag: 'Drone',  photo: '1613490493576-7fde63acd811', sold: '11j' },
+    { t: 'Loft G',            loc: 'Bordeaux Bastide', d: '1:48', tag: 'Visite', photo: '1600585154340-be6161a56a0c', sold: '6j'  },
+    { t: 'Maison de pierre',  loc: 'Saint-Émilion',   d: '3:02', tag: 'Drone',  photo: '1564013799919-ab600027ffc6', sold: '18j' },
+    { t: 'Appart bord de mer',loc: 'La Rochelle',     d: '2:30', tag: 'Visite', photo: '1554995207-c18c203602cb',   sold: '9j'  },
+    { t: 'Maison vue mer',    loc: 'Royan',           d: '2:48', tag: 'Drone',  photo: '1512917774080-9991f1c4c750', sold: '13j' },
+    { t: 'Charme ancien',     loc: 'Île de Ré',       d: '2:22', tag: 'Visite', photo: '1568605114967-8130f3a36994', sold: '21j' },
+  ];
+  const nudge = (dir) => {
+    const el = scrollerRef.current;
+    if (el) el.scrollBy({ left: dir * 340, behavior: 'smooth' });
+  };
+  return (
+    <section id="portfolio" style={{ padding: 'var(--pad-y) 0', position: 'relative' }}>
+      <div style={{
+        maxWidth: 1280, margin: '0 auto', padding: '0 var(--pad-x)',
+        marginBottom: 32, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 24, flexWrap: 'wrap',
+      }}>
+        <div>
+          <Eyebrow num="03" brand={brand}>Showreel</Eyebrow>
+          <h2 className="acn-h" style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 900, letterSpacing: '-0.035em', lineHeight: 1, margin: 0 }}>
+            Glissez pour <span style={{ color: brand }}>explorer</span>.
+          </h2>
+          <p style={{ marginTop: 12, color: '#6b6b6b', fontSize: 15 }}>
+            Six biens récents, six histoires. Cliquez pour visionner le film complet.
+          </p>
+        </div>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <button onClick={() => nudge(-1)} style={navBtnStyle()}>←</button>
+          <button onClick={() => nudge(1)} style={navBtnStyle('dark')}>→</button>
+        </div>
+      </div>
+
+      <div
+        ref={scrollerRef}
+        className="acn-noscrollbar"
+        style={{
+          display: 'flex',
+          gap: 16,
+          overflowX: 'auto',
+          padding: '0 var(--pad-x) 16px',
+          scrollSnapType: 'x mandatory',
+        }}
+      >
+        {projects.map((p, i) => (
+          <article key={i} style={{
+            flex: '0 0 320px',
+            scrollSnapAlign: 'start',
+            position: 'relative',
+            borderRadius: 24,
+            overflow: 'hidden',
+            background: '#0a0a0a',
+            cursor: 'pointer',
+            transition: 'transform .3s',
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-4px)'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.transform = ''; }}>
+            <Photo
+              src={unsplash(p.photo, 800)}
+              alt={p.t}
+              style={{ aspectRatio: '3/4.2', borderRadius: 0 }}
+            />
+            <div style={{ position: 'absolute', top: 16, left: 16, right: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                <Tag tone="light">{p.tag}</Tag>
+                <Tag tone="light">⏱ {p.d}</Tag>
+              </div>
+              <Tag tone="success">✓ Vendu · {p.sold}</Tag>
+            </div>
+            <div style={{
+              position: 'absolute', bottom: 0, left: 0, right: 0,
+              padding: '60px 18px 18px',
+              background: 'linear-gradient(to top, rgba(0,0,0,0.85), transparent)',
+              color: '#fff',
+            }}>
+              <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em' }}>{p.t}</div>
+              <div style={{ fontSize: 13, opacity: 0.8, marginTop: 2 }}>📍 {p.loc}</div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function navBtnStyle(variant = 'ghost') {
+  const dark = variant === 'dark';
+  return {
+    width: 44, height: 44, borderRadius: 100,
+    border: dark ? 'none' : '1.5px solid #0a0a0a',
+    background: dark ? '#0a0a0a' : 'transparent',
+    color: dark ? '#fff' : '#0a0a0a',
+    cursor: 'pointer', fontSize: 18, fontWeight: 700,
+    transition: 'transform .15s',
+  };
+}
+
+function Process({ brand, brandSoft, brandText }) {
+  const steps = [
+    { n: 1, t: 'Brief',    time: '24h',        d: 'Vous décrivez le bien — devis chiffré dans la journée.' },
+    { n: 2, t: 'Repérage', time: '1 jour',      d: "Visite du bien, choix de l'heure d'or, plan de tournage." },
+    { n: 3, t: 'Tournage', time: '½ journée',   d: 'Drone + photo HDR + vidéo en une demi-journée.' },
+    { n: 4, t: 'Livraison',time: '48h',         d: 'Rushs + montage final livrés via lien sécurisé.' },
+  ];
+  return (
+    <section style={{ background: '#f3f1eb', padding: 'var(--pad-y) var(--pad-x)' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+        <div style={{ marginBottom: 48, maxWidth: 720 }}>
+          <Eyebrow num="04" brand={brand}>Le déroulé</Eyebrow>
+          <h2 className="acn-h" style={{
+            fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 900, letterSpacing: '-0.035em', lineHeight: 1, margin: 0,
+          }}>
+            De zéro à <span style={{ color: brand }}>publié</span> en 4 jours.
+          </h2>
+        </div>
+
+        <div style={{ position: 'relative' }}>
+          <div style={{ position: 'absolute', left: '8%', right: '8%', top: 36, height: 2, background: '#d6d3c8' }}></div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, position: 'relative' }}>
+            {steps.map((s, i) => (
+              <div key={i} style={{ textAlign: 'left' }}>
+                <div style={{
+                  width: 72, height: 72,
+                  borderRadius: '50%',
+                  background: '#0a0a0a',
+                  color: '#fff',
+                  border: '4px solid #f3f1eb',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: 28, fontWeight: 900, letterSpacing: '-0.02em',
+                  position: 'relative',
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
+                }}>
+                  {s.n}
+                  <span style={{
+                    position: 'absolute', top: -2, right: -2,
+                    background: brand, color: '#fff',
+                    width: 22, height: 22, borderRadius: '50%',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: 10, fontWeight: 800,
+                    border: '2px solid #f3f1eb',
+                  }}>✓</span>
+                </div>
+                <div style={{ marginTop: 20 }}>
+                  <Tag tone="brand" brand={brand} brandSoft={brandSoft} brandText={brandText}>{s.time}</Tag>
+                </div>
+                <h3 style={{ margin: '14px 0 8px', fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em' }}>{s.t}</h3>
+                <p style={{ margin: 0, color: '#5a5a5a', fontSize: 14, lineHeight: 1.55 }}>{s.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Pricing({ brand, brandSoft, brandText }) {
+  const plans = [
+    {
+      n: 'Essentiel', p: 190, tag: null,
+      sub: 'Pour un studio ou un T2 lumineux.',
+      feats: ['Reportage photo HDR · 15 visuels', 'Retouche professionnelle', 'Livraison sous 48h', 'Formats web & print', 'Photo aérienne'],
+    },
+    {
+      n: 'Signature', p: 390, tag: '🔥 Le + choisi', featured: true,
+      sub: 'Le bon compromis qualité / prix.',
+      feats: ['Photo HDR + Vidéo visite 2 min', 'Drone 4K (si autorisé)', 'Montage dynamique', 'Livraison sous 48h', 'Formats réseaux sociaux'],
+    },
+    {
+      n: 'Premium', p: 590, tag: "Bien d'exception",
+      sub: 'Le grand jeu, pour les biens rares.',
+      feats: ['Tout Signature inclus', 'Site internet dédié au bien', 'Montage cinéma 3 min', 'Plans 2D + descriptif', 'Diffusion sur nos réseaux'],
+    },
+  ];
+  return (
+    <section id="tarifs" style={{ padding: 'var(--pad-y) var(--pad-x)' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+        <div style={{ textAlign: 'center', marginBottom: 56 }}>
+          <Eyebrow num="05" brand={brand}>Tarifs</Eyebrow>
+          <h2 className="acn-h" style={{
+            fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 900, letterSpacing: '-0.035em', lineHeight: 1, margin: '0 auto', maxWidth: 720,
+          }}>
+            Forfaits clairs, <span style={{ color: brand }}>zéro</span> surprise.
+          </h2>
+          <p style={{ marginTop: 14, color: '#6b6b6b', fontSize: 15, maxWidth: 520, margin: '14px auto 0' }}>
+            Tout est inclus : déplacement (50 km), tournage, post-production, livraison. Pas de coût caché.
+          </p>
+        </div>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: 'var(--gap)',
+          alignItems: 'stretch',
+        }}>
+          {plans.map((p, i) => (
+            <article key={i} style={{
+              position: 'relative',
+              padding: '32px 28px',
+              borderRadius: 28,
+              background: p.featured ? '#0a0a0a' : '#fff',
+              color: p.featured ? '#fff' : '#0a0a0a',
+              border: `1.5px solid ${p.featured ? '#0a0a0a' : '#e5e5e0'}`,
+              boxShadow: p.featured ? '0 30px 80px rgba(0,0,0,0.18)' : '0 1px 0 rgba(0,0,0,0.02)',
+              transform: p.featured ? 'translateY(-12px)' : 'none',
+              display: 'flex', flexDirection: 'column',
+            }}>
+              {p.tag && (
+                <div style={{
+                  position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)',
+                  padding: '6px 14px', background: brand, color: '#fff',
+                  fontSize: 11, fontWeight: 800, letterSpacing: '0.05em', borderRadius: 100,
+                  whiteSpace: 'nowrap', boxShadow: `0 10px 30px ${brand}55`,
+                }}>
+                  {p.tag}
+                </div>
+              )}
+              <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-0.02em' }}>{p.n}</div>
+              <div style={{ fontSize: 13, color: p.featured ? 'rgba(255,255,255,0.6)' : '#6b6b6b', marginTop: 4 }}>{p.sub}</div>
+
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginTop: 22 }}>
+                <span style={{
+                  fontSize: 64, fontWeight: 900, letterSpacing: '-0.045em', lineHeight: 1,
+                  color: p.featured ? brand : '#0a0a0a',
+                }}>{p.p}</span>
+                <span style={{ fontSize: 22, fontWeight: 700 }}>€</span>
+                <span style={{ fontSize: 12, marginLeft: 6, color: p.featured ? 'rgba(255,255,255,0.5)' : '#6b6b6b' }}>TTC · par bien</span>
+              </div>
+
+              <div style={{ marginTop: 22, paddingTop: 22, borderTop: `1px solid ${p.featured ? 'rgba(255,255,255,0.12)' : '#e5e5e0'}` }}>
+                {p.feats.map(f => (
+                  <div key={f} style={{ fontSize: 14, marginBottom: 12, display: 'flex', gap: 10, lineHeight: 1.4 }}>
+                    <span style={{
+                      width: 18, height: 18, borderRadius: '50%',
+                      background: p.featured ? brand : brandSoft,
+                      color: p.featured ? '#fff' : brand,
+                      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                      fontSize: 11, fontWeight: 800, flex: '0 0 18px',
+                    }}>✓</span>
+                    {f}
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ marginTop: 'auto', paddingTop: 24 }}>
+                <Pill
+                  href="#contact"
+                  variant={p.featured ? 'solid' : 'dark'}
+                  size="lg"
+                  brand={brand}
+                  style={{ width: '100%', display: 'flex' }}
+                >
+                  Choisir {p.n}
+                </Pill>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <p style={{ textAlign: 'center', marginTop: 28, fontSize: 13, color: '#6b6b6b' }}>
+          Vous avez plusieurs biens ou un projet corporate ? <a href="#contact" style={{ color: '#0a0a0a', fontWeight: 700 }}>Devis sur mesure →</a>
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function Testimonials({ brand, brandSoft, brandText }) {
+  const items = [
+    { q: 'Onze jours pour vendre, du jamais vu sur ma rue. La vidéo drone a fait toute la différence.', n: 'Marie L.', loc: 'Pessac · Maison 4 ch.', save: '14 200', initials: 'ML' },
+    { q: 'Le drone et la visite vidéo ont fait basculer la décision finale des acheteurs.',             n: 'Julien R.',   loc: 'Arcachon · Villa',       save: '21 000', initials: 'JR' },
+    { q: 'Service impeccable, livraison ultra rapide. Je recommande à 100% pour vendre seul.',         n: 'Famille D.', loc: 'Bordeaux · Appart.',     save: '11 800', initials: 'FD' },
+  ];
+  return (
+    <section style={{ padding: 'var(--pad-y) var(--pad-x)', background: '#f3f1eb' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 20, marginBottom: 40 }}>
+          <div>
+            <Eyebrow num="06" brand={brand}>Avis vérifiés</Eyebrow>
+            <h2 className="acn-h" style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 900, letterSpacing: '-0.035em', lineHeight: 1, margin: 0 }}>
+              <span style={{ color: brand }}>4,9 / 5</span> sur 86 avis.
+            </h2>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14, fontSize: 13, color: '#3a3a3a' }}>
+            <span style={{ color: '#facc15', fontSize: 22, letterSpacing: '0.05em' }}>★★★★★</span>
+            <span>Vérifiés sur <strong>Google</strong></span>
+          </div>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--gap)' }}>
+          {items.map((t, i) => (
+            <article key={i} style={{
+              background: '#fff', borderRadius: 24, padding: 26,
+              border: '1px solid #e5e5e0',
+              display: 'flex', flexDirection: 'column',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18 }}>
+                <div style={{
+                  width: 48, height: 48, borderRadius: '50%',
+                  background: `linear-gradient(135deg, ${brand}, #0a0a0a)`,
+                  color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontWeight: 800, fontSize: 16,
+                }}>{t.initials}</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontWeight: 700, fontSize: 14 }}>{t.n}</div>
+                  <div style={{ fontSize: 12, color: '#6b6b6b' }}>📍 {t.loc}</div>
+                </div>
+                <div style={{ color: '#facc15', fontSize: 12, letterSpacing: '0.05em' }}>★★★★★</div>
+              </div>
+              <blockquote style={{ margin: 0, fontSize: 16, lineHeight: 1.5, color: '#1a1a1a' }}>
+                « {t.q} »
+              </blockquote>
+              <div style={{
+                paddingTop: 18, marginTop: 18,
+                borderTop: '1px solid #ececea',
+                display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+              }}>
+                <span style={{ fontSize: 12, color: '#6b6b6b' }}>Économie réalisée</span>
+                <span style={{ fontWeight: 900, fontSize: 18, color: brand, letterSpacing: '-0.02em' }}>+ {t.save} €</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Zone({ brand, brandSoft, brandText }) {
+  const cities = [
+    { name: 'Bordeaux',      x: 82,  y: 195, big: true },
+    { name: 'Arcachon',      x: 60,  y: 210 },
+    { name: 'Saint-Émilion', x: 108, y: 188 },
+    { name: 'Cap Ferret',    x: 46,  y: 207 },
+    { name: 'La Rochelle',   x: 76,  y: 155, big: true },
+    { name: 'Île de Ré',     x: 56,  y: 150 },
+    { name: "Île d'Oléron",  x: 56,  y: 168 },
+    { name: 'Royan',         x: 74,  y: 176, big: true },
+  ];
+  return (
+    <section style={{ padding: 'var(--pad-y) var(--pad-x)' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 56, alignItems: 'center' }}>
+        <div>
+          <Eyebrow num="07" brand={brand}>Zone d'intervention</Eyebrow>
+          <h2 className="acn-h" style={{ fontSize: 'clamp(36px, 4.6vw, 56px)', fontWeight: 900, letterSpacing: '-0.035em', lineHeight: 1, margin: 0 }}>
+            On vient<br /><span style={{ color: brand }}>chez vous</span>.
+          </h2>
+          <p style={{ marginTop: 18, fontSize: 16, color: '#3a3a3a', lineHeight: 1.6, maxWidth: 420 }}>
+            Déplacement inclus dans un rayon de <strong>50&nbsp;km</strong> autour de nos trois bases. Au-delà, devis sur mesure pour les biens d'exception.
+          </p>
+          <div style={{ marginTop: 24, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            {cities.map(c => (
+              <span key={c.name} style={{
+                padding: '8px 14px', borderRadius: 100,
+                background: '#fff', border: '1px solid #e5e5e0',
+                fontSize: 13, fontWeight: 600,
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+              }}>
+                <span style={{ color: brand }}>📍</span>{c.name}
+              </span>
+            ))}
+          </div>
+          <div style={{
+            marginTop: 24,
+            padding: '14px 18px',
+            background: '#dcfce7',
+            color: '#15803d',
+            borderRadius: 14,
+            fontSize: 13, fontWeight: 600,
+            display: 'inline-flex', alignItems: 'center', gap: 10,
+          }}>
+            <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e', animation: 'pulse 1.6s infinite' }}></span>
+            Disponibilité immédiate — créneaux mai & juin
+          </div>
+        </div>
+
+        <div style={{
+          background: '#0a0a0a',
+          color: '#fff',
+          borderRadius: 28,
+          padding: 28,
+          aspectRatio: '1.2',
+          position: 'relative',
+          overflow: 'hidden',
+        }}>
+          <svg viewBox="0 0 220 280" style={{ width: '100%', height: '100%' }}>
+            <path d="M 80 30 L 130 20 L 175 35 L 210 75 L 215 130 L 200 180 L 180 220 L 145 250 L 100 255 L 60 240 L 30 200 L 25 150 L 35 90 Z"
+                  fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.18)" strokeWidth="0.8" />
+            {Array.from({length: 8}).map((_, i) => (
+              <line key={'h'+i} x1="0" y1={i*40} x2="220" y2={i*40} stroke="rgba(255,255,255,0.04)" strokeWidth="0.5" />
+            ))}
+            {Array.from({length: 6}).map((_, i) => (
+              <line key={'v'+i} x1={i*40} y1="0" x2={i*40} y2="280" stroke="rgba(255,255,255,0.04)" strokeWidth="0.5" />
+            ))}
+            {cities.map((c, i) => (
+              <g key={i}>
+                {c.big && (
+                  <circle cx={c.x} cy={c.y} r="14" fill={brand} opacity="0.18">
+                    <animate attributeName="r" values="14;20;14" dur="2.4s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.18;0;0.18" dur="2.4s" repeatCount="indefinite" />
+                  </circle>
+                )}
+                <circle cx={c.x} cy={c.y} r={c.big ? 5 : 3} fill={brand} stroke="#fff" strokeWidth="1.4" />
+                <text x={c.x + 8} y={c.y + 3} fontSize={c.big ? '8.5' : '7'} fill="#fff" fontFamily="Inter, sans-serif" fontWeight={c.big ? 700 : 500}>
+                  {c.name}
+                </text>
+              </g>
+            ))}
+          </svg>
+          <div style={{
+            position: 'absolute', bottom: 18, right: 22,
+            fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)',
+          }}>
+            Bases : Royan · La Rochelle · Bordeaux
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Blog({ brand, brandSoft, brandText }) {
+  const featured = {
+    cat: 'Guide complet',
+    t: 'Vendre sans agence : la méthode 2026 (+ checklist PDF).',
+    sub: 'Notre méthode pas-à-pas pour vendre votre bien seul, plus vite et au prix fort.',
+    time: '8 min',
+    date: '12 mai 2026',
+    photo: '1560518883-ce09059eeffa',
+  };
+  const small = [
+    { cat: 'Lumière', t: '5 erreurs photo qui font fuir les acheteurs',   time: '4 min', date: '28 avr.', photo: '1545324418-cc1a3fa10c00' },
+    { cat: 'Drone',   t: 'Quand le drone change vraiment la donne',        time: '5 min', date: '15 avr.', photo: '1469474968028-56623f02e42e' },
+    { cat: 'Prix',    t: 'Comment estimer son bien sans agence',           time: '6 min', date: '02 avr.', photo: '1556909114-f6e7ad7d3136' },
+  ];
+  return (
+    <section id="blog" style={{ background: '#f3f1eb', padding: 'var(--pad-y) var(--pad-x)' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 20, marginBottom: 40 }}>
+          <div>
+            <Eyebrow num="08" brand={brand}>Le blog</Eyebrow>
+            <h2 className="acn-h" style={{ fontSize: 'clamp(36px, 5vw, 60px)', fontWeight: 900, letterSpacing: '-0.035em', lineHeight: 1, margin: 0 }}>
+              Conseils pour <span style={{ color: brand }}>bien vendre</span>.
+            </h2>
+          </div>
+          <Pill variant="ghost" size="md" brand={brand} href="#">Tous les articles →</Pill>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 18 }}>
+          <article style={{ background: '#fff', borderRadius: 28, overflow: 'hidden', border: '1px solid #e5e5e0', cursor: 'pointer' }}>
+            <Photo src={unsplash(featured.photo, 1000)} alt={featured.t} style={{ aspectRatio: '16/9', borderRadius: 0 }} />
+            <div style={{ padding: 28 }}>
+              <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
+                <Tag tone="brand" brand={brand} brandSoft={brandSoft} brandText={brandText}>🔥 À la une</Tag>
+                <Tag tone="ghost">{featured.cat}</Tag>
+              </div>
+              <h3 style={{ margin: 0, fontSize: 28, fontWeight: 800, letterSpacing: '-0.025em', lineHeight: 1.15 }}>
+                {featured.t}
+              </h3>
+              <p style={{ marginTop: 12, color: '#5a5a5a', fontSize: 15, lineHeight: 1.55 }}>{featured.sub}</p>
+              <div style={{ marginTop: 18, fontSize: 12, color: '#6b6b6b', letterSpacing: '0.05em', display: 'flex', gap: 16, whiteSpace: 'nowrap' }}>
+                <span>{featured.date}</span>
+                <span>·</span>
+                <span>{featured.time} de lecture</span>
+              </div>
+            </div>
+          </article>
+
+          <div style={{ display: 'grid', gridTemplateRows: 'repeat(3, 1fr)', gap: 12 }}>
+            {small.map((a, i) => (
+              <article key={i} style={{
+                background: '#fff', borderRadius: 20, padding: 14,
+                border: '1px solid #e5e5e0',
+                display: 'grid', gridTemplateColumns: '120px 1fr', gap: 16, alignItems: 'center',
+                cursor: 'pointer', transition: 'transform .2s',
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateX(4px)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = ''}>
+                <Photo src={unsplash(a.photo, 400)} alt={a.t} style={{ aspectRatio: '1', borderRadius: 12 }} />
+                <div>
+                  <div style={{ fontSize: 10, fontWeight: 800, color: brand, letterSpacing: '0.1em', textTransform: 'uppercase' }}>{a.cat}</div>
+                  <h4 style={{ margin: '6px 0 0', fontSize: 16, fontWeight: 800, lineHeight: 1.3, letterSpacing: '-0.01em' }}>{a.t}</h4>
+                  <div style={{ marginTop: 10, fontSize: 11, color: '#6b6b6b' }}>{a.date} · {a.time}</div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CTAFooter({ brand, brandSoft, brandText }) {
+  return (
+    <footer id="contact" style={{ background: '#0a0a0a', color: '#fff' }}>
+      <div style={{ padding: 'var(--pad-y) var(--pad-x)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+        <div style={{
+          position: 'absolute', top: '20%', left: '50%', transform: 'translateX(-50%)',
+          width: 600, height: 600, borderRadius: '50%',
+          background: `radial-gradient(closest-side, ${brand}66, transparent 70%)`,
+          filter: 'blur(40px)', pointerEvents: 'none',
+        }}></div>
+        <div style={{ position: 'relative', maxWidth: 900, margin: '0 auto' }}>
+          <Tag tone="onDark">● Réponse sous 24h, devis gratuit</Tag>
+          <h2 className="acn-h" style={{
+            margin: '18px 0 24px',
+            fontSize: 'clamp(48px, 8vw, 108px)',
+            fontWeight: 900, letterSpacing: '-0.045em', lineHeight: 0.92,
+          }}>
+            On filme<br />votre bien&nbsp;? <span style={{ color: brand }}>C'est parti.</span>
+          </h2>
+          <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.7)', maxWidth: 500, margin: '0 auto 28px', lineHeight: 1.55 }}>
+            Décrivez-nous votre projet — on revient sous 24h avec une proposition chiffrée et un créneau de tournage.
+          </p>
+
+          <form
+            onSubmit={(e) => { e.preventDefault(); alert('Merci ! On vous répond sous 24h.'); }}
+            style={{
+              display: 'flex', flexWrap: 'wrap', gap: 10, maxWidth: 620, margin: '0 auto',
+              background: 'rgba(255,255,255,0.06)',
+              padding: 8, borderRadius: 100,
+              border: '1px solid rgba(255,255,255,0.12)',
+            }}>
+            <input
+              type="email"
+              required
+              placeholder="votre.email@exemple.com"
+              style={{
+                flex: 1, minWidth: 220,
+                padding: '12px 20px',
+                background: 'transparent',
+                border: 'none', outline: 'none',
+                color: '#fff', fontSize: 14, fontFamily: 'inherit',
+              }}
+            />
+            <button type="submit" style={{
+              padding: '12px 24px',
+              background: brand, color: '#fff',
+              border: 'none', borderRadius: 100,
+              fontWeight: 700, fontSize: 14, cursor: 'pointer',
+              transition: 'transform .15s, box-shadow .15s',
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = `0 8px 24px ${brand}77`; }}
+            onMouseLeave={(e) => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = ''; }}>
+              Demander un devis →
+            </button>
+          </form>
+
+          <div style={{ marginTop: 28, display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 28, fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>
+            <a href="mailto:hello@acn-studio.fr" style={{ color: 'inherit', textDecoration: 'none', display: 'inline-flex', gap: 8, alignItems: 'center' }}>✉ hello@acn-studio.fr</a>
+          </div>
+        </div>
+      </div>
+
+      <div style={{ padding: '40px var(--pad-x)', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 40 }}>
+          <div>
+            <Logo brand={brand} size={36} dark />
+            <p style={{ marginTop: 16, fontSize: 13, color: 'rgba(255,255,255,0.55)', lineHeight: 1.6, maxWidth: 280 }}>
+              Studio de production audiovisuelle spécialisé immobilier et corporate. Drone · Photo · Vidéo · Montage.
+            </p>
+            <div style={{ marginTop: 18, display: 'flex', gap: 10 }}>
+              {['IG', 'YT', 'LI', 'TT'].map(s => (
+                <a key={s} href="#" style={{
+                  width: 38, height: 38, borderRadius: '50%',
+                  background: 'rgba(255,255,255,0.06)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: '#fff', textDecoration: 'none', fontWeight: 700, fontSize: 12,
+                }}>{s}</a>
+              ))}
+            </div>
+          </div>
+          <div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: 14 }}>Studio</div>
+            {['Prestations', 'Tarifs', 'Showreel', 'Blog'].map(x => (
+              <div key={x} style={{ marginBottom: 8, fontSize: 13 }}><a href="#" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>{x}</a></div>
+            ))}
+          </div>
+          <div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: 14 }}>Services</div>
+            {['Vente PAP', 'Agences', 'Corporate', 'Drone seul'].map(x => (
+              <div key={x} style={{ marginBottom: 8, fontSize: 13 }}><a href="#" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>{x}</a></div>
+            ))}
+          </div>
+          <div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: 14 }}>Contact</div>
+            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)', lineHeight: 1.7 }}>
+              hello@acn-studio.fr<br />
+              Royan · La Rochelle · Bordeaux
+            </div>
+          </div>
+        </div>
+
+        <div style={{
+          maxWidth: 1280, margin: '40px auto 0', paddingTop: 24,
+          borderTop: '1px solid rgba(255,255,255,0.08)',
+          display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12,
+          fontSize: 11, color: 'rgba(255,255,255,0.4)', letterSpacing: '0.05em',
+        }}>
+          <span>© 2026 ACN Production · Tous droits réservés</span>
+          <span>Pilote certifié DGAC · SIRET 000 000 000 00000</span>
+          <span><a href="#" style={{ color: 'inherit' }}>Mentions légales</a> · <a href="#" style={{ color: 'inherit' }}>CGV</a></span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function StickyCTA({ brand }) {
+  const [visible, setVisible] = React.useState(false);
+  React.useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 480);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  return (
+    <a href="#contact" style={{
+      position: 'fixed', bottom: 24, right: 24, zIndex: 50,
+      padding: '14px 22px', borderRadius: 100,
+      background: brand, color: '#fff',
+      fontWeight: 700, fontSize: 14,
+      boxShadow: `0 16px 40px ${brand}66`,
+      textDecoration: 'none',
+      display: 'inline-flex', alignItems: 'center', gap: 8,
+      transform: visible ? 'translateY(0)' : 'translateY(120px)',
+      opacity: visible ? 1 : 0,
+      transition: 'transform .35s cubic-bezier(.2,.7,.3,1), opacity .25s',
+    }}>
+      💬 Devis sous 24h
+    </a>
+  );
+}
+
+// ─── APP ─────────────────────────────────────────────────────────────────────
+
+const ACN_DEFAULTS = {
+  palette: 'orange',
+  density: 'standard',
+};
+
+function App() {
+  const [t, setTweak] = useTweaks(ACN_DEFAULTS);
+  const [brand, brandSoft, brandText] = palettes[t.palette] || palettes.orange;
+  const D = densityTokens[t.density] || densityTokens.standard;
+
+  const styleVars = {
+    '--pad-y': `${D.padY}px`,
+    '--pad-x': `${D.padX}px`,
+    '--gap':   `${D.gap}px`,
+    '--brand': brand,
+    '--brand-soft': brandSoft,
+    '--brand-text': brandText,
+  };
+
+  return (
+    <div style={{ background: '#fafaf7', color: '#0a0a0a', fontFamily: 'Inter, sans-serif', minHeight: '100vh', ...styleVars }}>
+      <Nav brand={brand} />
+      <Hero brand={brand} brandSoft={brandSoft} brandText={brandText} />
+      <Marquee brand={brand} />
+      <Services brand={brand} brandSoft={brandSoft} brandText={brandText} />
+      <FeaturePAP brand={brand} brandSoft={brandSoft} brandText={brandText} />
+      <Stats brand={brand} />
+      <Portfolio brand={brand} brandSoft={brandSoft} brandText={brandText} />
+      <Process brand={brand} brandSoft={brandSoft} brandText={brandText} />
+      <Pricing brand={brand} brandSoft={brandSoft} brandText={brandText} />
+      <Testimonials brand={brand} brandSoft={brandSoft} brandText={brandText} />
+      <Zone brand={brand} brandSoft={brandSoft} brandText={brandText} />
+      <Blog brand={brand} brandSoft={brandSoft} brandText={brandText} />
+      <CTAFooter brand={brand} brandSoft={brandSoft} brandText={brandText} />
+      <StickyCTA brand={brand} />
+
+      <TweaksPanel title="Tweaks ACN">
+        <TweakSection label="Palette de marque" />
+        <TweakColor
+          label="Couleur"
+          value={t.palette}
+          options={[
+            ['#ff5a1f', '#fafaf7', '#0a0a0a'],
+            ['#2563eb', '#fafaf7', '#0a0a0a'],
+            ['#10b981', '#fafaf7', '#0a0a0a'],
+            ['#dc2626', '#fafaf7', '#0a0a0a'],
+            ['#f59e0b', '#fafaf7', '#0a0a0a'],
+          ]}
+          onChange={(arr) => {
+            const hex = arr[0];
+            const name =
+              hex === '#ff5a1f' ? 'orange' :
+              hex === '#2563eb' ? 'blue'   :
+              hex === '#10b981' ? 'green'  :
+              hex === '#dc2626' ? 'red'    : 'amber';
+            setTweak('palette', name);
+          }}
+        />
+
+        <TweakSection label="Densité de la page" />
+        <TweakRadio
+          label="Espacement"
+          value={t.density}
+          options={['compact', 'standard', 'comfy']}
+          onChange={(v) => setTweak('density', v)}
+        />
+      </TweaksPanel>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+
+</script>
+</body>
+</html>
