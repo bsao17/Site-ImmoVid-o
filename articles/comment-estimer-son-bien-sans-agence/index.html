@@ -703,9 +703,9 @@
     <p>
       Photo, vidéo, drone&nbsp;: ACN produit vos supports visuels immobiliers pour que votre annonce attire les bons acheteurs — sans vous faire payer une commission d'agence.
     </p>
-    <form action="https://formsubmit.co/contact@acn-studio.fr" method="POST" style="display:flex;flex-wrap:wrap;gap:10px;max-width:620px;margin:20px auto 0;background:rgba(255,255,255,0.06);padding:8px;border-radius:100px;border:1px solid rgba(255,255,255,0.12)">
-      <input type="hidden" name="_subject" value="Nouveau devis ACN">
-      <input type="hidden" name="_captcha" value="false">
+    <form action="https://api.web3forms.com/submit" method="POST" style="display:flex;flex-wrap:wrap;gap:10px;max-width:620px;margin:20px auto 0;background:rgba(255,255,255,0.06);padding:8px;border-radius:100px;border:1px solid rgba(255,255,255,0.12)">
+      <input type="hidden" name="subject" value="Nouveau devis ACN">
+      <input type="hidden" name="access_key" value="22a373dc-cbea-4a06-8d1c-5f616773988d">
       <input name="email" type="email" required placeholder="votre.email@exemple.com" style="flex:1;min-width:220px;padding:12px 20px;background:transparent;border:none;outline:none;color:#fff;font-size:14px;font-family:inherit">
       <button type="submit" style="padding:12px 24px;background:#fff;color:#ff5a1f;border:none;border-radius:100px;font-weight:700;font-size:14px;font-family:inherit;cursor:pointer">Obtenir un devis gratuit</button>
     </form>
@@ -724,6 +724,6 @@
   </p>
 </footer>
 
-<script>(function(){var F=document.querySelectorAll('form[action*="formsubmit"]');F.forEach(function(f){f.addEventListener("submit",function(e){e.preventDefault();var form=this,btn=form.querySelector('button'),orig=btn.innerHTML;btn.disabled=true;btn.innerHTML='Envoi en cours...';fetch(form.action,{method:'POST',body:new FormData(form)}).then(function(r){if(!r.ok)throw Error();form.innerHTML='<div style="padding:30px 20px;color:#fff;font-weight:600;font-size:18px;text-align:center">✓ Merci !<br>On vous r\u00e9pond sous 24h.</div>'}).catch(function(){btn.disabled=false;btn.innerHTML=orig;var e=document.createElement('div');e.style.cssText='margin-top:12px;padding:10px 14px;background:rgba(255,0,0,0.12);color:#ff5a5a;border-radius:8px;font-size:13px;font-weight:600;text-align:center';e.textContent="Erreur d'envoi. Écrivez-nous à contact@acn-studio.fr";form.appendChild(e)})})})})()</script>
+<script>(function(){var F=document.querySelectorAll('form[action*="web3forms"]');F.forEach(function(f){f.addEventListener("submit",function(e){e.preventDefault();var form=this,btn=form.querySelector('button'),orig=btn.innerHTML;btn.disabled=true;btn.innerHTML='Envoi en cours...';fetch(form.action,{method:'POST',body:new FormData(form)}).then(function(r){if(!r.ok)throw Error();form.innerHTML='<div style="padding:30px 20px;color:#fff;font-weight:600;font-size:18px;text-align:center">✓ Merci !<br>On vous r\u00e9pond sous 24h.</div>'}).catch(function(){btn.disabled=false;btn.innerHTML=orig;var e=document.createElement('div');e.style.cssText='margin-top:12px;padding:10px 14px;background:rgba(255,0,0,0.12);color:#ff5a5a;border-radius:8px;font-size:13px;font-weight:600;text-align:center';e.textContent="Erreur d'envoi. Écrivez-nous à contact@acn-studio.fr";form.appendChild(e)})})})})()</script>
 </body>
 </html>
