@@ -1709,7 +1709,7 @@ function CTAFooter({ brand, brandSoft, brandText }) {
             </div>
           ) : (
             <form
-              action="https://formsubmit.co/contact@acn-studio.fr"
+              action="https://api.web3forms.com/submit"
               method="POST"
               onSubmit={handleSubmit}
               className="r-form"
@@ -1719,8 +1719,8 @@ function CTAFooter({ brand, brandSoft, brandText }) {
                 padding: 8, borderRadius: 100,
                 border: '1px solid rgba(255,255,255,0.12)',
               }}>
-              <input type="hidden" name="_subject" value="Nouveau devis ACN" />
-              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="subject" value="Nouveau devis ACN" />
+              <input type="hidden" name="access_key" value="22a373dc-cbea-4a06-8d1c-5f616773988d" />
               <input
                 name="email"
                 type="email"

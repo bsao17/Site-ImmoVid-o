@@ -266,9 +266,13 @@ if ($idx -match 'onSubmit\s*=\s*\{?\s*handleSubmit\s*\}?') {
     Pass "$idxRel - onSubmit={handleSubmit} present"
 } else { Fail "$idxRel - onSubmit={handleSubmit} manquant" }
 
-if ($idx -match 'action\s*=\s*"https://formsubmit\.co/contact@acn-studio\.fr"') {
-    Pass "$idxRel - action formsubmit correct"
-} else { Fail "$idxRel - action formsubmit incorrect/manquant" }
+if ($idx -match 'action\s*=\s*"https://api\.web3forms\.com/submit"') {
+    Pass "$idxRel - action web3forms correct"
+} else { Fail "$idxRel - action web3forms incorrect/manquant" }
+
+if ($idx -match 'access_key') {
+    Pass "$idxRel - champ access_key present"
+} else { Fail "$idxRel - champ access_key manquant" }
 
 if ($idx -match 'Merci') {
     Pass "$idxRel - message succes present"
@@ -304,8 +308,8 @@ foreach ($f in $nonReactFiles) {
     if (-not $content) { Fail "$f - fichier introuvable"; continue }
     $rel = $f
 
-    # Check IIFE exists (unique pattern: querySelectorAll targeting formsubmit)
-    if ($content -match "querySelectorAll\('form\[action\*=""formsubmit""\]'") {
+    # Check IIFE exists (unique pattern: querySelectorAll targeting web3forms)
+    if ($content -match "querySelectorAll\('form\[action\*=""web3forms""\]'") {
         Pass "$rel - script feedback present"
     } else {
         Fail "$rel - script feedback IIFE manquant"; continue
@@ -343,10 +347,14 @@ foreach ($f in $nonReactFiles) {
         Pass "$rel - email contact dans erreur present"
     } else { Fail "$rel - email contact dans erreur manquant" }
 
-    # Check form action
-    if ($content -match 'action\s*=\s*"https://formsubmit\.co/contact@acn-studio\.fr"') {
-        Pass "$rel - action formsubmit correct"
-    } else { Fail "$rel - action formsubmit incorrect/manquant" }
+    # Check form action and access_key
+    if ($content -match 'action\s*=\s*"https://api\.web3forms\.com/submit"') {
+        Pass "$rel - action web3forms correct"
+    } else { Fail "$rel - action web3forms incorrect/manquant" }
+
+    if ($content -match 'access_key') {
+        Pass "$rel - champ access_key present"
+    } else { Fail "$rel - champ access_key manquant" }
 }
 
 Write-Host ""
