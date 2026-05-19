@@ -1673,6 +1673,14 @@ function Blog({ brand, brandSoft, brandText }) {
 }
 
 function CTAFooter({ brand, brandSoft, brandText }) {
+  const [formStatus, setFormStatus] = React.useState('idle');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormStatus('loading');
+    fetch(e.target.action, { method: 'POST', body: new FormData(e.target) })
+      .then(r => { if (!r.ok) throw Error(); setFormStatus('success'); })
+      .catch(() => setFormStatus('error'));
+  };
   return (
     <footer id="contact" style={{ background: '#0a0a0a', color: '#fff' }}>
       <div style={{ padding: 'var(--pad-y) var(--pad-x)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
@@ -1695,44 +1703,55 @@ function CTAFooter({ brand, brandSoft, brandText }) {
             Décrivez-nous votre projet — on revient sous 24h avec une proposition chiffrée et un créneau de tournage.
           </p>
 
-          <form
-            action="https://formsubmit.co/contact@acn-studio.fr"
-            method="POST"
-            onSubmit={(e) => { e.preventDefault(); const f = e.target; fetch(f.action, { method: 'POST', body: new FormData(f) }).then(() => { f.innerHTML = '<div style=\"padding:20px;color:#fff;font-weight:600\">Merci ! On vous répond sous 24h.</div>'; }); }}
-            className="r-form"
-            style={{
-              display: 'flex', flexWrap: 'wrap', gap: 10, maxWidth: 620, margin: '0 auto',
-              background: 'rgba(255,255,255,0.06)',
-              padding: 8, borderRadius: 100,
-              border: '1px solid rgba(255,255,255,0.12)',
-            }}>
-            <input type="hidden" name="_subject" value="Nouveau devis ACN" />
-            <input type="hidden" name="_captcha" value="false" />
-            <input
-              name="email"
-              type="email"
-              required
-              placeholder="votre.email@exemple.com"
+          {formStatus === 'success' ? (
+            <div style={{ padding: '30px 20px', color: '#fff', fontWeight: 600, fontSize: 18, textAlign: 'center' }}>
+              ✓ Merci !<br />On vous répond sous 24h.
+            </div>
+          ) : (
+            <form
+              action="https://formsubmit.co/contact@acn-studio.fr"
+              method="POST"
+              onSubmit={handleSubmit}
+              className="r-form"
               style={{
-                flex: 1, minWidth: 220,
-                padding: '12px 20px',
-                background: 'transparent',
-                border: 'none', outline: 'none',
-                color: '#fff', fontSize: 14, fontFamily: 'inherit',
-              }}
-            />
-            <button type="submit" className="r-form-btn" style={{
-              padding: '12px 24px',
-              background: brand, color: '#fff',
-              border: 'none', borderRadius: 100,
-              fontWeight: 700, fontSize: 14, cursor: 'pointer',
-              transition: 'transform .15s, box-shadow .15s',
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = `0 8px 24px ${brand}77`; }}
-            onMouseLeave={(e) => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = ''; }}>
-              Demander un devis →
-            </button>
-          </form>
+                display: 'flex', flexWrap: 'wrap', gap: 10, maxWidth: 620, margin: '0 auto',
+                background: 'rgba(255,255,255,0.06)',
+                padding: 8, borderRadius: 100,
+                border: '1px solid rgba(255,255,255,0.12)',
+              }}>
+              <input type="hidden" name="_subject" value="Nouveau devis ACN" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input
+                name="email"
+                type="email"
+                required
+                placeholder="votre.email@exemple.com"
+                style={{
+                  flex: 1, minWidth: 220,
+                  padding: '12px 20px',
+                  background: 'transparent',
+                  border: 'none', outline: 'none',
+                  color: '#fff', fontSize: 14, fontFamily: 'inherit',
+                }}
+              />
+              <button type="submit" className="r-form-btn" style={{
+                padding: '12px 24px',
+                background: brand, color: '#fff',
+                border: 'none', borderRadius: 100,
+                fontWeight: 700, fontSize: 14,
+                cursor: formStatus === 'loading' ? 'not-allowed' : 'pointer',
+                opacity: formStatus === 'loading' ? 0.6 : 1,
+                transition: 'transform .15s, box-shadow .15s',
+              }}>
+                {formStatus === 'loading' ? '⏳ Envoi en cours...' : 'Demander un devis →'}
+              </button>
+              {formStatus === 'error' && (
+                <div style={{ width: '100%', marginTop: 12, padding: '10px 14px', background: 'rgba(255,0,0,0.12)', color: '#ff5a5a', borderRadius: 8, fontSize: 13, fontWeight: 600, textAlign: 'center' }}>
+                  Erreur d'envoi. Écrivez-nous à contact@acn-studio.fr
+                </div>
+              )}
+            </form>
+          )}
 
           <div style={{ marginTop: 28, display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 28, fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>
             <a href="mailto:contact@acn-studio.fr" style={{ color: 'inherit', textDecoration: 'none', display: 'inline-flex', gap: 8, alignItems: 'center' }}>✉ contact@acn-studio.fr</a>

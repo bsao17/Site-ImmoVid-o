@@ -55,7 +55,10 @@ $expectedFiles = @(
     "articles\comment-estimer-son-bien-sans-agence\index.html",
     "articles\quand-le-drone-change-vraiment-la-donne\index.html",
     "articles\vendre-sans-agence-methode-2026\index.html",
-    "articles\vendre-sans-agence-methode-2026\checklist.html"
+    "articles\vendre-sans-agence-methode-2026\checklist.html",
+    "mentions-legales\index.html",
+    "politique-confidentialite\index.html",
+    "cgv\index.html"
 )
 
 foreach ($f in $expectedFiles) {
@@ -232,6 +235,119 @@ foreach ($file in $articleFiles) {
 }
 
 if ($navErrors -eq 0) { Pass "Tous les articles ont la nav standard" }
+
+Write-Host ""
+
+
+# ===== 7. FORM SUBMISSION FEEDBACK =====
+Write-Host "--- 7. Feedback envoi formulaire ---" -ForegroundColor Yellow
+
+# ----- 7a. Landing page (React formStatus) -----
+$idx = Get-Content (Join-Path $root "index.html") -Raw
+$idxRel = "index.html"
+
+if ($idx -match "\[formStatus,\s*setFormStatus\]\s*=\s*React\.useState\('idle'\)") {
+    Pass "$idxRel - React.useState('idle') present"
+} else { Fail "$idxRel - React.useState('idle') manquant" }
+
+if ($idx -match "setFormStatus\('loading'\)") {
+    Pass "$idxRel - setFormStatus('loading') present"
+} else { Fail "$idxRel - setFormStatus('loading') manquant" }
+
+if ($idx -match "setFormStatus\('success'\)") {
+    Pass "$idxRel - setFormStatus('success') present"
+} else { Fail "$idxRel - setFormStatus('success') manquant" }
+
+if ($idx -match "setFormStatus\('error'\)") {
+    Pass "$idxRel - setFormStatus('error') present"
+} else { Fail "$idxRel - setFormStatus('error') manquant" }
+
+if ($idx -match 'onSubmit\s*=\s*\{?\s*handleSubmit\s*\}?') {
+    Pass "$idxRel - onSubmit={handleSubmit} present"
+} else { Fail "$idxRel - onSubmit={handleSubmit} manquant" }
+
+if ($idx -match 'action\s*=\s*"https://formsubmit\.co/contact@acn-studio\.fr"') {
+    Pass "$idxRel - action formsubmit correct"
+} else { Fail "$idxRel - action formsubmit incorrect/manquant" }
+
+if ($idx -match 'Merci') {
+    Pass "$idxRel - message succes present"
+} else { Fail "$idxRel - message succes manquant" }
+
+if ($idx -match "Envoi en cours") {
+    Pass "$idxRel - texte chargement present"
+} else { Fail "$idxRel - texte chargement manquant" }
+
+if ($idx -match 'Erreur d') {
+    Pass "$idxRel - message erreur present"
+} else { Fail "$idxRel - message erreur manquant" }
+
+if ($idx -match 'contact@acn-studio\.fr') {
+    Pass "$idxRel - email contact dans erreur present"
+} else { Fail "$idxRel - email contact dans erreur manquant" }
+
+
+# ----- 7b. Non-React pages (IIFE script) -----
+$nonReactFiles = @(
+    "articles\5-erreurs-photo-qui-font-fuir-les-acheteurs\index.html",
+    "articles\comment-estimer-son-bien-sans-agence\index.html",
+    "articles\quand-le-drone-change-vraiment-la-donne\index.html",
+    "articles\vendre-sans-agence-methode-2026\index.html",
+    "mentions-legales\index.html",
+    "politique-confidentialite\index.html",
+    "cgv\index.html"
+)
+
+foreach ($f in $nonReactFiles) {
+    $path = Join-Path $root $f
+    $content = Get-Content $path -Raw -ErrorAction SilentlyContinue
+    if (-not $content) { Fail "$f - fichier introuvable"; continue }
+    $rel = $f
+
+    # Check IIFE exists (unique pattern: querySelectorAll targeting formsubmit)
+    if ($content -match "querySelectorAll\('form\[action\*=""formsubmit""\]'") {
+        Pass "$rel - script feedback present"
+    } else {
+        Fail "$rel - script feedback IIFE manquant"; continue
+    }
+
+    # Check loading state
+    if ($content -match "btn\.disabled\s*=\s*true") {
+        Pass "$rel - btn.disabled = true present"
+    } else { Fail "$rel - btn.disabled = true manquant" }
+
+    if ($content -match "Envoi en cours") {
+        Pass "$rel - texte 'Envoi en cours...' present"
+    } else { Fail "$rel - texte 'Envoi en cours...' manquant" }
+
+    # Check success message
+    if ($content -match "Merci") {
+        Pass "$rel - message succes present"
+    } else { Fail "$rel - message succes manquant" }
+
+    if ($content -match "sous 24h") {
+        Pass "$rel - delai reponse present"
+    } else { Fail "$rel - delai reponse manquant" }
+
+    # Check error recovery
+    if ($content -match "btn\.disabled\s*=\s*false") {
+        Pass "$rel - btn.disabled = false present (recuperation erreur)"
+    } else { Fail "$rel - btn.disabled = false manquant" }
+
+    # Check error message
+    if ($content -match 'Erreur d') {
+        Pass "$rel - message erreur present"
+    } else { Fail "$rel - message erreur manquant" }
+
+    if ($content -match 'contact@acn-studio\.fr') {
+        Pass "$rel - email contact dans erreur present"
+    } else { Fail "$rel - email contact dans erreur manquant" }
+
+    # Check form action
+    if ($content -match 'action\s*=\s*"https://formsubmit\.co/contact@acn-studio\.fr"') {
+        Pass "$rel - action formsubmit correct"
+    } else { Fail "$rel - action formsubmit incorrect/manquant" }
+}
 
 Write-Host ""
 Write-Host "========================================================" -ForegroundColor Cyan
