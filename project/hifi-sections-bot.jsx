@@ -33,7 +33,7 @@ function Process({ brand, brandSoft, brandText }) {
   const steps = [
     { n: 1, t: 'Prise de contact', d: 'Vous nous décrivez vos besoins et votre projet. Pas de devis pour l\'instant — on écoute.' },
     { n: 2, t: 'Repérage', d: 'On finalise le projet ensemble et vous recevez un devis chiffré, clair et détaillé.' },
-    { n: 3, t: 'Tournage', d: 'Réalisation complète : vidéo, photos, réseaux sociaux, site internet dédié au bien.' },
+    { n: 3, t: 'Tournage', d: 'Réalisation : vidéo, photos, réseaux sociaux, site internet dédié au bien (selon option choisie).' },
     { n: 4, t: 'Présentation', d: 'Livraison des livrables et mise en production du site — votre bien est prêt à être vendu.' },
   ];
   return (

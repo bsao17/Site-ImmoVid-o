@@ -273,7 +273,7 @@ function DirectionD() {
             {[
               ['1', 'Prise de contact', 'Décrivez vos besoins, on écoute.', true],
               ['2', 'Repérage', 'Finalisation du projet et devis chiffré.', true],
-              ['3', 'Tournage', 'Vidéo, photos, réseaux sociaux, site internet.', false],
+              ['3', 'Tournage', 'Réalisation : vidéo, photos, réseaux sociaux, site internet (selon option choisie).', false],
               ['4', 'Présentation', 'Livraison et mise en production du site.', false],
             ].map(([n, t, d, done], i) => (
               <div key={i} style={{ textAlign: 'left' }}>
