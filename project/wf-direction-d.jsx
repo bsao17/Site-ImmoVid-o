@@ -87,7 +87,7 @@ function DirectionD() {
               Vendez votre bien <span style={{ color: D_BRAND }}>4 fois plus</span> vite.
             </div>
             <div style={{ marginTop: 22, fontSize: 16, maxWidth: 460, opacity: 0.85, lineHeight: 1.5 }}>
-              Drone 4K + photo HDR + visite vidéo. Livré sous 48h. Économisez la commission d'agence.
+              photo HDR, visite vidéo cinématique, réalisation de médias au format réseaux, plateforme internet individuelle.
             </div>
             <div style={{ marginTop: 28, display: 'flex', alignItems: 'center', gap: 14 }}>
               <span style={{ padding: '16px 26px', borderRadius: 100, background: D_BRAND, color: '#fff', fontWeight: 700, fontSize: 14 }}>
