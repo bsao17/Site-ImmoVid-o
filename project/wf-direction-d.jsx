@@ -263,7 +263,7 @@ function DirectionD() {
       <div style={{ padding: '60px 36px', background: '#f3f1eb' }}>
         <Tag>04 · Le déroulé</Tag>
         <div style={{ fontSize: 48, fontWeight: 900, letterSpacing: '-0.03em', marginTop: 12, lineHeight: 1, marginBottom: 36 }}>
-          De zéro à <span style={{ color: D_BRAND }}>publié</span> en 4 jours.
+          De zéro à <span style={{ color: D_BRAND }}>vendu</span> en 4 étapes.
         </div>
         <div style={{ position: 'relative' }}>
           {/* line */}
@@ -271,11 +271,11 @@ function DirectionD() {
           <div style={{ position: 'absolute', left: 30, top: 28, height: 2, background: D_BRAND, width: '40%' }}></div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12, position: 'relative' }}>
             {[
-              ['1', 'Brief', '24h', 'Vous décrivez le bien, devis chiffré.', true],
-              ['2', 'Repérage', '1 jour', 'Visite, lumière, plan de tournage.', true],
-              ['3', 'Tournage', '½ j', 'Drone + photo + vidéo.', false],
-              ['4', 'Livraison', '48h', 'Rushs + montage final.', false],
-            ].map(([n, t, time, d, done], i) => (
+              ['1', 'Prise de contact', 'Décrivez vos besoins, on écoute.', true],
+              ['2', 'Repérage', 'Finalisation du projet et devis chiffré.', true],
+              ['3', 'Tournage', 'Vidéo, photos, réseaux sociaux, site internet.', false],
+              ['4', 'Présentation', 'Livraison et mise en production du site.', false],
+            ].map(([n, t, d, done], i) => (
               <div key={i} style={{ textAlign: 'left' }}>
                 <div style={{
                   width: 56, height: 56,
@@ -291,7 +291,6 @@ function DirectionD() {
                   {done && <span style={{ position: 'absolute', top: -4, right: -4, width: 18, height: 18, borderRadius: '50%', background: D_BRAND, color: '#fff', fontSize: 10, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✓</span>}
                 </div>
                 <div style={{ marginTop: 16, fontSize: 18, fontWeight: 800 }}>{t}</div>
-                <div style={{ fontSize: 10, fontWeight: 700, color: D_BRAND, letterSpacing: '0.1em', marginTop: 2 }}>{time.toUpperCase()}</div>
                 <div style={{ fontSize: 12, color: D_DIM, marginTop: 8, lineHeight: 1.5 }}>{d}</div>
               </div>
             ))}

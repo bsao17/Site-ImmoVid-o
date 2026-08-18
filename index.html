@@ -1199,10 +1199,10 @@ function Portfolio({ brand, brandSoft, brandText }) {
 
 function Process({ brand, brandSoft, brandText }) {
   const steps = [
-    { n: 1, t: 'Brief',    time: '24h',        d: 'Vous décrivez le bien — devis chiffré dans la journée.' },
-    { n: 2, t: 'Repérage', time: '1 jour',      d: "Visite du bien, choix de l'heure d'or, plan de tournage." },
-    { n: 3, t: 'Tournage', time: '½ journée',   d: 'Drone + photo HDR + vidéo en une demi-journée.' },
-    { n: 4, t: 'Livraison',time: '48h',         d: 'Rushs + montage final livrés via lien sécurisé.' },
+    { n: 1, t: 'Prise de contact', d: 'Vous nous décrivez vos besoins et votre projet. Pas de devis pour l\'instant — on écoute.' },
+    { n: 2, t: 'Repérage', d: 'On finalise le projet ensemble et vous recevez un devis chiffré, clair et détaillé.' },
+    { n: 3, t: 'Tournage', d: 'Réalisation complète : vidéo, photos, réseaux sociaux, site internet dédié au bien.' },
+    { n: 4, t: 'Présentation', d: 'Livraison des livrables et mise en production du site — votre bien est prêt à être vendu.' },
   ];
   return (
     <section style={{ background: '#f3f1eb', padding: 'var(--pad-y) var(--pad-x)' }}>
@@ -1212,7 +1212,7 @@ function Process({ brand, brandSoft, brandText }) {
           <h2 className="acn-h" style={{
             fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 900, letterSpacing: '-0.035em', lineHeight: 1, margin: 0,
           }}>
-            De zéro à <span style={{ color: brand }}>publié</span> en 4 jours.
+            De zéro à <span style={{ color: brand }}>vendu</span> en 4 étapes.
           </h2>
         </div>
 
@@ -1242,9 +1242,6 @@ function Process({ brand, brandSoft, brandText }) {
                     fontSize: 10, fontWeight: 800,
                     border: '2px solid #f3f1eb',
                   }}>✓</span>
-                </div>
-                <div style={{ marginTop: 20 }}>
-                  <Tag tone="brand" brand={brand} brandSoft={brandSoft} brandText={brandText}>{s.time}</Tag>
                 </div>
                 <h3 style={{ margin: '14px 0 8px', fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em' }}>{s.t}</h3>
                 <p style={{ margin: 0, color: '#5a5a5a', fontSize: 14, lineHeight: 1.55 }}>{s.d}</p>
