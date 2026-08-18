@@ -308,8 +308,8 @@ function DirectionD() {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
           {[
-            { n: 'Essentiel', p: '290', tag: '', feats: ['Photo HDR · 15 visuels', 'Retouche pro', 'Livraison 48h'] },
-            { n: 'Signature', p: '590', tag: '🔥 Le + choisi', feats: ['Photo HDR · Vidéo 2 min', 'Drone 4K inclus', 'Montage dynamique', 'Livraison 48h', 'Réseaux sociaux'], featured: true },
+            { n: 'Essentiel', p: '290', tag: '', feats: ['Photo HDR · 15 visuels', 'Retouche pro'] },
+            { n: 'Signature', p: '590', tag: '🔥 Le + choisi', feats: ['Photo HDR · Vidéo 2 min', 'Drone 4K inclus', 'Montage dynamique', 'Réseaux sociaux'], featured: true },
             { n: 'Premium', p: '890', tag: 'Bien d\'exception', feats: ['Tout Signature inclus', 'Visite virtuelle 3D', 'Montage cinéma 3 min', 'Plans 2D + descriptif'] },
           ].map((p, i) => (
             <div key={i} style={{
