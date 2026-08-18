@@ -1,114 +1,40 @@
-// Hi-fi sections (bottom): Portfolio, Process, Pricing, Testimonials, Zone, Blog, CTA, Footer.
+// Hi-fi sections (bottom): Portfolio, Process, Pricing, Zone, Blog, CTA, Footer.
 
-// ── PORTFOLIO carousel ───────────────────────────────────────────────────────
+// ── PORTFOLIO — YouTube showreel ────────────────────────────────────────────
 function Portfolio({ brand, brandSoft, brandText }) {
-  const scrollerRef = React.useRef(null);
-  const projects = [
-    { t: 'Villa P130', loc: 'Arcachon', d: '2:14', tag: 'Drone', photo: '1613490493576-7fde63acd811', sold: '11j' },
-    { t: 'Loft G',      loc: 'Bordeaux Bastide', d: '1:48', tag: 'Visite', photo: '1600585154340-be6161a56a0c', sold: '6j' },
-    { t: 'Maison de pierre', loc: 'Saint-Émilion', d: '3:02', tag: 'Drone',     photo: '1564013799919-ab600027ffc6', sold: '18j' },
-    { t: 'Appart bord de mer', loc: 'La Rochelle', d: '2:30', tag: 'Visite', photo: '1554995207-c18c203602cb', sold: '9j' },
-    { t: 'Maison vue mer', loc: 'Royan', d: '2:48', tag: 'Drone', photo: '1512917774080-9991f1c4c750', sold: '13j' },
-    { t: 'Charme ancien', loc: 'Île de Ré', d: '2:22', tag: 'Visite', photo: '1568605114967-8130f3a36994', sold: '21j' },
-  ];
-  const nudge = (dir) => {
-    const el = scrollerRef.current;
-    if (el) el.scrollBy({ left: dir * 340, behavior: 'smooth' });
-  };
   return (
-    <section id="portfolio" style={{ padding: 'var(--pad-y) 0', position: 'relative' }}>
-      <div style={{
-        maxWidth: 1280, margin: '0 auto', padding: '0 var(--pad-x)',
-        marginBottom: 32, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 24, flexWrap: 'wrap',
-      }}>
-        <div>
+    <section id="portfolio" style={{ padding: 'var(--pad-y) var(--pad-x)' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+        <div style={{ marginBottom: 32 }}>
           <Eyebrow num="03" brand={brand}>Showreel</Eyebrow>
           <h2 className="acn-h" style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 900, letterSpacing: '-0.035em', lineHeight: 1, margin: 0 }}>
-            Glissez pour <span style={{ color: brand }}>explorer</span>.
+            Découvrez nos <span style={{ color: brand }}>réalisations</span>.
           </h2>
           <p style={{ marginTop: 12, color: '#6b6b6b', fontSize: 15 }}>
-            Six biens récents, six histoires. Cliquez pour visionner le film complet.
+            Une sélection de nos meilleurs films immobiliers — drone, visite vidéo et montage professionnel.
           </p>
         </div>
-        <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => nudge(-1)} style={navBtnStyle()}>←</button>
-          <button onClick={() => nudge(1)} style={navBtnStyle('dark')}>→</button>
+        <div style={{ position: 'relative', width: '100%', borderRadius: 24, overflow: 'hidden', aspectRatio: '16/9', background: '#0a0a0a', boxShadow: '0 20px 60px rgba(0,0,0,0.25)' }}>
+          <iframe
+            src="https://www.youtube.com/embed/tx6sB9V18x4"
+            title="Showreel ImmoVidéo"
+            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
         </div>
-      </div>
-
-      <div
-        ref={scrollerRef}
-        className="acn-noscrollbar"
-        style={{
-          display: 'flex',
-          gap: 16,
-          overflowX: 'auto',
-          padding: '0 var(--pad-x) 16px',
-          scrollSnapType: 'x mandatory',
-        }}
-      >
-        {projects.map((p, i) => (
-          <article key={i} style={{
-            flex: '0 0 320px',
-            scrollSnapAlign: 'start',
-            position: 'relative',
-            borderRadius: 24,
-            overflow: 'hidden',
-            background: '#0a0a0a',
-            cursor: 'pointer',
-            transition: 'transform .3s',
-          }}
-          onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-4px)'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.transform = ''; }}>
-            <Photo
-              src={unsplash(p.photo, 800)}
-              alt={p.t}
-              style={{ aspectRatio: '3/4.2', borderRadius: 0 }}
-            />
-            {/* Top tags */}
-            <div style={{ position: 'absolute', top: 16, left: 16, right: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                <Tag tone="light">{p.tag}</Tag>
-                <Tag tone="light">⏱ {p.d}</Tag>
-              </div>
-              <Tag tone="success">✓ Vendu · {p.sold}</Tag>
-            </div>
-            {/* Bottom info */}
-            <div style={{
-              position: 'absolute', bottom: 0, left: 0, right: 0,
-              padding: '60px 18px 18px',
-              background: 'linear-gradient(to top, rgba(0,0,0,0.85), transparent)',
-              color: '#fff',
-            }}>
-              <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em' }}>{p.t}</div>
-              <div style={{ fontSize: 13, opacity: 0.8, marginTop: 2 }}>📍 {p.loc}</div>
-            </div>
-          </article>
-        ))}
       </div>
     </section>
   );
 }
 
-function navBtnStyle(variant = 'ghost') {
-  const dark = variant === 'dark';
-  return {
-    width: 44, height: 44, borderRadius: 100,
-    border: dark ? 'none' : '1.5px solid #0a0a0a',
-    background: dark ? '#0a0a0a' : 'transparent',
-    color: dark ? '#fff' : '#0a0a0a',
-    cursor: 'pointer', fontSize: 18, fontWeight: 700,
-    transition: 'transform .15s',
-  };
-}
-
 // ── PROCESS ──────────────────────────────────────────────────────────────────
 function Process({ brand, brandSoft, brandText }) {
   const steps = [
-    { n: 1, t: 'Brief', time: '24h', d: 'Vous décrivez le bien — devis chiffré dans la journée.' },
-    { n: 2, t: 'Repérage', time: '1 jour', d: 'Visite du bien, choix de l\'heure d\'or, plan de tournage.' },
-    { n: 3, t: 'Tournage', time: '½ journée', d: 'Drone + photo HDR + vidéo en une demi-journée.' },
-    { n: 4, t: 'Livraison', time: '48h', d: 'Rushs + montage final livrés via lien sécurisé.' },
+    { n: 1, t: 'Prise de contact', d: 'Vous nous décrivez vos besoins et votre projet. Pas de devis pour l\'instant — on écoute.' },
+    { n: 2, t: 'Repérage', d: 'On finalise le projet ensemble et vous recevez un devis chiffré, clair et détaillé.' },
+    { n: 3, t: 'Tournage', d: 'Réalisation : vidéo, photos, réseaux sociaux, site internet dédié au bien (selon option choisie).' },
+    { n: 4, t: 'Présentation', d: 'Livraison des livrables et mise en production du site — votre bien est prêt à être vendu.' },
   ];
   return (
     <section style={{
@@ -121,7 +47,7 @@ function Process({ brand, brandSoft, brandText }) {
           <h2 className="acn-h" style={{
             fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 900, letterSpacing: '-0.035em', lineHeight: 1, margin: 0,
           }}>
-            De zéro à <span style={{ color: brand }}>publié</span> en 4 jours.
+            De zéro à <span style={{ color: brand }}>vendu</span> en 4 étapes.
           </h2>
         </div>
 
@@ -152,9 +78,6 @@ function Process({ brand, brandSoft, brandText }) {
                     fontSize: 10, fontWeight: 800,
                     border: '2px solid #f3f1eb',
                   }}>✓</span>
-                </div>
-                <div style={{ marginTop: 20 }}>
-                  <Tag tone="brand" brand={brand} brandSoft={brandSoft} brandText={brandText}>{s.time}</Tag>
                 </div>
                 <h3 style={{ margin: '14px 0 8px', fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em' }}>{s.t}</h3>
                 <p style={{ margin: 0, color: '#5a5a5a', fontSize: 14, lineHeight: 1.55 }}>{s.d}</p>
@@ -274,68 +197,6 @@ function Pricing({ brand, brandSoft, brandText }) {
         <p style={{ textAlign: 'center', marginTop: 28, fontSize: 13, color: '#6b6b6b' }}>
           Vous avez plusieurs biens ou un projet corporate ? <a href="#contact" style={{ color: '#0a0a0a', fontWeight: 700 }}>Devis sur mesure →</a>
         </p>
-      </div>
-    </section>
-  );
-}
-
-// ── TESTIMONIALS ─────────────────────────────────────────────────────────────
-function Testimonials({ brand, brandSoft, brandText }) {
-  const items = [
-    { q: 'Onze jours pour vendre, du jamais vu sur ma rue. La vidéo drone a fait toute la différence.', n: 'Marie L.', loc: 'Pessac · Maison 4 ch.', save: '14 200', initials: 'ML' },
-    { q: 'Le drone et la visite vidéo ont fait basculer la décision finale des acheteurs.', n: 'Julien R.', loc: 'Arcachon · Villa', save: '21 000', initials: 'JR' },
-    { q: 'Service impeccable, livraison ultra rapide. Je recommande à 100% pour vendre seul.', n: 'Famille D.', loc: 'Bordeaux · Appart.', save: '11 800', initials: 'FD' },
-  ];
-  return (
-    <section style={{ padding: 'var(--pad-y) var(--pad-x)', background: '#f3f1eb' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 20, marginBottom: 40 }}>
-          <div>
-            <Eyebrow num="06" brand={brand}>Avis vérifiés</Eyebrow>
-            <h2 className="acn-h" style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 900, letterSpacing: '-0.035em', lineHeight: 1, margin: 0 }}>
-              <span style={{ color: brand }}>4,9 / 5</span> sur 86 avis.
-            </h2>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14, fontSize: 13, color: '#3a3a3a' }}>
-            <span style={{ color: '#facc15', fontSize: 22, letterSpacing: '0.05em' }}>★★★★★</span>
-            <span>Vérifiés sur <strong>Google</strong></span>
-          </div>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--gap)' }}>
-          {items.map((t, i) => (
-            <article key={i} style={{
-              background: '#fff', borderRadius: 24, padding: 26,
-              border: '1px solid #e5e5e0',
-              display: 'flex', flexDirection: 'column',
-            }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18 }}>
-                <div style={{
-                  width: 48, height: 48, borderRadius: '50%',
-                  background: `linear-gradient(135deg, ${brand}, #0a0a0a)`,
-                  color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontWeight: 800, fontSize: 16,
-                }}>{t.initials}</div>
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontWeight: 700, fontSize: 14 }}>{t.n}</div>
-                  <div style={{ fontSize: 12, color: '#6b6b6b' }}>📍 {t.loc}</div>
-                </div>
-                <div style={{ color: '#facc15', fontSize: 12, letterSpacing: '0.05em' }}>★★★★★</div>
-              </div>
-              <blockquote style={{ margin: 0, fontSize: 16, lineHeight: 1.5, color: '#1a1a1a' }}>
-                « {t.q} »
-              </blockquote>
-              <div style={{
-                marginTop: 'auto', paddingTop: 18, marginTop: 18,
-                borderTop: '1px solid #ececea',
-                display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-              }}>
-                <span style={{ fontSize: 12, color: '#6b6b6b' }}>Économie réalisée</span>
-                <span style={{ fontWeight: 900, fontSize: 18, color: brand, letterSpacing: '-0.02em' }}>+ {t.save} €</span>
-              </div>
-            </article>
-          ))}
-        </div>
       </div>
     </section>
   );
@@ -608,7 +469,7 @@ function CTAFooter({ brand, brandSoft, brandText }) {
           </div>
           <div>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: 14 }}>Studio</div>
-            {['Prestations', 'Tarifs', 'Showreel', 'Blog'].map(x => (
+            {['Prestations', 'Tarifs', 'Voir la vidéo', 'Blog'].map(x => (
               <div key={x} style={{ marginBottom: 8, fontSize: 13 }}><a href="#" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>{x}</a></div>
             ))}
           </div>
@@ -669,4 +530,4 @@ function StickyCTA({ brand }) {
   );
 }
 
-Object.assign(window, { Portfolio, Process, Pricing, Testimonials, Zone, Blog, CTAFooter, StickyCTA });
+Object.assign(window, { Portfolio, Process, Pricing, Zone, Blog, CTAFooter, StickyCTA });
