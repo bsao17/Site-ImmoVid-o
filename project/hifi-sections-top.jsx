@@ -46,7 +46,7 @@ function Nav({ brand }) {
             ['Prestations', '#prestations'],
             ['Vendre seul', '#pap'],
             ['Tarifs', '#tarifs'],
-            ['Showreel', '#portfolio'],
+            ['Voir la vidéo', '#portfolio'],
             ['Blog', '#blog'],
           ].map(([t, h]) => (
             <a key={t} href={h} style={{ color: 'inherit', textDecoration: 'none', transition: 'color .15s' }}
@@ -147,7 +147,7 @@ function Hero({ brand, brandSoft, brandText }) {
                 display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                 fontSize: 9, paddingLeft: 1,
               }}>▶</span>
-              Voir le showreel
+              Voir la vidéo
               <span style={{ opacity: 0.6, fontSize: 12 }}>2:14</span>
             </Pill>
             <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', marginLeft: 4 }}>
@@ -170,7 +170,6 @@ function Hero({ brand, brandSoft, brandText }) {
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
               <span style={{ color: '#facc15', letterSpacing: '0.1em' }}>★★★★★</span>
               <strong style={{ color: '#fff' }}>4,9/5</strong>
-              <span style={{ opacity: 0.7 }}>· 86 avis vérifiés</span>
             </span>
             <span style={{ width: 1, height: 16, background: 'rgba(255,255,255,0.2)' }}></span>
             <span>🛡️ Pilote certifié DGAC</span>
@@ -479,7 +478,7 @@ function Stats({ brand }) {
     { target: 127, suffix: '', label: 'Biens shootés', sub: '+ 12 ce mois-ci' },
     { target: 30, prefix: '−', suffix: ' %', label: 'Temps de vente', sub: 'vs. annonces sans vidéo' },
     { target: 4, prefix: '×', suffix: '', label: 'Vues sur annonces', sub: 'mesuré sur LeBonCoin' },
-    { target: 98, suffix: ' %', label: 'Clients satisfaits', sub: '86 avis vérifiés' },
+    { target: 98, suffix: ' %', label: 'Clients satisfaits', sub: 'satisfaction garantie' },
   ];
   return (
     <section style={{

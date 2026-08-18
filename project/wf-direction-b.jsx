@@ -86,7 +86,7 @@ function DirectionB() {
               </div>
               <div style={{ marginTop: 20, display: 'flex', alignItems: 'center', gap: 24 }}>
                 <span style={{ padding: '12px 22px', fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: B_BG, background: B_GOLD }}>
-                  ▶ Voir le showreel
+                  ▶ Voir la vidéo
                 </span>
                 <span style={{ fontSize: 11, color: B_DIM, letterSpacing: '0.1em' }}>
                   2 min 14 — 4K cinéma

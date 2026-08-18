@@ -38,7 +38,6 @@ function App() {
       <Portfolio brand={brand} brandSoft={brandSoft} brandText={brandText} />
       <Process brand={brand} brandSoft={brandSoft} brandText={brandText} />
       <Pricing brand={brand} brandSoft={brandSoft} brandText={brandText} />
-      <Testimonials brand={brand} brandSoft={brandSoft} brandText={brandText} />
       <Zone brand={brand} brandSoft={brandSoft} brandText={brandText} />
       <Blog brand={brand} brandSoft={brandSoft} brandText={brandText} />
       <CTAFooter brand={brand} brandSoft={brandSoft} brandText={brandText} />

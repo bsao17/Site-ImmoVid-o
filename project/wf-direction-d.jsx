@@ -42,7 +42,7 @@ function DirectionD() {
             <span style={{ marginLeft: 10, padding: '3px 8px', fontSize: 9, background: '#dcfce7', color: '#15803d', borderRadius: 6, fontWeight: 700, letterSpacing: '0.05em' }}>● DISPO MAI</span>
           </div>
           <div style={{ display: 'flex', gap: 22, fontSize: 12, fontWeight: 600, color: D_DIM }}>
-            {['Prestations', 'Vendre seul', 'Tarifs', 'Showreel', 'Blog'].map(x => <span key={x}>{x}</span>)}
+            {['Prestations', 'Vendre seul', 'Tarifs', 'Voir la vidéo', 'Blog'].map(x => <span key={x}>{x}</span>)}
           </div>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '9px 16px', fontSize: 12, fontWeight: 700, color: D_BG, background: D_INK, borderRadius: 100 }}>
             Devis gratuit →
@@ -95,12 +95,12 @@ function DirectionD() {
               </span>
               <span style={{ padding: '16px 24px', borderRadius: 100, border: '1.5px solid rgba(255,255,255,0.4)', fontWeight: 600, fontSize: 14, display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                 <span style={{ width: 22, height: 22, borderRadius: '50%', background: '#fff', color: D_INK, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 9 }}>▶</span>
-                Voir le showreel <span style={{ opacity: 0.6 }}>2:14</span>
+                Voir la vidéo <span style={{ opacity: 0.6 }}>2:14</span>
               </span>
             </div>
             {/* trust strip */}
             <div style={{ marginTop: 28, display: 'flex', alignItems: 'center', gap: 20, fontSize: 11, opacity: 0.7 }}>
-              <span>★★★★★ <strong style={{ opacity: 1 }}>4.9/5</strong> · 86 avis</span>
+              <span>★★★★★ <strong style={{ opacity: 1 }}>4.9/5</strong></span>
               <span>—</span>
               <span>Pilote certifié DGAC</span>
               <span>—</span>
@@ -218,7 +218,7 @@ function DirectionD() {
             ['127', 'biens shootés', '+12 ce mois-ci'],
             ['-30%', 'temps de vente', 'vs annonces sans vidéo'],
             ['×4', 'vues sur annonces', 'mesuré sur LeBonCoin'],
-            ['98%', 'clients satisfaits', '86 avis vérifiés'],
+            ['98%', 'clients satisfaits', 'satisfaction garantie'],
           ].map(([n, t, sub], i) => (
             <div key={i} style={{
               padding: '32px 22px',
@@ -239,42 +239,23 @@ function DirectionD() {
         </div>
       </div>
 
-      {/* —— PORTFOLIO horizontal carousel —————————————————— */}
-      <div style={{ padding: '60px 0 60px 36px' }}>
-        <div style={{ paddingRight: 36, marginBottom: 28, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-          <div>
-            <Tag>03 · Showreel</Tag>
-            <div style={{ fontSize: 48, fontWeight: 900, letterSpacing: '-0.03em', marginTop: 12, lineHeight: 1 }}>
-              Glissez pour <span style={{ color: D_BRAND }}>explorer</span>.
-            </div>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: 11, color: D_DIM }}>
-            <span>← →</span>
-            <span>1 / 12</span>
-          </div>
+      {/* —— PORTFOLIO — YouTube showreel ———————————————————— */}
+      <div style={{ padding: '60px 36px' }}>
+        <Tag>03 · Showreel</Tag>
+        <div style={{ fontSize: 48, fontWeight: 900, letterSpacing: '-0.03em', marginTop: 12, lineHeight: 1, marginBottom: 12 }}>
+          Découvrez nos <span style={{ color: D_BRAND }}>réalisations</span>.
         </div>
-        <div style={{ display: 'flex', gap: 12, overflow: 'hidden' }}>
-          {[
-            { t: 'Villa P130', loc: 'Arcachon', d: '2:14', tag: 'Drone' },
-            { t: 'Loft G', loc: 'Bordeaux', d: '1:48', tag: 'Visite' },
-            { t: 'Maison pierre', loc: 'Saint-Émilion', d: '3:02', tag: 'Drone' },
-            { t: 'Appart Hauss.', loc: 'Paris 7e', d: '2:30', tag: 'Visite' },
-          ].map((p, i) => (
-            <div key={i} style={{ flex: '0 0 300px', position: 'relative' }}>
-              <WPhoto label="" style={{ height: 380, background: '#0a0a0a', border: 'none', borderRadius: 20, color: '#fff' }}>
-                {/* Play overlay */}
-              </WPhoto>
-              <div style={{ position: 'absolute', top: 14, left: 14, display: 'flex', gap: 6 }}>
-                <Tag color="rgba(0,0,0,0.6)">{p.tag}</Tag>
-                <Tag color="rgba(0,0,0,0.6)">⏱ {p.d}</Tag>
-              </div>
-              <div style={{ position: 'absolute', bottom: 14, left: 14, right: 14, color: '#fff' }}>
-                <div style={{ fontSize: 18, fontWeight: 800, letterSpacing: '-0.02em' }}>{p.t}</div>
-                <div style={{ fontSize: 11, opacity: 0.8 }}>📍 {p.loc}</div>
-              </div>
-              <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 56, height: 56, borderRadius: '50%', background: 'rgba(255,255,255,0.95)', color: D_INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>▶</div>
-            </div>
-          ))}
+        <div style={{ fontSize: 14, color: D_DIM, marginBottom: 28 }}>
+          Une sélection de nos meilleurs films immobiliers — drone, visite vidéo et montage professionnel.
+        </div>
+        <div style={{ position: 'relative', width: '100%', borderRadius: 20, overflow: 'hidden', aspectRatio: '16/9', background: '#0a0a0a' }}>
+          <iframe
+            src="https://www.youtube.com/embed/tx6sB9V18x4"
+            title="Showreel ImmoVidéo"
+            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
         </div>
       </div>
 
@@ -362,37 +343,6 @@ function DirectionD() {
               </div>
               <div style={{ marginTop: 20, padding: '12px 18px', textAlign: 'center', borderRadius: 100, background: p.featured ? D_BRAND : D_INK, color: '#fff', fontWeight: 700, fontSize: 13 }}>
                 Choisir {p.n}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* —— TESTIMONIALS — avatar cards ————————————————————————— */}
-      <div style={{ padding: '60px 36px', background: '#f3f1eb' }}>
-        <Tag>06 · Avis vérifiés</Tag>
-        <div style={{ fontSize: 48, fontWeight: 900, letterSpacing: '-0.03em', marginTop: 12, lineHeight: 1, marginBottom: 32 }}>
-          <span style={{ color: D_BRAND }}>4.9/5</span> · 86 avis.
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
-          {[
-            { q: '11 jours pour vendre. Du jamais vu sur ma rue.', n: 'Marie L.', loc: 'Pessac', save: '14 200€' },
-            { q: 'Le drone a fait basculer la décision finale.', n: 'Julien R.', loc: 'Arcachon', save: '21 000€' },
-            { q: 'Service impeccable. Je recommande à 100%.', n: 'Famille D.', loc: 'Bordeaux', save: '11 800€' },
-          ].map((t, i) => (
-            <div key={i} style={{ background: D_BG, borderRadius: 20, padding: 24, border: `1px solid ${D_FAINT}` }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
-                <div style={{ width: 44, height: 44, borderRadius: '50%', background: D_FAINT }}></div>
-                <div>
-                  <div style={{ fontWeight: 700, fontSize: 13 }}>{t.n}</div>
-                  <div style={{ fontSize: 11, color: D_DIM }}>📍 {t.loc}</div>
-                </div>
-                <div style={{ marginLeft: 'auto', fontSize: 14, color: '#facc15' }}>★★★★★</div>
-              </div>
-              <div style={{ fontSize: 15, lineHeight: 1.5, color: D_INK }}>« {t.q} »</div>
-              <div style={{ marginTop: 16, paddingTop: 14, borderTop: `1px solid ${D_FAINT}`, display: 'flex', justifyContent: 'space-between', fontSize: 11 }}>
-                <span style={{ color: D_DIM }}>Économie réalisée</span>
-                <span style={{ fontWeight: 800, color: D_BRAND }}>{t.save}</span>
               </div>
             </div>
           ))}
