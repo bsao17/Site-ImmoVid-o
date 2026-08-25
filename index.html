@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ACN — Production audiovisuelle immobilière</title>
-<meta name="description" content="ACN — Drone, photo & vidéo pour vendre votre bien 4× plus vite. Sans commission d'agence. Réponse sous 24h." />
+<title>ACN — Communication digitale pour l'immobilier</title>
+<meta name="description" content="ACN — Photo, vidéo, drone et sites internet pour vendre vos biens plus vite. Pour les agences comme pour les particuliers, en Charente-Maritime." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -704,14 +704,15 @@ function Nav({ brand }) {
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
           <Logo brand={brand} size={30} />
-          <Tag tone="success">● Dispo mai-juin</Tag>
+          <Tag tone="success">● Nouveaux mandats acceptés</Tag>
         </div>
         <nav className="r-nav-l" style={{ display: 'flex', gap: 26, fontSize: 14, fontWeight: 600, color: '#3a3a3a' }}>
           {[
             ['Prestations', '#prestations'],
-            ['Vendre seul', '#pap'],
+            ['Sites internet', '#web'],
+            ['Agences', '#agences'],
             ['Tarifs', '#tarifs'],
-            ['Voir la vidéo', '#portfolio'],
+            ['Portfolio', '#portfolio'],
             ['Blog', '#blog'],
           ].map(([t, h]) => (
             <a key={t} href={h} style={{ color: 'inherit', textDecoration: 'none', transition: 'color .15s' }}
@@ -770,49 +771,43 @@ function Hero({ brand, brandSoft, brandText }) {
         justifyContent: 'flex-end',
       }}>
         <div style={{ marginTop: 'auto', maxWidth: 880 }}>
-          <div style={{ display: 'flex', gap: 8, marginBottom: 26 }} className="acn-fadeup">
-            <Tag tone="light"><span style={{ color: brand }}>●</span> Vente Particulier-à-Particulier</Tag>
-            <Tag tone="light">Bordeaux · La Rochelle · Royan</Tag>
+          <div style={{ display: 'flex', gap: 8, marginBottom: 26, flexWrap: 'wrap' }} className="acn-fadeup">
+            <Tag tone="light"><span style={{ color: brand }}>●</span> Agences & particuliers</Tag>
+            <Tag tone="light">Charente-Maritime · Royan, La Rochelle, Bordeaux</Tag>
           </div>
 
           <h1 className="acn-h acn-fadeup" style={{
-            fontSize: 'clamp(48px, 8.4vw, 116px)',
+            fontSize: 'clamp(44px, 7.6vw, 104px)',
             fontWeight: 900,
             letterSpacing: '-0.045em',
-            lineHeight: 0.9,
+            lineHeight: 0.92,
             margin: '0 0 24px',
             animationDelay: '.08s',
           }}>
-            Vendez votre bien <span style={{ color: brand }}>4 fois plus</span> vite.
+            La communication digitale de <span style={{ color: brand }}>vos biens</span>, de A à Z.
           </h1>
 
           <p className="acn-fadeup" style={{
             fontSize: 'clamp(15px, 1.4vw, 19px)',
-            maxWidth: 560,
+            maxWidth: 600,
             color: 'rgba(255,255,255,0.88)',
             lineHeight: 1.55,
             margin: '0 0 32px',
             animationDelay: '.16s',
           }}>
-            photo HDR, visite vidéo cinématique, réalisation de médias au format réseaux, plateforme internet individuelle. Économisez la commission d'agence — vous gardez la marge.
+            Photo HDR, vidéo cinématique, drone et site internet dédié — un seul interlocuteur, du repérage à la mise en ligne. Pour les agences qui publient chaque mois, comme pour les particuliers qui vendent seuls.
           </p>
 
           <div className="acn-fadeup" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center', animationDelay: '.24s' }}>
-            <Pill href="#contact" variant="solid" size="lg" brand={brand}>
-              Vendre mon bien <span>→</span>
+            <Pill href="#agences" variant="solid" size="lg" brand={brand}>
+              Je suis une agence <span>→</span>
             </Pill>
-            <Pill href="#portfolio" variant="onDark" size="lg" brand={brand}>
-              <span style={{
-                width: 24, height: 24, borderRadius: '50%', background: '#fff', color: '#0a0a0a',
-                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 9, paddingLeft: 1,
-              }}>▶</span>
-              Voir la vidéo
-              <span style={{ opacity: 0.6, fontSize: 12 }}>2:14</span>
+            <Pill href="#pap" variant="onDark" size="lg" brand={brand}>
+              Je vends seul <span>→</span>
             </Pill>
             <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', marginLeft: 4 }}>
-              <span style={{ color: '#fff', fontWeight: 700 }}>à partir de 190 €</span>
-              <span style={{ opacity: 0.65 }}> · tout inclus</span>
+              <span style={{ color: '#fff', fontWeight: 700 }}>à partir de 149 €</span>
+              <span style={{ opacity: 0.65 }}> · devis gratuit</span>
             </span>
           </div>
 
@@ -833,7 +828,7 @@ function Hero({ brand, brandSoft, brandText }) {
             <span style={{ width: 1, height: 16, background: 'rgba(255,255,255,0.2)' }}></span>
             <span>🛡️ Pilote certifié DGAC</span>
             <span style={{ width: 1, height: 16, background: 'rgba(255,255,255,0.2)' }}></span>
-            <span>⚡️ Réponse sous 24h</span>
+            <span>🌐 Photo, vidéo &amp; site internet</span>
             <span style={{ width: 1, height: 16, background: 'rgba(255,255,255,0.2)' }}></span>
             <span>📍 50 km autour de Royan, La Rochelle & Bordeaux</span>
           </div>
@@ -915,7 +910,7 @@ function Services({ brand, brandSoft, brandText }) {
       n: '04',
       title: 'Montage',
       sub: 'Prêt réseaux sociaux',
-      body: 'DaVinci Resolve · étalonnage cinéma. Formats Insta, TikTok, YouTube, MP4 HD pour les annonces. Livré sous 48h.',
+      body: 'DaVinci Resolve · étalonnage cinéma. Formats Insta, TikTok, YouTube, MP4 HD pour les annonces et les portails.',
       photo: '1493809842364-78817add7ffb',
       bg: '#e5e5e0',
       fg: '#0a0a0a',
@@ -1000,10 +995,154 @@ function Services({ brand, brandSoft, brandText }) {
   );
 }
 
+function BrowserFrame({ brand, dark, children }) {
+  return (
+    <div style={{
+      borderRadius: 16,
+      overflow: 'hidden',
+      border: `1px solid ${dark ? 'rgba(255,255,255,0.12)' : '#e5e5e0'}`,
+      background: dark ? '#161614' : '#fff',
+    }}>
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: 8,
+        padding: '10px 12px',
+        borderBottom: `1px solid ${dark ? 'rgba(255,255,255,0.1)' : '#e5e5e0'}`,
+      }}>
+        {['#ff5f57', '#febc2e', '#28c840'].map(c => (
+          <span key={c} style={{ width: 8, height: 8, borderRadius: '50%', background: c, opacity: 0.85 }} />
+        ))}
+        <div style={{
+          marginLeft: 8, flex: 1, height: 16, borderRadius: 6,
+          background: dark ? 'rgba(255,255,255,0.06)' : '#f3f1eb',
+          fontSize: 9, color: dark ? 'rgba(255,255,255,0.4)' : '#8a8a8a',
+          display: 'flex', alignItems: 'center', padding: '0 8px', letterSpacing: '0.02em',
+        }}>votre-bien.fr</div>
+      </div>
+      <div style={{ padding: 16 }}>{children}</div>
+    </div>
+  );
+}
+
+function WebSites({ brand, brandSoft, brandText }) {
+  const offers = [
+    {
+      n: 'Mini-site d’un bien', p: '249 €', agencyP: '199 €',
+      sub: 'Une page dédiée, pensée pour convertir la visite en appel.',
+      feats: ['Galerie photo & vidéo intégrées', 'Description et caractéristiques', 'Carte ou localisation', 'Formulaire de contact', '100 % responsive mobile', 'SEO de base'],
+      preview: (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          <div style={{ height: 44, borderRadius: 8, background: `linear-gradient(120deg, ${brand}33, ${brand}11)` }} />
+          <div style={{ height: 6, width: '70%', borderRadius: 3, background: '#e5e5e0' }} />
+          <div style={{ height: 6, width: '45%', borderRadius: 3, background: '#e5e5e0' }} />
+        </div>
+      ),
+    },
+    {
+      n: 'Site vitrine agence', p: '990–1 490 €', agencyP: 'Sur devis', featured: true,
+      sub: 'La présence web complète de votre agence : accueil, équipe, mandats, contact.',
+      feats: ['Accueil, présentation, équipe', 'Page services & mandats', 'Formulaire de contact', 'Liens réseaux sociaux', 'Responsive & SEO de base', 'Mise en ligne incluse'],
+      preview: (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          <div style={{ display: 'flex', gap: 6 }}>
+            <div style={{ height: 44, flex: 1, borderRadius: 8, background: `linear-gradient(120deg, ${brand}55, ${brand}22)` }} />
+            <div style={{ height: 44, width: 28, borderRadius: 8, background: 'rgba(255,255,255,0.08)' }} />
+          </div>
+          <div style={{ height: 6, width: '80%', borderRadius: 3, background: 'rgba(255,255,255,0.15)' }} />
+          <div style={{ height: 6, width: '55%', borderRadius: 3, background: 'rgba(255,255,255,0.15)' }} />
+        </div>
+      ),
+    },
+    {
+      n: 'Maintenance', p: '49–79 €/mois', agencyP: '49 €/mois',
+      sub: 'Votre site reste rapide, à jour et en sécurité — sans y penser.',
+      feats: ['Hébergement inclus', 'Certificat SSL', 'Sauvegardes régulières', 'Surveillance & mises à jour', 'Petites modifications selon forfait'],
+      preview: (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+            <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e' }} />
+            <div style={{ height: 6, width: '50%', borderRadius: 3, background: '#e5e5e0' }} />
+          </div>
+          <div style={{ height: 6, width: '70%', borderRadius: 3, background: '#e5e5e0' }} />
+          <div style={{ height: 6, width: '40%', borderRadius: 3, background: '#e5e5e0' }} />
+        </div>
+      ),
+    },
+  ];
+  return (
+    <section id="web" style={{ background: '#f3f1eb', padding: 'var(--pad-y) var(--pad-x)' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+        <div style={{
+          display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap',
+          gap: 24, marginBottom: 40,
+        }}>
+          <div style={{ maxWidth: 640 }}>
+            <Eyebrow num="02" brand={brand}>Sites internet</Eyebrow>
+            <h2 className="acn-h" style={{
+              fontSize: 'clamp(36px, 5vw, 64px)',
+              fontWeight: 900, letterSpacing: '-0.035em', lineHeight: 1, margin: 0,
+            }}>
+              Vos visuels méritent <span style={{ color: brand }}>un site</span>, pas qu'une annonce.
+            </h2>
+          </div>
+          <p style={{ maxWidth: 380, color: '#5a5a5a', fontSize: 15, lineHeight: 1.55, margin: 0 }}>
+            De la page dédiée à un bien à la vitrine complète de l'agence, avec maintenance incluse pour ne plus jamais y penser.
+          </p>
+        </div>
+
+        <div className="r-g3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--gap)', alignItems: 'stretch' }}>
+          {offers.map((o, i) => (
+            <article key={i} style={{
+              borderRadius: 28,
+              padding: 24,
+              background: o.featured ? '#0a0a0a' : '#fff',
+              color: o.featured ? '#fff' : '#0a0a0a',
+              border: `1.5px solid ${o.featured ? '#0a0a0a' : '#e5e5e0'}`,
+              boxShadow: o.featured ? '0 30px 80px rgba(0,0,0,0.18)' : '0 1px 0 rgba(0,0,0,0.02)',
+              display: 'flex', flexDirection: 'column', gap: 18,
+            }}>
+              <BrowserFrame brand={brand} dark={o.featured}>{o.preview}</BrowserFrame>
+
+              <div>
+                <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em' }}>{o.n}</div>
+                <div style={{ fontSize: 13, color: o.featured ? 'rgba(255,255,255,0.6)' : '#6b6b6b', marginTop: 4 }}>{o.sub}</div>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 16 }}>
+                  <span style={{ fontSize: 30, fontWeight: 900, letterSpacing: '-0.03em', color: o.featured ? brand : '#0a0a0a' }}>{o.p}</span>
+                </div>
+                <div style={{ fontSize: 12, marginTop: 4, color: o.featured ? 'rgba(255,255,255,0.5)' : '#8a8a8a' }}>
+                  agence partenaire : {o.agencyP}
+                </div>
+              </div>
+
+              <div style={{ paddingTop: 14, borderTop: `1px solid ${o.featured ? 'rgba(255,255,255,0.12)' : '#e5e5e0'}` }}>
+                {o.feats.map(f => (
+                  <div key={f} style={{ fontSize: 13, marginBottom: 10, display: 'flex', gap: 8, lineHeight: 1.4 }}>
+                    <span style={{
+                      width: 16, height: 16, borderRadius: '50%',
+                      background: o.featured ? brand : brandSoft,
+                      color: o.featured ? '#fff' : brand,
+                      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                      fontSize: 10, fontWeight: 800, flex: '0 0 16px',
+                    }}>✓</span>
+                    {f}
+                  </div>
+                ))}
+              </div>
+
+              <Pill href="#contact" variant={o.featured ? 'solid' : 'dark'} size="md" brand={brand} style={{ width: '100%', display: 'flex', marginTop: 'auto' }}>
+                Demander un devis
+              </Pill>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function FeaturePAP({ brand, brandSoft, brandText }) {
   const [price, setPrice] = React.useState(350000);
   const commission = Math.round(price * 0.04);
-  const acnPrice = 590;
+  const acnPrice = 399;
   const savings = commission - acnPrice;
 
   const fmt = (n) => n.toLocaleString('fr-FR');
@@ -1015,7 +1154,7 @@ function FeaturePAP({ brand, brandSoft, brandText }) {
       padding: 'var(--pad-y) var(--pad-x)',
     }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <Eyebrow num="02" brand={brand}>Vendre seul, mieux qu'avec une agence</Eyebrow>
+        <Eyebrow num="03" brand={brand}>Vous vendez seul ?</Eyebrow>
         <div className="r-g2" style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
@@ -1031,7 +1170,7 @@ function FeaturePAP({ brand, brandSoft, brandText }) {
             </h2>
             <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.72)', lineHeight: 1.6, maxWidth: 500, margin: '0 0 28px' }}>
               Sur un bien à <strong style={{ color: '#fff' }}>{fmt(price)} €</strong>, la commission d'agence vous coûte <strong style={{ color: '#fff' }}>{fmt(commission)} €</strong>.
-              Notre formule Premium tout compris : <strong style={{ color: brand }}>{acnPrice} €</strong>.
+              Notre formule Premium tout compris (photo + vidéo + drone) : <strong style={{ color: brand }}>{acnPrice} €</strong>. Ajoutez un site dédié au bien pour valoriser l'annonce encore plus.
             </p>
 
             <div style={{
@@ -1090,13 +1229,13 @@ function FeaturePAP({ brand, brandSoft, brandText }) {
               }}>
                 <Tag tone="light">● ACN</Tag>
                 <div style={{ fontSize: 42, fontWeight: 900, letterSpacing: '-0.03em', lineHeight: 1, marginTop: 14 }}>
-                  590<span style={{ fontSize: 20, opacity: 0.85 }}> €</span>
+                  399<span style={{ fontSize: 20, opacity: 0.85 }}> €</span>
                 </div>
                 <div style={{ fontSize: 11, opacity: 0.85, marginTop: 4 }}>Formule Premium, tout compris</div>
                 <div style={{ marginTop: 16, fontSize: 12, lineHeight: 1.7 }}>
                   ✓ Zéro engagement<br />
                   ✓ Drone + photo + vidéo<br />
-                  ✓ Livré sous 48 h
+                  ✓ Un seul interlocuteur
                 </div>
               </div>
             </div>
@@ -1114,6 +1253,76 @@ function FeaturePAP({ brand, brandSoft, brandText }) {
               </span>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AgencyPartner({ brand, brandSoft, brandText }) {
+  const tiers = [
+    { vol: '1 bien / mois', sub: 'Pour tester la collaboration.', rows: [['Photo', '149 €'], ['Photo + vidéo', '279 €'], ['Premium (+ drone)', '399 €']] },
+    { vol: '3–4 biens / mois', sub: 'Le rythme le plus courant pour une agence locale.', featured: true, rows: [['Photo', '129 €'], ['Photo + vidéo', '249 €'], ['Premium (+ drone)', '369 €']] },
+    { vol: '5 biens / mois et +', sub: 'Volume régulier, tarif et planning négociés ensemble.', rows: [['Photo', 'Sur devis'], ['Photo + vidéo', 'Sur devis'], ['Premium (+ drone)', 'Sur devis']] },
+  ];
+  return (
+    <section id="agences" style={{ background: '#0a0a0a', color: '#fff', padding: 'var(--pad-y) var(--pad-x)' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+        <div style={{
+          display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap',
+          gap: 24, marginBottom: 40,
+        }}>
+          <div style={{ maxWidth: 640 }}>
+            <Eyebrow num="04" brand={brand}>Agences partenaires</Eyebrow>
+            <h2 className="acn-h" style={{
+              fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 900, letterSpacing: '-0.035em', lineHeight: 1, margin: 0,
+            }}>
+              Un tarif qui <span style={{ color: brand }}>baisse</span> avec le volume.
+            </h2>
+          </div>
+          <p style={{ maxWidth: 400, color: 'rgba(255,255,255,0.65)', fontSize: 15, lineHeight: 1.55, margin: 0 }}>
+            Un interlocuteur unique pour tous vos mandats, un coût par bien prévisible, et une remise qui s'active dès que le volume suit vraiment.
+          </p>
+        </div>
+
+        <div className="r-g3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--gap)', alignItems: 'stretch' }}>
+          {tiers.map((t, i) => (
+            <div key={i} style={{
+              borderRadius: 24,
+              padding: 26,
+              background: t.featured ? brand : 'rgba(255,255,255,0.04)',
+              border: `1px solid ${t.featured ? 'transparent' : 'rgba(255,255,255,0.1)'}`,
+              boxShadow: t.featured ? `0 24px 60px ${brand}44` : 'none',
+            }}>
+              <div style={{ fontSize: 19, fontWeight: 800, letterSpacing: '-0.01em' }}>{t.vol}</div>
+              <div style={{ fontSize: 12.5, marginTop: 4, opacity: 0.8 }}>{t.sub}</div>
+              <div style={{ marginTop: 20, display: 'flex', flexDirection: 'column', gap: 10 }}>
+                {t.rows.map(([label, price]) => (
+                  <div key={label} style={{
+                    display: 'flex', justifyContent: 'space-between', alignItems: 'baseline',
+                    padding: '10px 0',
+                    borderTop: `1px solid ${t.featured ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.08)'}`,
+                  }}>
+                    <span style={{ fontSize: 13.5, opacity: 0.9 }}>{label}</span>
+                    <span style={{ fontSize: 17, fontWeight: 800 }}>{price}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{
+          marginTop: 32, display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+          flexWrap: 'wrap', gap: 20,
+          padding: '20px 24px', borderRadius: 18, background: 'rgba(255,255,255,0.04)',
+        }}>
+          <p style={{ margin: 0, fontSize: 13, color: 'rgba(255,255,255,0.6)', maxWidth: 560, lineHeight: 1.6 }}>
+            Le tarif partenaire s'applique à un volume réellement commandé dans le mois — pas d'engagement contractuel pour en bénéficier.
+          </p>
+          <Pill href="#contact" variant="onDark" size="md" brand={brand}>
+            Devenir agence partenaire →
+          </Pill>
         </div>
       </div>
     </section>
@@ -1175,7 +1384,7 @@ function Portfolio({ brand, brandSoft, brandText }) {
     <section id="portfolio" style={{ padding: 'var(--pad-y) var(--pad-x)' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <div style={{ marginBottom: 32 }}>
-          <Eyebrow num="03" brand={brand}>Showreel</Eyebrow>
+          <Eyebrow num="05" brand={brand}>Showreel</Eyebrow>
           <h2 className="acn-h" style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 900, letterSpacing: '-0.035em', lineHeight: 1, margin: 0 }}>
             Découvrez nos <span style={{ color: brand }}>réalisations</span>.
           </h2>
@@ -1208,7 +1417,7 @@ function Process({ brand, brandSoft, brandText }) {
     <section style={{ background: '#f3f1eb', padding: 'var(--pad-y) var(--pad-x)' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <div style={{ marginBottom: 48, maxWidth: 720 }}>
-          <Eyebrow num="04" brand={brand}>Le déroulé</Eyebrow>
+          <Eyebrow num="06" brand={brand}>Le déroulé</Eyebrow>
           <h2 className="acn-h" style={{
             fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 900, letterSpacing: '-0.035em', lineHeight: 1, margin: 0,
           }}>
@@ -1257,33 +1466,33 @@ function Process({ brand, brandSoft, brandText }) {
 function Pricing({ brand, brandSoft, brandText }) {
   const plans = [
     {
-      n: 'Essentiel', p: 190, tag: null,
-      sub: 'Pour un studio ou un T2 lumineux.',
-      feats: ['Reportage photo HDR · 15 visuels', 'Retouche professionnelle', 'Formats web & print', 'Photo aérienne'],
+      n: 'Essentiel', p: 149, agencyP: 129, tag: null,
+      sub: 'Reportage photo pour un bien qui se suffit à lui-même.',
+      feats: ['15 à 20 photos HDR', 'Retouche & redressements', 'Photo aérienne incluse', 'Livraison numérique haute définition'],
     },
     {
-      n: 'Signature', p: 390, tag: '🔥 Le + choisi', featured: true,
-      sub: 'Le bon compromis qualité / prix.',
-      feats: ['Photo HDR + Vidéo visite 2 min', 'Drone 4K (si autorisé)', 'Montage dynamique', 'Formats réseaux sociaux'],
+      n: 'Signature', p: 279, agencyP: 249, tag: '🔥 Le + choisi', featured: true,
+      sub: 'Photo + vidéo, le duo qui fait la différence sur les portails.',
+      feats: ['20 à 25 photos HDR', 'Vidéo immobilière 60 à 90 s', 'Version horizontale + verticale réseaux', 'Montage et musique sous licence'],
     },
     {
-      n: 'Premium', p: 590, tag: "Bien d'exception",
-      sub: 'Le grand jeu, pour les biens rares.',
-      feats: ['Tout Signature inclus', 'Site internet dédié au bien', 'Montage cinéma 3 min', 'Plans 2D + descriptif', 'Diffusion sur nos réseaux'],
+      n: 'Premium', p: 399, agencyP: 369, tag: "Bien d'exception",
+      sub: 'Le grand jeu, drone compris quand le site le permet.',
+      feats: ['Tout Signature inclus', 'Plans photo/vidéo drone (si faisable)', 'Montage complet, version verticale', 'Site internet dédié au bien en option'],
     },
   ];
   return (
     <section id="tarifs" style={{ padding: 'var(--pad-y) var(--pad-x)' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 56 }}>
-          <Eyebrow num="05" brand={brand}>Tarifs</Eyebrow>
+          <Eyebrow num="07" brand={brand}>Tarifs</Eyebrow>
           <h2 className="acn-h" style={{
             fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 900, letterSpacing: '-0.035em', lineHeight: 1, margin: '0 auto', maxWidth: 720,
           }}>
             Forfaits clairs, <span style={{ color: brand }}>zéro</span> surprise.
           </h2>
-          <p style={{ marginTop: 14, color: '#6b6b6b', fontSize: 15, maxWidth: 520, margin: '14px auto 0' }}>
-            Tout est inclus : déplacement (50 km), tournage, post-production, livraison. Pas de coût caché.
+          <p style={{ marginTop: 14, color: '#6b6b6b', fontSize: 15, maxWidth: 560, margin: '14px auto 0' }}>
+            Tout est inclus : déplacement (50 km), tournage, post-production, livraison. Tarifs particuliers ci-dessous — remises volume pour les <a href="#agences" style={{ color: '#0a0a0a', fontWeight: 700 }}>agences partenaires</a>.
           </p>
         </div>
 
@@ -1326,6 +1535,9 @@ function Pricing({ brand, brandSoft, brandText }) {
                 <span style={{ fontSize: 22, fontWeight: 700 }}>€</span>
                 <span style={{ fontSize: 12, marginLeft: 6, color: p.featured ? 'rgba(255,255,255,0.5)' : '#6b6b6b' }}>TTC · par bien</span>
               </div>
+              <div style={{ fontSize: 12, marginTop: 6, color: p.featured ? 'rgba(255,255,255,0.5)' : '#8a8a8a' }}>
+                dès {p.agencyP} € en tarif agence partenaire
+              </div>
 
               <div style={{ marginTop: 22, paddingTop: 22, borderTop: `1px solid ${p.featured ? 'rgba(255,255,255,0.12)' : '#e5e5e0'}` }}>
                 {p.feats.map(f => (
@@ -1358,7 +1570,7 @@ function Pricing({ brand, brandSoft, brandText }) {
         </div>
 
         <p style={{ textAlign: 'center', marginTop: 28, fontSize: 13, color: '#6b6b6b' }}>
-          Vous avez plusieurs biens ou un projet corporate ? <a href="#contact" style={{ color: '#0a0a0a', fontWeight: 700 }}>Devis sur mesure →</a>
+          Plusieurs biens, un projet corporate ou un site à créer ? <a href="#contact" style={{ color: '#0a0a0a', fontWeight: 700 }}>Devis sur mesure →</a>
         </p>
       </div>
     </section>
@@ -1380,12 +1592,15 @@ function Zone({ brand, brandSoft, brandText }) {
     <section style={{ padding: 'var(--pad-y) var(--pad-x)' }}>
       <div className="r-g2" style={{ maxWidth: 1280, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 56, alignItems: 'center' }}>
         <div>
-          <Eyebrow num="07" brand={brand}>Zone d'intervention</Eyebrow>
+          <Eyebrow num="08" brand={brand}>Zone d'intervention</Eyebrow>
           <h2 className="acn-h" style={{ fontSize: 'clamp(36px, 4.6vw, 56px)', fontWeight: 900, letterSpacing: '-0.035em', lineHeight: 1, margin: 0 }}>
             On vient<br /><span style={{ color: brand }}>chez vous</span>.
           </h2>
           <p style={{ marginTop: 18, fontSize: 16, color: '#3a3a3a', lineHeight: 1.6, maxWidth: 420 }}>
             Déplacement inclus dans un rayon de <strong>50&nbsp;km</strong> autour de nos trois bases. Au-delà, devis sur mesure pour les biens d'exception.
+          </p>
+          <p style={{ marginTop: 14, fontSize: 13, color: '#6b6b6b', lineHeight: 1.6, maxWidth: 420 }}>
+            En Charente-Maritime, <strong style={{ color: '#0a0a0a' }}>22 % des logements</strong> sont des résidences secondaires (INSEE, 2023) — plus du double de la moyenne nationale. Un marché où l'image du bien compte double.
           </p>
           <div style={{ marginTop: 24, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
             {cities.map(c => (
@@ -1409,7 +1624,7 @@ function Zone({ brand, brandSoft, brandText }) {
             display: 'inline-flex', alignItems: 'center', gap: 10,
           }}>
             <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e', animation: 'pulse 1.6s infinite' }}></span>
-            Disponibilité immédiate — créneaux mai & juin
+            Disponibilité immédiate — nouveaux mandats acceptés
           </div>
         </div>
 
@@ -1478,7 +1693,7 @@ function Blog({ brand, brandSoft, brandText }) {
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 20, marginBottom: 40 }}>
           <div>
-            <Eyebrow num="08" brand={brand}>Le blog</Eyebrow>
+            <Eyebrow num="09" brand={brand}>Le blog</Eyebrow>
             <h2 className="acn-h" style={{ fontSize: 'clamp(36px, 5vw, 60px)', fontWeight: 900, letterSpacing: '-0.035em', lineHeight: 1, margin: 0 }}>
               Conseils pour <span style={{ color: brand }}>bien vendre</span>.
             </h2>
@@ -1627,7 +1842,7 @@ function CTAFooter({ brand, brandSoft, brandText }) {
           <div>
             <Logo brand={brand} size={36} dark />
             <p style={{ marginTop: 16, fontSize: 13, color: 'rgba(255,255,255,0.55)', lineHeight: 1.6, maxWidth: 280 }}>
-              Studio de production audiovisuelle spécialisé immobilier et corporate. Drone · Photo · Vidéo · Montage.
+              Communication digitale pour l'immobilier, en Charente-Maritime. Drone · Photo · Vidéo · Sites internet.
             </p>
             <div style={{ marginTop: 18, display: 'flex', gap: 10 }}>
               {['IG', 'YT', 'LI', 'TT'].map(s => (
@@ -1643,14 +1858,14 @@ function CTAFooter({ brand, brandSoft, brandText }) {
           </div>
           <div>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: 14 }}>Studio</div>
-            {['Prestations', 'Tarifs', 'Voir la vidéo', 'Blog'].map(x => (
-              <div key={x} style={{ marginBottom: 8, fontSize: 13 }}><a href="#" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>{x}</a></div>
+            {[['Prestations', '#prestations'], ['Portfolio', '#portfolio'], ['Tarifs', '#tarifs'], ['Blog', '#blog']].map(([x, h]) => (
+              <div key={x} style={{ marginBottom: 8, fontSize: 13 }}><a href={h} style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>{x}</a></div>
             ))}
           </div>
           <div>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: 14 }}>Services</div>
-            {['Vente PAP', 'Agences', 'Corporate', 'Drone seul'].map(x => (
-              <div key={x} style={{ marginBottom: 8, fontSize: 13 }}><a href="#" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>{x}</a></div>
+            {[['Sites internet', '#web'], ['Agences partenaires', '#agences'], ['Vendre seul', '#pap'], ['Corporate', '#contact']].map(([x, h]) => (
+              <div key={x} style={{ marginBottom: 8, fontSize: 13 }}><a href={h} style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>{x}</a></div>
             ))}
           </div>
           <div>
@@ -1750,7 +1965,9 @@ function App() {
       <Hero brand={brand} brandSoft={brandSoft} brandText={brandText} />
       <Marquee brand={brand} />
       <Services brand={brand} brandSoft={brandSoft} brandText={brandText} />
+      <WebSites brand={brand} brandSoft={brandSoft} brandText={brandText} />
       <FeaturePAP brand={brand} brandSoft={brandSoft} brandText={brandText} />
+      <AgencyPartner brand={brand} brandSoft={brandSoft} brandText={brandText} />
       <Stats brand={brand} />
       <Portfolio brand={brand} brandSoft={brandSoft} brandText={brandText} />
       <Process brand={brand} brandSoft={brandSoft} brandText={brandText} />
