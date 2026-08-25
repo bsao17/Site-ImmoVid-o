@@ -134,7 +134,7 @@ function Hero({ brand, brandSoft, brandText }) {
             margin: '0 0 32px',
             animationDelay: '.16s',
           }}>
-            Drone 4K, photo HDR & visite vidéo cinéma. Livré sous 48h. Économisez la commission d'agence — vous gardez la marge.
+            photo HDR, visite vidéo cinématique, réalisation de médias au format réseaux, plateforme internet individuelle. Économisez la commission d'agence — vous gardez la marge.
           </p>
 
           <div className="acn-fadeup" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center', animationDelay: '.24s' }}>

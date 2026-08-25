@@ -87,7 +87,7 @@ function DirectionD() {
               Vendez votre bien <span style={{ color: D_BRAND }}>4 fois plus</span> vite.
             </div>
             <div style={{ marginTop: 22, fontSize: 16, maxWidth: 460, opacity: 0.85, lineHeight: 1.5 }}>
-              Drone 4K + photo HDR + visite vidéo. Livré sous 48h. Économisez la commission d'agence.
+              photo HDR, visite vidéo cinématique, réalisation de médias au format réseaux, plateforme internet individuelle.
             </div>
             <div style={{ marginTop: 28, display: 'flex', alignItems: 'center', gap: 14 }}>
               <span style={{ padding: '16px 26px', borderRadius: 100, background: D_BRAND, color: '#fff', fontWeight: 700, fontSize: 14 }}>
@@ -308,8 +308,8 @@ function DirectionD() {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
           {[
-            { n: 'Essentiel', p: '290', tag: '', feats: ['Photo HDR · 15 visuels', 'Retouche pro', 'Livraison 48h'] },
-            { n: 'Signature', p: '590', tag: '🔥 Le + choisi', feats: ['Photo HDR · Vidéo 2 min', 'Drone 4K inclus', 'Montage dynamique', 'Livraison 48h', 'Réseaux sociaux'], featured: true },
+            { n: 'Essentiel', p: '290', tag: '', feats: ['Photo HDR · 15 visuels', 'Retouche pro'] },
+            { n: 'Signature', p: '590', tag: '🔥 Le + choisi', feats: ['Photo HDR · Vidéo 2 min', 'Drone 4K inclus', 'Montage dynamique', 'Réseaux sociaux'], featured: true },
             { n: 'Premium', p: '890', tag: 'Bien d\'exception', feats: ['Tout Signature inclus', 'Visite virtuelle 3D', 'Montage cinéma 3 min', 'Plans 2D + descriptif'] },
           ].map((p, i) => (
             <div key={i} style={{
