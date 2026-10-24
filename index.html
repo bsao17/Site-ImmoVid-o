@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ACN — Communication digitale pour l'immobilier</title>
-<meta name="description" content="ACN — Photo, vidéo, drone et sites internet pour vendre vos biens plus vite. Pour les agences comme pour les particuliers, en Charente-Maritime." />
+<meta name="description" content="ACN — Photo, vidéo, drone et sites internet pour mettre en valeur vos biens. Pour les agences comme pour les particuliers, en Charente-Maritime." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -56,401 +56,7 @@
 
 <script type="text/babel">
 
-// ─── TWEAKS PANEL ────────────────────────────────────────────────────────────
-
-const __TWEAKS_STYLE = `
-  .twk-panel{position:fixed;right:16px;bottom:16px;z-index:2147483646;width:280px;
-    max-height:calc(100vh - 32px);display:flex;flex-direction:column;
-    transform:scale(var(--dc-inv-zoom,1));transform-origin:bottom right;
-    background:rgba(250,249,247,.78);color:#29261b;
-    -webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
-    border:.5px solid rgba(255,255,255,.6);border-radius:14px;
-    box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 12px 40px rgba(0,0,0,.18);
-    font:11.5px/1.4 ui-sans-serif,system-ui,-apple-system,sans-serif;overflow:hidden}
-  .twk-hd{display:flex;align-items:center;justify-content:space-between;
-    padding:10px 8px 10px 14px;cursor:move;user-select:none}
-  .twk-hd b{font-size:12px;font-weight:600;letter-spacing:.01em}
-  .twk-x{appearance:none;border:0;background:transparent;color:rgba(41,38,27,.55);
-    width:22px;height:22px;border-radius:6px;cursor:default;font-size:13px;line-height:1}
-  .twk-x:hover{background:rgba(0,0,0,.06);color:#29261b}
-  .twk-body{padding:2px 14px 14px;display:flex;flex-direction:column;gap:10px;
-    overflow-y:auto;overflow-x:hidden;min-height:0;
-    scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.15) transparent}
-  .twk-body::-webkit-scrollbar{width:8px}
-  .twk-body::-webkit-scrollbar-track{background:transparent;margin:2px}
-  .twk-body::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:4px;
-    border:2px solid transparent;background-clip:content-box}
-  .twk-body::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.25);
-    border:2px solid transparent;background-clip:content-box}
-  .twk-row{display:flex;flex-direction:column;gap:5px}
-  .twk-row-h{flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
-  .twk-lbl{display:flex;justify-content:space-between;align-items:baseline;
-    color:rgba(41,38,27,.72)}
-  .twk-lbl>span:first-child{font-weight:500}
-  .twk-val{color:rgba(41,38,27,.5);font-variant-numeric:tabular-nums}
-  .twk-sect{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-    color:rgba(41,38,27,.45);padding:10px 0 0}
-  .twk-sect:first-child{padding-top:0}
-  .twk-field{appearance:none;box-sizing:border-box;width:100%;min-width:0;height:26px;padding:0 8px;
-    border:.5px solid rgba(0,0,0,.1);border-radius:7px;
-    background:rgba(255,255,255,.6);color:inherit;font:inherit;outline:none}
-  .twk-field:focus{border-color:rgba(0,0,0,.25);background:rgba(255,255,255,.85)}
-  select.twk-field{padding-right:22px;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='rgba(0,0,0,.5)' d='M0 0h10L5 6z'/></svg>");
-    background-repeat:no-repeat;background-position:right 8px center}
-  .twk-slider{appearance:none;-webkit-appearance:none;width:100%;height:4px;margin:6px 0;
-    border-radius:999px;background:rgba(0,0,0,.12);outline:none}
-  .twk-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
-    width:14px;height:14px;border-radius:50%;background:#fff;
-    border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
-  .twk-slider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;
-    background:#fff;border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
-  .twk-seg{position:relative;display:flex;padding:2px;border-radius:8px;
-    background:rgba(0,0,0,.06);user-select:none}
-  .twk-seg-thumb{position:absolute;top:2px;bottom:2px;border-radius:6px;
-    background:rgba(255,255,255,.9);box-shadow:0 1px 2px rgba(0,0,0,.12);
-    transition:left .15s cubic-bezier(.3,.7,.4,1),width .15s}
-  .twk-seg.dragging .twk-seg-thumb{transition:none}
-  .twk-seg button{appearance:none;position:relative;z-index:1;flex:1;border:0;
-    background:transparent;color:inherit;font:inherit;font-weight:500;min-height:22px;
-    border-radius:6px;cursor:default;padding:4px 6px;line-height:1.2;
-    overflow-wrap:anywhere}
-  .twk-toggle{position:relative;width:32px;height:18px;border:0;border-radius:999px;
-    background:rgba(0,0,0,.15);transition:background .15s;cursor:default;padding:0}
-  .twk-toggle[data-on="1"]{background:#34c759}
-  .twk-toggle i{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;
-    background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
-  .twk-toggle[data-on="1"] i{transform:translateX(14px)}
-  .twk-num{display:flex;align-items:center;box-sizing:border-box;min-width:0;height:26px;padding:0 0 0 8px;
-    border:.5px solid rgba(0,0,0,.1);border-radius:7px;background:rgba(255,255,255,.6)}
-  .twk-num-lbl{font-weight:500;color:rgba(41,38,27,.6);cursor:ew-resize;
-    user-select:none;padding-right:8px}
-  .twk-num input{flex:1;min-width:0;height:100%;border:0;background:transparent;
-    font:inherit;font-variant-numeric:tabular-nums;text-align:right;padding:0 8px 0 0;
-    outline:none;color:inherit;-moz-appearance:textfield}
-  .twk-num input::-webkit-inner-spin-button,.twk-num input::-webkit-outer-spin-button{
-    -webkit-appearance:none;margin:0}
-  .twk-num-unit{padding-right:8px;color:rgba(41,38,27,.45)}
-  .twk-btn{appearance:none;height:26px;padding:0 12px;border:0;border-radius:7px;
-    background:rgba(0,0,0,.78);color:#fff;font:inherit;font-weight:500;cursor:default}
-  .twk-btn:hover{background:rgba(0,0,0,.88)}
-  .twk-btn.secondary{background:rgba(0,0,0,.06);color:inherit}
-  .twk-btn.secondary:hover{background:rgba(0,0,0,.1)}
-  .twk-swatch{appearance:none;-webkit-appearance:none;width:56px;height:22px;
-    border:.5px solid rgba(0,0,0,.1);border-radius:6px;padding:0;cursor:default;
-    background:transparent;flex-shrink:0}
-  .twk-swatch::-webkit-color-swatch-wrapper{padding:0}
-  .twk-swatch::-webkit-color-swatch{border:0;border-radius:5.5px}
-  .twk-swatch::-moz-color-swatch{border:0;border-radius:5.5px}
-  .twk-chips{display:flex;gap:6px}
-  .twk-chip{position:relative;appearance:none;flex:1;min-width:0;height:46px;
-    padding:0;border:0;border-radius:6px;overflow:hidden;cursor:default;
-    box-shadow:0 0 0 .5px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.06);
-    transition:transform .12s cubic-bezier(.3,.7,.4,1),box-shadow .12s}
-  .twk-chip:hover{transform:translateY(-1px);
-    box-shadow:0 0 0 .5px rgba(0,0,0,.18),0 4px 10px rgba(0,0,0,.12)}
-  .twk-chip[data-on="1"]{box-shadow:0 0 0 1.5px rgba(0,0,0,.85),
-    0 2px 6px rgba(0,0,0,.15)}
-  .twk-chip>span{position:absolute;top:0;bottom:0;right:0;width:34%;
-    display:flex;flex-direction:column;box-shadow:-1px 0 0 rgba(0,0,0,.1)}
-  .twk-chip>span>i{flex:1;box-shadow:0 -1px 0 rgba(0,0,0,.1)}
-  .twk-chip>span>i:first-child{box-shadow:none}
-  .twk-chip svg{position:absolute;top:6px;left:6px;width:13px;height:13px;
-    filter:drop-shadow(0 1px 1px rgba(0,0,0,.3))}
-`;
-
-function useTweaks(defaults) {
-  const [values, setValues] = React.useState(defaults);
-  const setTweak = React.useCallback((keyOrEdits, val) => {
-    const edits = typeof keyOrEdits === 'object' && keyOrEdits !== null
-      ? keyOrEdits : { [keyOrEdits]: val };
-    setValues((prev) => ({ ...prev, ...edits }));
-    window.parent.postMessage({ type: '__edit_mode_set_keys', edits }, '*');
-    window.dispatchEvent(new CustomEvent('tweakchange', { detail: edits }));
-  }, []);
-  return [values, setTweak];
-}
-
-function TweaksPanel({ title = 'Tweaks', noDeckControls = false, children }) {
-  const [open, setOpen] = React.useState(false);
-  const dragRef = React.useRef(null);
-  const offsetRef = React.useRef({ x: 16, y: 16 });
-  const PAD = 16;
-
-  const clampToViewport = React.useCallback(() => {
-    const panel = dragRef.current;
-    if (!panel) return;
-    const w = panel.offsetWidth, h = panel.offsetHeight;
-    const maxRight = Math.max(PAD, window.innerWidth - w - PAD);
-    const maxBottom = Math.max(PAD, window.innerHeight - h - PAD);
-    offsetRef.current = {
-      x: Math.min(maxRight, Math.max(PAD, offsetRef.current.x)),
-      y: Math.min(maxBottom, Math.max(PAD, offsetRef.current.y)),
-    };
-    panel.style.right = offsetRef.current.x + 'px';
-    panel.style.bottom = offsetRef.current.y + 'px';
-  }, []);
-
-  React.useEffect(() => {
-    if (!open) return;
-    clampToViewport();
-    if (typeof ResizeObserver === 'undefined') {
-      window.addEventListener('resize', clampToViewport);
-      return () => window.removeEventListener('resize', clampToViewport);
-    }
-    const ro = new ResizeObserver(clampToViewport);
-    ro.observe(document.documentElement);
-    return () => ro.disconnect();
-  }, [open, clampToViewport]);
-
-  React.useEffect(() => {
-    const onMsg = (e) => {
-      const t = e?.data?.type;
-      if (t === '__activate_edit_mode') setOpen(true);
-      else if (t === '__deactivate_edit_mode') setOpen(false);
-    };
-    window.addEventListener('message', onMsg);
-    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
-    return () => window.removeEventListener('message', onMsg);
-  }, []);
-
-  const dismiss = () => {
-    setOpen(false);
-    window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
-  };
-
-  const onDragStart = (e) => {
-    const panel = dragRef.current;
-    if (!panel) return;
-    const r = panel.getBoundingClientRect();
-    const sx = e.clientX, sy = e.clientY;
-    const startRight = window.innerWidth - r.right;
-    const startBottom = window.innerHeight - r.bottom;
-    const move = (ev) => {
-      offsetRef.current = {
-        x: startRight - (ev.clientX - sx),
-        y: startBottom - (ev.clientY - sy),
-      };
-      clampToViewport();
-    };
-    const up = () => {
-      window.removeEventListener('mousemove', move);
-      window.removeEventListener('mouseup', up);
-    };
-    window.addEventListener('mousemove', move);
-    window.addEventListener('mouseup', up);
-  };
-
-  if (!open) return null;
-  return (
-    <>
-      <style>{__TWEAKS_STYLE}</style>
-      <div ref={dragRef} className="twk-panel" data-noncommentable=""
-           style={{ right: offsetRef.current.x, bottom: offsetRef.current.y }}>
-        <div className="twk-hd" onMouseDown={onDragStart}>
-          <b>{title}</b>
-          <button className="twk-x" aria-label="Close tweaks"
-                  onMouseDown={(e) => e.stopPropagation()}
-                  onClick={dismiss}>✕</button>
-        </div>
-        <div className="twk-body">
-          {children}
-        </div>
-      </div>
-    </>
-  );
-}
-
-function TweakSection({ label, children }) {
-  return (
-    <>
-      <div className="twk-sect">{label}</div>
-      {children}
-    </>
-  );
-}
-
-function TweakRow({ label, value, children, inline = false }) {
-  return (
-    <div className={inline ? 'twk-row twk-row-h' : 'twk-row'}>
-      <div className="twk-lbl">
-        <span>{label}</span>
-        {value != null && <span className="twk-val">{value}</span>}
-      </div>
-      {children}
-    </div>
-  );
-}
-
-function TweakSlider({ label, value, min = 0, max = 100, step = 1, unit = '', onChange }) {
-  return (
-    <TweakRow label={label} value={`${value}${unit}`}>
-      <input type="range" className="twk-slider" min={min} max={max} step={step}
-             value={value} onChange={(e) => onChange(Number(e.target.value))} />
-    </TweakRow>
-  );
-}
-
-function TweakToggle({ label, value, onChange }) {
-  return (
-    <div className="twk-row twk-row-h">
-      <div className="twk-lbl"><span>{label}</span></div>
-      <button type="button" className="twk-toggle" data-on={value ? '1' : '0'}
-              role="switch" aria-checked={!!value}
-              onClick={() => onChange(!value)}><i /></button>
-    </div>
-  );
-}
-
-function TweakRadio({ label, value, options, onChange }) {
-  const trackRef = React.useRef(null);
-  const [dragging, setDragging] = React.useState(false);
-  const valueRef = React.useRef(value);
-  valueRef.current = value;
-
-  const labelLen = (o) => String(typeof o === 'object' ? o.label : o).length;
-  const maxLen = options.reduce((m, o) => Math.max(m, labelLen(o)), 0);
-  const fitsAsSegments = maxLen <= ({ 2: 16, 3: 10 }[options.length] ?? 0);
-  if (!fitsAsSegments) {
-    const resolve = (s) => {
-      const m = options.find((o) => String(typeof o === 'object' ? o.value : o) === s);
-      return m === undefined ? s : typeof m === 'object' ? m.value : m;
-    };
-    return <TweakSelect label={label} value={value} options={options}
-                        onChange={(s) => onChange(resolve(s))} />;
-  }
-  const opts = options.map((o) => (typeof o === 'object' ? o : { value: o, label: o }));
-  const idx = Math.max(0, opts.findIndex((o) => o.value === value));
-  const n = opts.length;
-
-  const segAt = (clientX) => {
-    const r = trackRef.current.getBoundingClientRect();
-    const inner = r.width - 4;
-    const i = Math.floor(((clientX - r.left - 2) / inner) * n);
-    return opts[Math.max(0, Math.min(n - 1, i))].value;
-  };
-
-  const onPointerDown = (e) => {
-    setDragging(true);
-    const v0 = segAt(e.clientX);
-    if (v0 !== valueRef.current) onChange(v0);
-    const move = (ev) => {
-      if (!trackRef.current) return;
-      const v = segAt(ev.clientX);
-      if (v !== valueRef.current) onChange(v);
-    };
-    const up = () => {
-      setDragging(false);
-      window.removeEventListener('pointermove', move);
-      window.removeEventListener('pointerup', up);
-    };
-    window.addEventListener('pointermove', move);
-    window.addEventListener('pointerup', up);
-  };
-
-  return (
-    <TweakRow label={label}>
-      <div ref={trackRef} role="radiogroup" onPointerDown={onPointerDown}
-           className={dragging ? 'twk-seg dragging' : 'twk-seg'}>
-        <div className="twk-seg-thumb"
-             style={{ left: `calc(2px + ${idx} * (100% - 4px) / ${n})`,
-                      width: `calc((100% - 4px) / ${n})` }} />
-        {opts.map((o) => (
-          <button key={o.value} type="button" role="radio" aria-checked={o.value === value}>
-            {o.label}
-          </button>
-        ))}
-      </div>
-    </TweakRow>
-  );
-}
-
-function TweakSelect({ label, value, options, onChange }) {
-  return (
-    <TweakRow label={label}>
-      <select className="twk-field" value={value} onChange={(e) => onChange(e.target.value)}>
-        {options.map((o) => {
-          const v = typeof o === 'object' ? o.value : o;
-          const l = typeof o === 'object' ? o.label : o;
-          return <option key={v} value={v}>{l}</option>;
-        })}
-      </select>
-    </TweakRow>
-  );
-}
-
-function __twkIsLight(hex) {
-  const h = String(hex).replace('#', '');
-  const x = h.length === 3 ? h.replace(/./g, (c) => c + c) : h.padEnd(6, '0');
-  const n = parseInt(x.slice(0, 6), 16);
-  if (Number.isNaN(n)) return true;
-  const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
-  return r * 299 + g * 587 + b * 114 > 148000;
-}
-
-const __TwkCheck = ({ light }) => (
-  <svg viewBox="0 0 14 14" aria-hidden="true">
-    <path d="M3 7.2 5.8 10 11 4.2" fill="none" strokeWidth="2.2"
-          strokeLinecap="round" strokeLinejoin="round"
-          stroke={light ? 'rgba(0,0,0,.78)' : '#fff'} />
-  </svg>
-);
-
-function TweakColor({ label, value, options, onChange }) {
-  if (!options || !options.length) {
-    return (
-      <div className="twk-row twk-row-h">
-        <div className="twk-lbl"><span>{label}</span></div>
-        <input type="color" className="twk-swatch" value={value}
-               onChange={(e) => onChange(e.target.value)} />
-      </div>
-    );
-  }
-  const key = (o) => String(JSON.stringify(o)).toLowerCase();
-  const cur = key(value);
-  return (
-    <TweakRow label={label}>
-      <div className="twk-chips" role="radiogroup">
-        {options.map((o, i) => {
-          const colors = Array.isArray(o) ? o : [o];
-          const [hero, ...rest] = colors;
-          const sup = rest.slice(0, 4);
-          const on = key(o) === cur;
-          return (
-            <button key={i} type="button" className="twk-chip" role="radio"
-                    aria-checked={on} data-on={on ? '1' : '0'}
-                    aria-label={colors.join(', ')} title={colors.join(' · ')}
-                    style={{ background: hero }}
-                    onClick={() => onChange(o)}>
-              {sup.length > 0 && (
-                <span>
-                  {sup.map((c, j) => <i key={j} style={{ background: c }} />)}
-                </span>
-              )}
-              {on && <__TwkCheck light={__twkIsLight(hero)} />}
-            </button>
-          );
-        })}
-      </div>
-    </TweakRow>
-  );
-}
-
 // ─── ATOMS ───────────────────────────────────────────────────────────────────
-
-const densityTokens = {
-  compact:  { padY: 48,  padX: 28, gap: 12, fontMul: 0.92, heroPad: 28,  headlineMul: 0.92 },
-  standard: { padY: 88,  padX: 56, gap: 16, fontMul: 1.0,  heroPad: 56,  headlineMul: 1.0  },
-  comfy:    { padY: 120, padX: 76, gap: 22, fontMul: 1.06, heroPad: 76,  headlineMul: 1.08 },
-};
-
-const palettes = {
-  orange: ['#ff5a1f', '#fff1ea', '#b3340a'],
-  blue:   ['#2563eb', '#eaf0ff', '#1d3fad'],
-  green:  ['#10b981', '#e6f8f1', '#067a55'],
-  red:    ['#dc2626', '#fdecec', '#9d1414'],
-  amber:  ['#f59e0b', '#fff5e0', '#a26a04'],
-};
 
 function Logo({ size = 28, dark = false, withWord = true, brand = '#ff5a1f' }) {
   const ink = dark ? '#fff' : '#0a0a0a';
@@ -589,35 +195,6 @@ function Eyebrow({ children, num, brand = '#ff5a1f' }) {
   );
 }
 
-function useCountUp(target, opts = {}) {
-  const { duration = 1400, start = 0, decimals = 0 } = opts;
-  const ref = React.useRef(null);
-  const [val, setVal] = React.useState(start);
-  React.useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    let started = false;
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting && !started) {
-          started = true;
-          const t0 = performance.now();
-          const tick = (now) => {
-            const p = Math.min(1, (now - t0) / duration);
-            const eased = 1 - Math.pow(1 - p, 3);
-            setVal(start + (target - start) * eased);
-            if (p < 1) requestAnimationFrame(tick);
-          };
-          requestAnimationFrame(tick);
-        }
-      });
-    }, { threshold: 0.4 });
-    io.observe(el);
-    return () => io.disconnect();
-  }, [target, duration]);
-  return [ref, decimals ? val.toFixed(decimals) : Math.round(val)];
-}
-
 function Photo({ src, alt, ratio, style, rounded = 20, overlay, kenburns }) {
   const wrap = {
     position: 'relative',
@@ -652,7 +229,6 @@ if (!document.getElementById('acn-kf')) {
   s.id = 'acn-kf';
   s.textContent = `
     @keyframes kenburns { 0% { transform: scale(1.02); } 100% { transform: scale(1.12); } }
-    @keyframes marquee  { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     @keyframes pulse    { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
     @keyframes fadeUp   { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: none; } }
     .acn-fadeup { animation: fadeUp .8s ease both; }
@@ -704,7 +280,6 @@ function Nav({ brand }) {
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
           <Logo brand={brand} size={30} />
-          <Tag tone="success">● Nouveaux mandats acceptés</Tag>
         </div>
         <nav className="r-nav-l" style={{ display: 'flex', gap: 26, fontSize: 14, fontWeight: 600, color: '#3a3a3a' }}>
           {[
@@ -745,7 +320,7 @@ function Hero({ brand, brandSoft, brandText }) {
     }}>
       <Photo
         src={unsplash('1613490493576-7fde63acd811', 2400)}
-        alt="Villa avec piscine, prise de vue par drone"
+        alt="Maison avec piscine vue du ciel"
         kenburns
         rounded={0}
         style={{ position: 'absolute', inset: 0, aspectRatio: 'auto' }}
@@ -795,7 +370,7 @@ function Hero({ brand, brandSoft, brandText }) {
             margin: '0 0 32px',
             animationDelay: '.16s',
           }}>
-            Photo HDR, vidéo cinématique, drone et site internet dédié — un seul interlocuteur, du repérage à la mise en ligne. Pour les agences qui publient chaque mois, comme pour les particuliers qui vendent seuls.
+            Photo HDR, vidéo, drone et site internet dédié au bien. Un seul interlocuteur, du repérage à la mise en ligne, pour les agences comme pour les particuliers qui vendent seuls.
           </p>
 
           <div className="acn-fadeup" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center', animationDelay: '.24s' }}>
@@ -821,59 +396,14 @@ function Hero({ brand, brandSoft, brandText }) {
             color: 'rgba(255,255,255,0.78)',
             animationDelay: '.32s',
           }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-              <span style={{ color: '#facc15', letterSpacing: '0.1em' }}>★★★★★</span>
-              <strong style={{ color: '#fff' }}>4,9/5</strong>
-            </span>
+            <span>Pilote drone certifié DGAC</span>
             <span style={{ width: 1, height: 16, background: 'rgba(255,255,255,0.2)' }}></span>
-            <span>🛡️ Pilote certifié DGAC</span>
-            <span style={{ width: 1, height: 16, background: 'rgba(255,255,255,0.2)' }}></span>
-            <span>🌐 Photo, vidéo &amp; site internet</span>
-            <span style={{ width: 1, height: 16, background: 'rgba(255,255,255,0.2)' }}></span>
-            <span>📍 50 km autour de Royan, La Rochelle & Bordeaux</span>
+            <span>Déplacement inclus dans un rayon de 50 km</span>
           </div>
         </div>
 
-        <div style={{
-          position: 'absolute',
-          right: 28, bottom: 24,
-          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10,
-          fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)',
-        }}>
-          <span>scroll</span>
-          <span style={{ width: 1, height: 36, background: 'rgba(255,255,255,0.4)' }}></span>
-        </div>
       </div>
     </section>
-  );
-}
-
-function Marquee({ brand }) {
-  const items = ['LeBonCoin', 'SeLoger', 'PAP.fr', 'BienIci', 'Ouest-France', 'Sud Ouest', 'Logic-Immo', 'AVendreALouer'];
-  const doubled = [...items, ...items];
-  return (
-    <div style={{
-      background: '#0a0a0a',
-      color: '#fff',
-      padding: '22px 0',
-      overflow: 'hidden',
-      position: 'relative',
-    }}>
-      <div style={{
-        display: 'flex',
-        gap: 60,
-        whiteSpace: 'nowrap',
-        animation: 'marquee 28s linear infinite',
-        width: 'max-content',
-      }}>
-        {doubled.map((x, i) => (
-          <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 14, fontSize: 14, fontWeight: 600, opacity: 0.7 }}>
-            <span style={{ color: brand, fontSize: 18 }}>✦</span>
-            <span style={{ letterSpacing: '0.05em' }}>Visible sur <strong style={{ opacity: 1, fontWeight: 800 }}>{x}</strong></span>
-          </span>
-        ))}
-      </div>
-    </div>
   );
 }
 
@@ -882,9 +412,8 @@ function Services({ brand, brandSoft, brandText }) {
     {
       n: '01',
       title: 'Drone 4K',
-      sub: 'Vues aériennes spectaculaires',
-      body: 'DJI Mavic, Avata, Pocket & Air Unit O4 Pro. Autorisations DGAC en règle. Idéal pour vues aériennes, panoramiques et environnement.',
-      photo: '1502672260266-1c1ef2d93688',
+      sub: 'Vues aériennes',
+      body: 'DJI Mavic, Avata, Pocket & Air Unit O4 Pro. Autorisations DGAC en règle. Pour montrer le terrain, la piscine, la vue et ce qu’il y a autour.',
       bg: brand,
       fg: '#fff',
     },
@@ -892,17 +421,15 @@ function Services({ brand, brandSoft, brandText }) {
       n: '02',
       title: 'Photo HDR',
       sub: 'Intérieurs lumineux',
-      body: 'Sony α7 IV · 24 Mpx. Bracketing HDR, retouche pro. Volumes valorisés, lumière parfaite — même par temps gris.',
-      photo: '1600585154340-be6161a56a0c',
+      body: 'Sony α7 IV · 24 Mpx. Bracketing HDR et retouche. Des pièces lumineuses et des volumes fidèles, même par temps gris.',
       bg: '#0a0a0a',
       fg: '#fff',
     },
     {
       n: '03',
-      title: 'Vidéo cinéma',
-      sub: 'Visite immersive 4K',
-      body: 'Ronin RS3 · slider · objectifs grand-angle. Visite qui filtre les curieux et fait basculer les bonnes visites.',
-      photo: '1600596542815-ffad4c1539a9',
+      title: 'Vidéo',
+      sub: 'Visite filmée 4K',
+      body: 'Ronin RS3 · slider · objectifs grand-angle. Une visite filmée pièce par pièce : les acheteurs savent à quoi s’attendre avant de se déplacer.',
       bg: '#f59e0b',
       fg: '#fff',
     },
@@ -910,8 +437,7 @@ function Services({ brand, brandSoft, brandText }) {
       n: '04',
       title: 'Montage',
       sub: 'Prêt réseaux sociaux',
-      body: 'DaVinci Resolve · étalonnage cinéma. Formats Insta, TikTok, YouTube, MP4 HD pour les annonces et les portails.',
-      photo: '1493809842364-78817add7ffb',
+      body: 'DaVinci Resolve, étalonnage. Formats Insta, TikTok, YouTube, MP4 HD pour les annonces et les portails.',
       bg: '#e5e5e0',
       fg: '#0a0a0a',
     },
@@ -929,11 +455,11 @@ function Services({ brand, brandSoft, brandText }) {
             fontSize: 'clamp(36px, 5vw, 64px)',
             fontWeight: 900, letterSpacing: '-0.035em', lineHeight: 1, margin: 0,
           }}>
-            Une équipe. <span style={{ color: brand }}>Quatre</span> super-pouvoirs.
+            Quatre prestations, <span style={{ color: brand }}>un seul</span> interlocuteur.
           </h2>
         </div>
         <p style={{ maxWidth: 360, color: '#6b6b6b', fontSize: 15, lineHeight: 1.55, margin: 0 }}>
-          Une seule équipe pour tout produire — du tournage à la livraison finale. Aucun sous-traitant, aucune perte de qualité.
+          Tournage, retouche et montage sont faits en interne : la personne qui vient sur place est celle qui vous livre les fichiers.
         </p>
       </div>
 
@@ -954,34 +480,9 @@ function Services({ brand, brandSoft, brandText }) {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
-            cursor: 'pointer',
-            transition: 'transform .3s cubic-bezier(.2,.7,.3,1), box-shadow .3s',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-6px)';
-            e.currentTarget.style.boxShadow = '0 30px 60px rgba(0,0,0,0.18)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = '';
-            e.currentTarget.style.boxShadow = '';
           }}>
-            <img
-              src={unsplash(s.photo, 600)}
-              alt=""
-              style={{
-                position: 'absolute', inset: 0, width: '100%', height: '100%',
-                objectFit: 'cover', mixBlendMode: 'overlay', opacity: 0.35,
-              }}
-            />
-            <div style={{ position: 'relative', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <div style={{ position: 'relative' }}>
               <span style={{ fontSize: 13, fontWeight: 800, letterSpacing: '0.1em' }}>{s.n}</span>
-              <span style={{
-                width: 32, height: 32, borderRadius: '50%',
-                background: 'rgba(255,255,255,0.15)',
-                border: `1px solid ${s.fg === '#fff' ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.15)'}`,
-                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 14,
-              }}>↗</span>
             </div>
             <div style={{ position: 'relative' }}>
               <div style={{ fontSize: 28, fontWeight: 900, letterSpacing: '-0.025em', marginBottom: 6 }}>{s.title}</div>
@@ -1054,7 +555,7 @@ function WebSites({ brand, brandSoft, brandText }) {
     },
     {
       n: 'Maintenance', p: '49–79 €/mois', agencyP: '49 €/mois',
-      sub: 'Votre site reste rapide, à jour et en sécurité — sans y penser.',
+      sub: 'Hébergement, sécurité et mises à jour : on s’en occupe.',
       feats: ['Hébergement inclus', 'Certificat SSL', 'Sauvegardes régulières', 'Surveillance & mises à jour', 'Petites modifications selon forfait'],
       preview: (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
@@ -1085,7 +586,7 @@ function WebSites({ brand, brandSoft, brandText }) {
             </h2>
           </div>
           <p style={{ maxWidth: 380, color: '#5a5a5a', fontSize: 15, lineHeight: 1.55, margin: 0 }}>
-            De la page dédiée à un bien à la vitrine complète de l'agence, avec maintenance incluse pour ne plus jamais y penser.
+            De la page dédiée à un bien à la vitrine complète de l'agence, avec une maintenance mensuelle si vous le souhaitez.
           </p>
         </div>
 
@@ -1166,11 +667,11 @@ function FeaturePAP({ brand, brandSoft, brandText }) {
               fontSize: 'clamp(40px, 5.4vw, 80px)',
               fontWeight: 900, letterSpacing: '-0.04em', lineHeight: 0.95, margin: '0 0 22px',
             }}>
-              Économisez <span style={{ color: brand }}>{fmt(savings)} €</span> sur votre vente.
+              Vendre seul, avec des <span style={{ color: brand }}>visuels d'agence</span>.
             </h2>
             <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.72)', lineHeight: 1.6, maxWidth: 500, margin: '0 0 28px' }}>
-              Sur un bien à <strong style={{ color: '#fff' }}>{fmt(price)} €</strong>, la commission d'agence vous coûte <strong style={{ color: '#fff' }}>{fmt(commission)} €</strong>.
-              Notre formule Premium tout compris (photo + vidéo + drone) : <strong style={{ color: brand }}>{acnPrice} €</strong>. Ajoutez un site dédié au bien pour valoriser l'annonce encore plus.
+              Sur un bien à <strong style={{ color: '#fff' }}>{fmt(price)} €</strong>, une commission d'environ 4 % représente <strong style={{ color: '#fff' }}>{fmt(commission)} €</strong>.
+              Vendre seul vous l'évite, mais votre annonce doit alors convaincre toute seule. La formule Premium (photo, vidéo, drone) coûte <strong style={{ color: brand }}>{acnPrice} €</strong>.
             </p>
 
             <div style={{
@@ -1197,7 +698,7 @@ function FeaturePAP({ brand, brandSoft, brandText }) {
             </div>
 
             <Pill href="#contact" variant="solid" size="lg" brand={brand}>
-              Calculer mon devis →
+              Demander un devis →
             </Pill>
           </div>
 
@@ -1218,9 +719,9 @@ function FeaturePAP({ brand, brandSoft, brandText }) {
                 </div>
                 <div style={{ fontSize: 11, opacity: 0.6, marginTop: 4 }}>≈ 4 % du prix de vente</div>
                 <div style={{ marginTop: 16, fontSize: 12, lineHeight: 1.7, opacity: 0.85 }}>
-                  ✕ Mandat (souvent exclusif)<br />
-                  ✕ Photos parfois moyennes<br />
-                  ✕ Décision lente
+                  Mandat, souvent exclusif<br />
+                  Visites et négociation gérées<br />
+                  Commission à la vente
                 </div>
               </div>
               <div style={{
@@ -1233,9 +734,9 @@ function FeaturePAP({ brand, brandSoft, brandText }) {
                 </div>
                 <div style={{ fontSize: 11, opacity: 0.85, marginTop: 4 }}>Formule Premium, tout compris</div>
                 <div style={{ marginTop: 16, fontSize: 12, lineHeight: 1.7 }}>
-                  ✓ Zéro engagement<br />
-                  ✓ Drone + photo + vidéo<br />
-                  ✓ Un seul interlocuteur
+                  Sans engagement<br />
+                  Photo, vidéo et drone<br />
+                  Vous gérez la vente
                 </div>
               </div>
             </div>
@@ -1247,9 +748,9 @@ function FeaturePAP({ brand, brandSoft, brandText }) {
               justifyContent: 'space-between',
               alignItems: 'center',
             }}>
-              <span style={{ fontSize: 13, opacity: 0.7 }}>Économie nette</span>
+              <span style={{ fontSize: 13, opacity: 0.7 }}>Écart avec la commission</span>
               <span style={{ fontSize: 28, fontWeight: 900, color: brand, letterSpacing: '-0.025em' }}>
-                +{fmt(savings)} €
+                {fmt(savings)} €
               </span>
             </div>
           </div>
@@ -1318,60 +819,12 @@ function AgencyPartner({ brand, brandSoft, brandText }) {
           padding: '20px 24px', borderRadius: 18, background: 'rgba(255,255,255,0.04)',
         }}>
           <p style={{ margin: 0, fontSize: 13, color: 'rgba(255,255,255,0.6)', maxWidth: 560, lineHeight: 1.6 }}>
-            Le tarif partenaire s'applique à un volume réellement commandé dans le mois — pas d'engagement contractuel pour en bénéficier.
+            Le tarif partenaire s'applique à un volume réellement commandé dans le mois, sans engagement contractuel.
           </p>
           <Pill href="#contact" variant="onDark" size="md" brand={brand}>
             Devenir agence partenaire →
           </Pill>
         </div>
-      </div>
-    </section>
-  );
-}
-
-function Stats({ brand }) {
-  const stats = [
-    { target: 127, suffix: '',    label: 'Biens shootés',     sub: '+ 12 ce mois-ci' },
-    { target: 30,  prefix: '−',  suffix: ' %', label: 'Temps de vente',    sub: 'vs. annonces sans vidéo' },
-    { target: 4,   prefix: '×',  suffix: '',   label: 'Vues sur annonces', sub: 'mesuré sur LeBonCoin' },
-    { target: 98,  suffix: ' %', label: 'Clients satisfaits', sub: 'satisfaction garantie' },
-  ];
-  return (
-    <section style={{
-      maxWidth: 1280, margin: '0 auto',
-      padding: 'calc(var(--pad-y) * 0.7) var(--pad-x)',
-      borderTop: '1px solid #e5e5e0', borderBottom: '1px solid #e5e5e0',
-    }}>
-      <div className="r-g4" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0 }}>
-        {stats.map((s, i) => {
-          const [ref, val] = useCountUp(s.target);
-          return (
-            <div key={i} ref={ref} className="r-hide-b r-pi" style={{
-              padding: '28px 22px',
-              borderRight: i !== 3 ? '1px solid #e5e5e0' : 'none',
-              position: 'relative',
-            }}>
-              <div style={{
-                fontSize: 'clamp(48px, 5.5vw, 76px)',
-                fontWeight: 900, letterSpacing: '-0.04em', lineHeight: 1,
-                color: i === 1 ? brand : '#0a0a0a',
-              }}>
-                {s.prefix || ''}{val}{s.suffix || ''}
-              </div>
-              <div style={{ fontSize: 14, fontWeight: 700, marginTop: 14 }}>{s.label}</div>
-              <div style={{ fontSize: 12, color: '#6b6b6b', marginTop: 4 }}>{s.sub}</div>
-              <span className="r-hide" style={{
-                position: 'absolute', top: 26, right: 22,
-                fontSize: 9, padding: '3px 8px', borderRadius: 100,
-                background: '#dcfce7', color: '#15803d', fontWeight: 800, letterSpacing: '0.08em',
-                display: 'inline-flex', alignItems: 'center', gap: 4,
-              }}>
-                <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#22c55e', animation: 'pulse 1.6s infinite' }}></span>
-                LIVE
-              </span>
-            </div>
-          );
-        })}
       </div>
     </section>
   );
@@ -1386,16 +839,16 @@ function Portfolio({ brand, brandSoft, brandText }) {
         <div style={{ marginBottom: 32 }}>
           <Eyebrow num="05" brand={brand}>Showreel</Eyebrow>
           <h2 className="acn-h" style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 900, letterSpacing: '-0.035em', lineHeight: 1, margin: 0 }}>
-            Découvrez nos <span style={{ color: brand }}>réalisations</span>.
+            Un aperçu de <span style={{ color: brand }}>notre travail</span>.
           </h2>
           <p style={{ marginTop: 12, color: '#6b6b6b', fontSize: 15 }}>
-            Une sélection de nos meilleurs films immobiliers — drone, visite vidéo et montage professionnel.
+            Drone, visite filmée et montage, extraits de nos tournages.
           </p>
         </div>
         <div style={{ position: 'relative', width: '100%', borderRadius: 24, overflow: 'hidden', aspectRatio: '16/9', background: '#0a0a0a', boxShadow: '0 20px 60px rgba(0,0,0,0.25)' }}>
           <iframe
             src="https://www.youtube.com/embed/VwtgjyW36R0"
-            title="Showreel ImmoVidéo"
+            title="Showreel ACN"
             style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
@@ -1408,10 +861,10 @@ function Portfolio({ brand, brandSoft, brandText }) {
 
 function Process({ brand, brandSoft, brandText }) {
   const steps = [
-    { n: 1, t: 'Prise de contact', d: 'Vous nous décrivez vos besoins et votre projet. Pas de devis pour l\'instant — on écoute.' },
+    { n: 1, t: 'Prise de contact', d: 'Vous nous décrivez vos besoins et votre projet. On commence par écouter, le devis vient après.' },
     { n: 2, t: 'Repérage', d: 'On finalise le projet ensemble et vous recevez un devis chiffré, clair et détaillé.' },
     { n: 3, t: 'Tournage', d: 'Réalisation : vidéo, photos, réseaux sociaux, site internet dédié au bien (selon option choisie).' },
-    { n: 4, t: 'Présentation', d: 'Livraison des livrables et mise en production du site — votre bien est prêt à être vendu.' },
+    { n: 4, t: 'Présentation', d: 'Livraison des livrables et mise en ligne du site. Votre annonce est prête.' },
   ];
   return (
     <section style={{ background: '#f3f1eb', padding: 'var(--pad-y) var(--pad-x)' }}>
@@ -1421,7 +874,7 @@ function Process({ brand, brandSoft, brandText }) {
           <h2 className="acn-h" style={{
             fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 900, letterSpacing: '-0.035em', lineHeight: 1, margin: 0,
           }}>
-            De zéro à <span style={{ color: brand }}>vendu</span> en 4 étapes.
+            Comment ça se <span style={{ color: brand }}>passe</span>.
           </h2>
         </div>
 
@@ -1471,13 +924,13 @@ function Pricing({ brand, brandSoft, brandText }) {
       feats: ['15 à 20 photos HDR', 'Retouche & redressements', 'Photo aérienne incluse', 'Livraison numérique haute définition'],
     },
     {
-      n: 'Signature', p: 279, agencyP: 249, tag: '🔥 Le + choisi', featured: true,
+      n: 'Signature', p: 279, agencyP: 249, tag: 'Photo + vidéo', featured: true,
       sub: 'Photo + vidéo, le duo qui fait la différence sur les portails.',
       feats: ['20 à 25 photos HDR', 'Vidéo immobilière 60 à 90 s', 'Version horizontale + verticale réseaux', 'Montage et musique sous licence'],
     },
     {
-      n: 'Premium', p: 399, agencyP: 369, tag: "Bien d'exception",
-      sub: 'Le grand jeu, drone compris quand le site le permet.',
+      n: 'Premium', p: 399, agencyP: 369, tag: null,
+      sub: 'Photo, vidéo et drone, quand le site autorise le vol.',
       feats: ['Tout Signature inclus', 'Plans photo/vidéo drone (si faisable)', 'Montage complet, version verticale', 'Site internet dédié au bien en option'],
     },
   ];
@@ -1489,10 +942,10 @@ function Pricing({ brand, brandSoft, brandText }) {
           <h2 className="acn-h" style={{
             fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 900, letterSpacing: '-0.035em', lineHeight: 1, margin: '0 auto', maxWidth: 720,
           }}>
-            Forfaits clairs, <span style={{ color: brand }}>zéro</span> surprise.
+            Un prix <span style={{ color: brand }}>par bien</span>, tout compris.
           </h2>
           <p style={{ marginTop: 14, color: '#6b6b6b', fontSize: 15, maxWidth: 560, margin: '14px auto 0' }}>
-            Tout est inclus : déplacement (50 km), tournage, post-production, livraison. Tarifs particuliers ci-dessous — remises volume pour les <a href="#agences" style={{ color: '#0a0a0a', fontWeight: 700 }}>agences partenaires</a>.
+            Tout est inclus : déplacement (50 km), tournage, post-production, livraison. Tarifs particuliers ci-dessous, remises volume pour les <a href="#agences" style={{ color: '#0a0a0a', fontWeight: 700 }}>agences partenaires</a>.
           </p>
         </div>
 
@@ -1600,7 +1053,7 @@ function Zone({ brand, brandSoft, brandText }) {
             Déplacement inclus dans un rayon de <strong>50&nbsp;km</strong> autour de nos trois bases. Au-delà, devis sur mesure pour les biens d'exception.
           </p>
           <p style={{ marginTop: 14, fontSize: 13, color: '#6b6b6b', lineHeight: 1.6, maxWidth: 420 }}>
-            En Charente-Maritime, <strong style={{ color: '#0a0a0a' }}>22 % des logements</strong> sont des résidences secondaires (INSEE, 2023) — plus du double de la moyenne nationale. Un marché où l'image du bien compte double.
+            En Charente-Maritime, <strong style={{ color: '#0a0a0a' }}>22 % des logements</strong> sont des résidences secondaires (INSEE, 2023) — plus du double de la moyenne nationale. Beaucoup d'acheteurs découvrent le bien à distance, d'abord en photo et en vidéo.
           </p>
           <div style={{ marginTop: 24, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
             {cities.map(c => (
@@ -1610,21 +1063,9 @@ function Zone({ brand, brandSoft, brandText }) {
                 fontSize: 13, fontWeight: 600,
                 display: 'inline-flex', alignItems: 'center', gap: 6,
               }}>
-                <span style={{ color: brand }}>📍</span>{c.name}
+                {c.name}
               </span>
             ))}
-          </div>
-          <div style={{
-            marginTop: 24,
-            padding: '14px 18px',
-            background: '#dcfce7',
-            color: '#15803d',
-            borderRadius: 14,
-            fontSize: 13, fontWeight: 600,
-            display: 'inline-flex', alignItems: 'center', gap: 10,
-          }}>
-            <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e', animation: 'pulse 1.6s infinite' }}></span>
-            Disponibilité immédiate — nouveaux mandats acceptés
           </div>
         </div>
 
@@ -1677,7 +1118,7 @@ function Blog({ brand, brandSoft, brandText }) {
   const featured = {
     cat: 'Guide complet',
     t: 'Vendre sans agence : la méthode 2026 (+ checklist PDF).',
-    sub: 'Notre méthode pas-à-pas pour vendre votre bien seul, plus vite et au prix fort.',
+    sub: 'Notre méthode pas à pas pour vendre votre bien sans agence.',
     time: '8 min',
     date: '12 mai 2026',
     photo: '1560518883-ce09059eeffa',
@@ -1707,7 +1148,7 @@ function Blog({ brand, brandSoft, brandText }) {
               <Photo src={unsplash(featured.photo, 1000)} alt={featured.t} style={{ aspectRatio: '16/9', borderRadius: 0 }} />
               <div style={{ padding: 28 }}>
                 <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
-                  <Tag tone="brand" brand={brand} brandSoft={brandSoft} brandText={brandText}>🔥 À la une</Tag>
+                  <Tag tone="brand" brand={brand} brandSoft={brandSoft} brandText={brandText}>À la une</Tag>
                   <Tag tone="ghost">{featured.cat}</Tag>
                 </div>
                 <h3 style={{ margin: 0, fontSize: 28, fontWeight: 800, letterSpacing: '-0.025em', lineHeight: 1.15 }}>
@@ -1778,7 +1219,7 @@ function CTAFooter({ brand, brandSoft, brandText }) {
             On filme<br />votre bien&nbsp;? <span style={{ color: brand }}>C'est parti.</span>
           </h2>
           <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.7)', maxWidth: 500, margin: '0 auto 28px', lineHeight: 1.55 }}>
-            Décrivez-nous votre projet — on revient sous 24h avec une proposition chiffrée et un créneau de tournage.
+            Décrivez-nous votre projet : on revient vers vous sous 24h avec une proposition chiffrée et un créneau de tournage.
           </p>
 
           {formStatus === 'success' ? (
@@ -1821,7 +1262,7 @@ function CTAFooter({ brand, brandSoft, brandText }) {
                 opacity: formStatus === 'loading' ? 0.6 : 1,
                 transition: 'transform .15s, box-shadow .15s',
               }}>
-                {formStatus === 'loading' ? '⏳ Envoi en cours...' : 'Demander un devis →'}
+                {formStatus === 'loading' ? 'Envoi en cours…' : 'Demander un devis →'}
               </button>
               {formStatus === 'error' && (
                 <div style={{ width: '100%', marginTop: 12, padding: '10px 14px', background: 'rgba(255,0,0,0.12)', color: '#ff5a5a', borderRadius: 8, fontSize: 13, fontWeight: 600, textAlign: 'center' }}>
@@ -1844,17 +1285,6 @@ function CTAFooter({ brand, brandSoft, brandText }) {
             <p style={{ marginTop: 16, fontSize: 13, color: 'rgba(255,255,255,0.55)', lineHeight: 1.6, maxWidth: 280 }}>
               Communication digitale pour l'immobilier, en Charente-Maritime. Drone · Photo · Vidéo · Sites internet.
             </p>
-            <div style={{ marginTop: 18, display: 'flex', gap: 10 }}>
-              {['IG', 'YT', 'LI', 'TT'].map(s => (
-                <a key={s} href="#" style={{
-                  width: 38, height: 38, borderRadius: '50%',
-                  background: 'rgba(255,255,255,0.06)',
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  color: '#fff', textDecoration: 'none', fontWeight: 700, fontSize: 12,
-                }}>{s}</a>
-              ))}
-            </div>
           </div>
           <div>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: 14 }}>Studio</div>
@@ -1925,14 +1355,14 @@ function StickyCTA({ brand }) {
         textDecoration: 'none',
         display: 'inline-flex', alignItems: 'center', gap: 8,
       }}>
-        💬 Devis sous 24h
+        Devis sous 24h
       </a>
       <a href="cgv/" style={{
         fontSize: 9, color: 'rgba(255,255,255,0.4)',
         textDecoration: 'none', textAlign: 'right',
         letterSpacing: '0.05em', paddingRight: 4,
       }}>
-        CGV — Conditions générales
+        Conditions générales de vente
       </a>
     </div>
   );
@@ -1940,20 +1370,14 @@ function StickyCTA({ brand }) {
 
 // ─── APP ─────────────────────────────────────────────────────────────────────
 
-const ACN_DEFAULTS = {
-  palette: 'orange',
-  density: 'standard',
-};
+const BRAND = ['#ff5a1f', '#fff1ea', '#b3340a'];
 
 function App() {
-  const [t, setTweak] = useTweaks(ACN_DEFAULTS);
-  const [brand, brandSoft, brandText] = palettes[t.palette] || palettes.orange;
-  const D = densityTokens[t.density] || densityTokens.standard;
-
+  const [brand, brandSoft, brandText] = BRAND;
   const styleVars = {
-    '--pad-y': `${D.padY}px`,
-    '--pad-x': `${D.padX}px`,
-    '--gap':   `${D.gap}px`,
+    '--pad-y': '88px',
+    '--pad-x': '56px',
+    '--gap':   '16px',
     '--brand': brand,
     '--brand-soft': brandSoft,
     '--brand-text': brandText,
@@ -1963,12 +1387,10 @@ function App() {
     <div style={{ background: '#fafaf7', color: '#0a0a0a', fontFamily: 'Inter, sans-serif', minHeight: '100vh', ...styleVars }}>
       <Nav brand={brand} />
       <Hero brand={brand} brandSoft={brandSoft} brandText={brandText} />
-      <Marquee brand={brand} />
       <Services brand={brand} brandSoft={brandSoft} brandText={brandText} />
       <WebSites brand={brand} brandSoft={brandSoft} brandText={brandText} />
       <FeaturePAP brand={brand} brandSoft={brandSoft} brandText={brandText} />
       <AgencyPartner brand={brand} brandSoft={brandSoft} brandText={brandText} />
-      <Stats brand={brand} />
       <Portfolio brand={brand} brandSoft={brandSoft} brandText={brandText} />
       <Process brand={brand} brandSoft={brandSoft} brandText={brandText} />
       <Pricing brand={brand} brandSoft={brandSoft} brandText={brandText} />
@@ -1976,38 +1398,6 @@ function App() {
       <Blog brand={brand} brandSoft={brandSoft} brandText={brandText} />
       <CTAFooter brand={brand} brandSoft={brandSoft} brandText={brandText} />
       <StickyCTA brand={brand} />
-
-      <TweaksPanel title="Tweaks ACN">
-        <TweakSection label="Palette de marque" />
-        <TweakColor
-          label="Couleur"
-          value={t.palette}
-          options={[
-            ['#ff5a1f', '#fafaf7', '#0a0a0a'],
-            ['#2563eb', '#fafaf7', '#0a0a0a'],
-            ['#10b981', '#fafaf7', '#0a0a0a'],
-            ['#dc2626', '#fafaf7', '#0a0a0a'],
-            ['#f59e0b', '#fafaf7', '#0a0a0a'],
-          ]}
-          onChange={(arr) => {
-            const hex = arr[0];
-            const name =
-              hex === '#ff5a1f' ? 'orange' :
-              hex === '#2563eb' ? 'blue'   :
-              hex === '#10b981' ? 'green'  :
-              hex === '#dc2626' ? 'red'    : 'amber';
-            setTweak('palette', name);
-          }}
-        />
-
-        <TweakSection label="Densité de la page" />
-        <TweakRadio
-          label="Espacement"
-          value={t.density}
-          options={['compact', 'standard', 'comfy']}
-          onChange={(v) => setTweak('density', v)}
-        />
-      </TweaksPanel>
     </div>
   );
 }
