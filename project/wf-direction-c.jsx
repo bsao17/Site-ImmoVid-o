@@ -209,10 +209,10 @@ function DirectionC() {
           </div>
           <div style={{ borderLeft: `1px solid ${C_INK}`, paddingLeft: 32 }}>
             {[
-              ['i.', 'Brief & devis', 'Vous décrivez le bien — chiffrage personnalisé sous 24h.', '24h'],
-              ['ii.', 'Repérage', 'Visite, choix de la lumière, planification.', '1 jour'],
-              ['iii.', 'Tournage', 'Drone, photo, vidéo — sur une demi-journée.', '½ j'],
-              ['iv.', 'Livraison', 'Rushs et montage final, livraison sécurisée.', '48h'],
+              ['i.', 'Prise de contact', 'Vous nous décrivez vos besoins et votre projet.', ''],
+              ['ii.', 'Repérage', 'On finalise le projet ensemble et devis chiffré.', ''],
+              ['iii.', 'Tournage', 'Réalisation : vidéo, photos, réseaux sociaux, site internet (selon option choisie).', ''],
+              ['iv.', 'Présentation', 'Livraison des livrables et mise en production.', ''],
             ].map(([n, t, d, tm], i) => (
               <div key={i} style={{ position: 'relative', paddingBottom: i === 3 ? 0 : 36 }}>
                 <div style={{ position: 'absolute', left: -40, top: 4, width: 16, height: 1, background: C_INK }}></div>
@@ -240,7 +240,7 @@ function DirectionC() {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderTop: `1px solid ${C_INK}` }}>
           {[
             { n: 'Essentiel', p: '290', feats: ['Photo HDR · 15 visuels', 'Retouche & livraison 48h'] },
-            { n: 'Signature', p: '590', feats: ['Photo HDR · Vidéo visite 2 min', 'Drone 4K · post-production', 'Livraison 48h'], featured: true },
+            { n: 'Signature', p: '590', feats: ['Photo HDR · Vidéo visite 2 min', 'Drone 4K · post-production'], featured: true },
             { n: 'Premium', p: '890', feats: ['Tout Signature inclus', 'Visite virtuelle 3D', 'Montage cinéma 3 min'] },
           ].map((p, i) => (
             <div key={i} style={{

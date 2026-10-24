@@ -130,7 +130,7 @@ function DirectionA() {
             ['127', 'Biens shootés', '2023-2026'],
             ['-30%', 'Temps de vente moyen', 'vs. annonces sans vidéo'],
             ['×4', 'Vues sur annonces', 'effet vidéo + drone'],
-            ['48h', 'Livraison express', 'rushs livrés sous 48h'],
+            ['×98%', 'Clients satisfaits', 'satisfaction garantie'],
           ].map(([n, t, s], i) => (
             <div key={i} style={{ borderLeft: i ? `1px solid rgba(255,255,255,0.15)` : 'none', paddingLeft: i ? 20 : 0 }}>
               <div style={{ fontFamily: A_SERIF, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.03em', color: i === 1 ? accent : WF.paper }}>{n}</div>
@@ -174,10 +174,10 @@ function DirectionA() {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px 48px' }}>
           {[
-            ['I.', 'Brief & devis', 'Vous nous décrivez le bien, on chiffre sous 24h.'],
-            ['II.', 'Repérage', 'Visite, heure d\'or, météo : on prépare le tournage.'],
-            ['III.', 'Tournage 1 jour', 'Drone + photo + vidéo en une demi-journée.'],
-            ['IV.', 'Livraison', 'Rushs + montage final livrés sous 48h.'],
+            ['I.', 'Prise de contact', 'Vous nous décrivez vos besoins et votre projet.'],
+            ['II.', 'Repérage', 'On finalise le projet ensemble et devis chiffré.'],
+            ['III.', 'Tournage', 'Réalisation : vidéo, photos, réseaux sociaux, site internet (selon option choisie).'],
+            ['IV.', 'Présentation', 'Livraison des livrables et mise en production.'],
           ].map(([r, t, d], i) => (
             <div key={i} style={{ display: 'flex', gap: 20 }}>
               <div style={{ fontFamily: A_SERIF, fontStyle: 'italic', fontSize: 44, color: accent, lineHeight: 1, flex: '0 0 60px' }}>{r}</div>
@@ -198,8 +198,8 @@ function DirectionA() {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', borderTop: `2px solid ${ink}`, borderBottom: `2px solid ${ink}` }}>
           {[
-            { name: 'Essentiel', price: '290', tag: 'Studio', items: ['Reportage photo HDR', '15 photos retouchées', 'Livraison 48h'] },
-            { name: 'Signature', price: '590', tag: 'Le + demandé', items: ['Photo HDR + Vidéo visite', 'Drone 4K (si autorisé)', 'Montage 2 min', 'Livraison 48h'], featured: true },
+            { name: 'Essentiel', price: '290', tag: 'Studio', items: ['Reportage photo HDR', '15 photos retouchées'] },
+            { name: 'Signature', price: '590', tag: 'Le + demandé', items: ['Photo HDR + Vidéo visite', 'Drone 4K (si autorisé)', 'Montage 2 min'], featured: true },
             { name: 'Premium', price: '890', tag: 'Bien d\'exception', items: ['Tout Signature inclus', 'Visite virtuelle 3D', 'Montage cinéma 3 min', 'Plans 2D + descriptif'] },
           ].map((p, i) => (
             <div key={i} style={{

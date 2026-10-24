@@ -96,12 +96,12 @@ function Pricing({ brand, brandSoft, brandText }) {
     {
       n: 'Essentiel', p: 190, tag: null,
       sub: 'Pour un studio ou un T2 lumineux.',
-      feats: ['Reportage photo HDR · 15 visuels', 'Retouche professionnelle', 'Livraison sous 48h', 'Formats web & print', 'Photo aérienne'],
+      feats: ['Reportage photo HDR · 15 visuels', 'Retouche professionnelle', 'Formats web & print', 'Photo aérienne'],
     },
     {
       n: 'Signature', p: 390, tag: '🔥 Le + choisi', featured: true,
       sub: 'Le bon compromis qualité / prix.',
-      feats: ['Photo HDR + Vidéo visite 2 min', 'Drone 4K (si autorisé)', 'Montage dynamique', 'Livraison sous 48h', 'Formats réseaux sociaux'],
+      feats: ['Photo HDR + Vidéo visite 2 min', 'Drone 4K (si autorisé)', 'Montage dynamique', 'Formats réseaux sociaux'],
     },
     {
       n: 'Premium', p: 590, tag: 'Bien d\'exception',

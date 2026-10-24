@@ -170,7 +170,7 @@ function DirectionB() {
               Sur un bien à 350 000 €, la commission d'agence représente 14 000 €. Notre prestation complète : 890 €. Faites le calcul.
             </div>
             <div style={{ marginTop: 24, paddingTop: 18, borderTop: `1px solid ${B_FAINT}` }}>
-              {['Drone + Photo + Vidéo', 'Livraison sous 48h', 'Réseaux sociaux inclus'].map(x => (
+              {['Drone + Photo + Vidéo', 'Réseaux sociaux inclus'].map(x => (
                 <div key={x} style={{ display: 'flex', gap: 12, marginBottom: 10, fontSize: 12 }}>
                   <span style={{ color: B_GOLD, fontFamily: '"Fraunces", serif' }}>—</span>
                   <span>{x}</span>
@@ -256,10 +256,10 @@ function DirectionB() {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14 }}>
           {[
-            ['SCN 01', 'Brief & devis', '24h'],
-            ['SCN 02', 'Repérage', '1 jour'],
-            ['SCN 03', 'Tournage', '½ journée'],
-            ['SCN 04', 'Livraison', '48h'],
+            ['SCN 01', 'Prise de contact', ''],
+            ['SCN 02', 'Repérage', ''],
+            ['SCN 03', 'Tournage', ''],
+            ['SCN 04', 'Présentation', ''],
           ].map(([n, t, d], i) => (
             <div key={i}>
               <div style={{ position: 'relative', aspectRatio: '4/3', border: `1.5px solid ${B_FAINT}`, marginBottom: 12 }}>
@@ -288,8 +288,8 @@ function DirectionB() {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
           {[
-            { n: 'Essentiel', p: '290', tag: 'Studio', feats: ['Reportage photo HDR', '15 photos retouchées', 'Livraison 48h'] },
-            { n: 'Signature', p: '590', tag: 'Le + demandé', feats: ['Photo + Vidéo visite', 'Drone 4K', 'Montage 2 min', 'Livraison 48h'], featured: true },
+            { n: 'Essentiel', p: '290', tag: 'Studio', feats: ['Reportage photo HDR', '15 photos retouchées'] },
+            { n: 'Signature', p: '590', tag: 'Le + demandé', feats: ['Photo + Vidéo visite', 'Drone 4K', 'Montage 2 min'], featured: true },
             { n: 'Premium', p: '890', tag: "Bien d'exception", feats: ['Tout Signature inclus', 'Visite virtuelle 3D', 'Montage cinéma 3 min', 'Plans 2D inclus'] },
           ].map((p, i) => (
             <div key={i} style={{
