@@ -569,7 +569,7 @@ function WebSites({ brand, brandSoft, brandText }) {
 function FeaturePAP({ brand, brandSoft, brandText }) {
   const [price, setPrice] = React.useState(350000);
   const commission = Math.round(price * 0.04);
-  const acnPrice = 399;
+  const acnPrice = 149;
   const savings = commission - acnPrice;
 
   const fmt = (n) => n.toLocaleString('fr-FR');
@@ -597,7 +597,7 @@ function FeaturePAP({ brand, brandSoft, brandText }) {
             </h2>
             <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.72)', lineHeight: 1.6, maxWidth: 500, margin: '0 0 28px' }}>
               Sur un bien à <strong style={{ color: '#fff' }}>{fmt(price)} €</strong>, une commission d'environ 4 % représente <strong style={{ color: '#fff' }}>{fmt(commission)} €</strong>.
-              Vendre seul vous l'évite, mais votre annonce doit alors convaincre toute seule. La formule Premium (photo, vidéo, drone) coûte <strong style={{ color: brand }}>{acnPrice} €</strong>.
+              Vendre seul vous l'évite, mais votre annonce doit alors convaincre toute seule. Nos reportages commencent à <strong style={{ color: brand }}>{acnPrice} €</strong> pour la photo, et vont jusqu'à 399 € avec vidéo et drone.
             </p>
 
             <div style={{
@@ -655,13 +655,14 @@ function FeaturePAP({ brand, brandSoft, brandText }) {
                 boxShadow: `0 20px 50px ${brand}55`,
               }}>
                 <Tag tone="light">● ACN</Tag>
-                <div style={{ fontSize: 42, fontWeight: 900, letterSpacing: '-0.03em', lineHeight: 1, marginTop: 14 }}>
-                  399<span style={{ fontSize: 20, opacity: 0.85 }}> €</span>
+                <div style={{ fontSize: 13, fontWeight: 700, marginTop: 14 }}>à partir de</div>
+                <div style={{ fontSize: 42, fontWeight: 900, letterSpacing: '-0.03em', lineHeight: 1, marginTop: 2 }}>
+                  {acnPrice}<span style={{ fontSize: 20, opacity: 0.85 }}> €</span>
                 </div>
-                <div style={{ fontSize: 11, opacity: 0.85, marginTop: 4 }}>Formule Premium, tout compris</div>
+                <div style={{ fontSize: 11, opacity: 0.85, marginTop: 4 }}>Reportage photo, déplacement inclus</div>
                 <div style={{ marginTop: 16, fontSize: 12, lineHeight: 1.7 }}>
                   Sans engagement<br />
-                  Photo, vidéo et drone<br />
+                  Vidéo et drone en option<br />
                   Vous gérez la vente
                 </div>
               </div>
