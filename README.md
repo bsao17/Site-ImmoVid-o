@@ -1,3 +1,24 @@
+# Site ACN — www.acn-studio.fr
+
+## Modifier la page d'accueil
+
+`index.html` est **généré** : ne pas le modifier à la main.
+
+- Contenu et composants : `src/app.jsx`
+- `<head>`, SEO, styles globaux : `src/template.html`
+
+Puis, depuis la racine du projet :
+
+```
+npm install      # une seule fois
+npm run build    # régénère index.html (JSX compilé + page pré-rendue)
+```
+
+Commiter `index.html` avec les sources. Les articles et pages légales sont du HTML statique, à modifier directement.
+Penser à mettre à jour `sitemap.xml` quand une page est ajoutée.
+
+---
+
 # CODING AGENTS: READ THIS FIRST
 
 This is a **handoff bundle** from Claude Design (claude.ai/design).
