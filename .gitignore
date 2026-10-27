@@ -18,6 +18,7 @@ pnpm-lock.yaml
 # Build
 dist/
 build/
+public/
 *.log
 
 # Env
