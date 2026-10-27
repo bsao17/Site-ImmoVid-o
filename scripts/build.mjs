@@ -2,7 +2,7 @@
 // and pre-renders the page so search engines get the full text without JS.
 //   npm install   (once)
 //   npm run build
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, rmSync, cpSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import vm from 'node:vm';
 import { transformSync } from '@babel/core';
@@ -34,3 +34,10 @@ const out = template
   .replace('<!--APP_JS-->', () => code.replace(/<\/script/gi, '<\\/script'));
 writeFileSync(root + 'index.html', out);
 console.log(`index.html: ${(out.length / 1024).toFixed(0)} KB, ${html.length} chars pre-rendered`);
+
+// Vercel publishes public/: copy only what belongs on the site.
+const PUBLISHED = ['index.html', 'robots.txt', 'sitemap.xml', 'favicon.svg',
+  'articles', 'cgv', 'mentions-legales', 'politique-confidentialite'];
+rmSync(root + 'public', { recursive: true, force: true });
+for (const f of PUBLISHED) cpSync(root + f, root + 'public/' + f, { recursive: true });
+console.log(`public/: ${PUBLISHED.length} entries`);

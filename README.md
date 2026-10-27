@@ -14,7 +14,7 @@ npm install      # une seule fois
 npm run build    # régénère index.html (JSX compilé + page pré-rendue)
 ```
 
-Commiter `index.html` avec les sources. Les articles et pages légales sont du HTML statique, à modifier directement.
+Commiter `index.html` avec les sources. Le build copie aussi le site publiable dans `public/` (dossier publié par Vercel, non versionné). Les articles et pages légales sont du HTML statique, à modifier directement.
 Penser à mettre à jour `sitemap.xml` quand une page est ajoutée.
 
 ---
