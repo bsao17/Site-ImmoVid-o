@@ -83,7 +83,7 @@ const fmt = (n) => n.toLocaleString('fr-FR');
 // ─── COMPOSANTS ──────────────────────────────────────────────────────────────
 
 function Logo({ dark = false }) {
-  const ink = dark ? '#fff' : '#262B30';
+  const ink = dark ? '#fff' : '#1F2A33';
   return (
     <a href="/" className="logo" aria-label="ACN, accueil">
       <svg width="30" height="30" viewBox="0 0 56 56" aria-hidden="true">
@@ -92,7 +92,7 @@ function Logo({ dark = false }) {
           const a = (i * 60 - 90) * Math.PI / 180;
           return <line key={i} x1={28 + Math.cos(a) * 6} y1={28 + Math.sin(a) * 6} x2={28 + Math.cos(a) * 20} y2={28 + Math.sin(a) * 20} stroke={ink} strokeWidth="3" strokeLinecap="round" />;
         })}
-        <circle cx="28" cy="28" r="5.5" fill="#B8436A" />
+        <circle cx="28" cy="28" r="5.5" fill="#FFD703" />
       </svg>
       ACN
     </a>
@@ -365,13 +365,13 @@ function Zone() {
         <div className="map">
           <svg viewBox="-25 -15 125 140" width="100%" height="100%" role="img" aria-label="Carte : rayon de 50 km autour de La Rochelle, Royan et Bordeaux">
             {CITIES.filter((c) => c.big).map((c) => (
-              <circle key={'r' + c.name} cx={c.x} cy={c.y} r="25" fill="rgba(63,107,85,.10)" stroke="#3F6B55" strokeOpacity=".5" strokeWidth=".4" strokeDasharray="1.5 1" />
+              <circle key={'r' + c.name} cx={c.x} cy={c.y} r="25" fill="rgba(122,186,72,.16)" stroke="#7ABA48" strokeOpacity=".9" strokeWidth=".4" strokeDasharray="1.5 1" />
             ))}
             {CITIES.map((c) => (
               <g key={c.name}>
-                <circle cx={c.x} cy={c.y} r={c.big ? 2.2 : 1.4} fill={c.big ? '#B8436A' : '#3F6B55'} />
+                <circle cx={c.x} cy={c.y} r={c.big ? 2.2 : 1.4} fill={c.big ? '#0C70B8' : '#4A7F22'} />
                 <text x={c.above ? c.x : c.left ? c.x - 2.8 : c.x + 2.8} y={c.above ? c.y - 4 : c.y + 1.6} textAnchor={c.above ? 'middle' : c.left ? 'end' : 'start'}
-                  fontSize={c.big ? 5.4 : 4.2} fill="#262B30" fontFamily="Archivo, sans-serif" fontWeight={c.big ? 700 : 500}>{c.name}</text>
+                  fontSize={c.big ? 5.4 : 4.2} fill="#1F2A33" fontFamily="Archivo, sans-serif" fontWeight={c.big ? 700 : 500}>{c.name}</text>
               </g>
             ))}
           </svg>
@@ -504,6 +504,7 @@ function App() {
       <Nav />
       <main>
         <Hero />
+        <span className="flag flag-top" aria-hidden="true" />
         <Portfolio />
         <Services />
         <Pricing />
@@ -512,6 +513,7 @@ function App() {
         <Blog />
         <Contact />
       </main>
+      <span className="flag flag-bottom" aria-hidden="true" />
       <Footer />
     </>
   );
