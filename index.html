@@ -57,23 +57,26 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
 <style>
-  /* Palette : maisons de l'île de Ré — façades à la chaux, volets verts, roses trémières. */
+  /* Palette : les couleurs du drapeau de la Charente-Maritime — l'océan, les marais, le soleil. */
   :root {
-    --chaux: #FBFAF7;
-    --ardoise: #262B30;
-    --ardoise-doux: #59616A;
-    --volet: #3F6B55;
-    --ciel: #DCE7EC;
-    --rose: #B8436A;
-    --rose-fonce: #9A3557;
-    --trait: #DAD9D3;
+    --blanc: #FFFFFF;
+    --ardoise: #1F2A33;
+    --ardoise-doux: #55606A;
+    --mer: #0C70B8;
+    --mer-fonce: #095A94;
+    --mer-profond: #0A4A7A;
+    --marais: #7ABA48;
+    --vert: #4A7F22;
+    --soleil: #FFD703;
+    --ecume: #EAF3FA;
+    --trait: #D5DEE5;
     --gutter: clamp(16px, 4vw, 48px);
     --wide: 125%;
   }
   *, *::before, *::after { box-sizing: border-box; }
   html { scroll-behavior: smooth; scroll-padding-top: 72px; }
   body {
-    margin: 0; background: var(--chaux); color: var(--ardoise);
+    margin: 0; background: var(--blanc); color: var(--ardoise);
     font-family: 'Archivo', system-ui, sans-serif; font-size: 17px; line-height: 1.6;
     -webkit-font-smoothing: antialiased; overflow-x: hidden;
   }
@@ -82,13 +85,13 @@
   button, input, select, textarea { font: inherit; color: inherit; }
   h1, h2, h3 { margin: 0; font-stretch: var(--wide); font-weight: 800; letter-spacing: -0.015em; text-wrap: balance; }
   p { margin: 0; }
-  ::selection { background: var(--rose); color: #fff; }
-  :focus-visible { outline: 3px solid var(--volet); outline-offset: 2px; }
+  ::selection { background: var(--soleil); color: var(--ardoise); }
+  :focus-visible { outline: 3px solid var(--ardoise); outline-offset: 2px; }
   .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
   .wrap { max-width: 1200px; margin: 0 auto; padding: 0 var(--gutter); }
   .section { padding: 104px 0; }
-  .section-ciel { background: var(--ciel); }
+  .section-ciel { background: var(--ecume); }
   .title { font-size: clamp(34px, 4.6vw, 60px); line-height: 1.02; }
   .lead { margin-top: 18px; font-size: 20px; line-height: 1.55; color: var(--ardoise-doux); max-width: 36em; }
   .head { margin-bottom: 48px; }
@@ -100,8 +103,8 @@
     font-weight: 700; font-size: 16px; text-decoration: none; cursor: pointer; white-space: nowrap;
     transition: background-color .15s, border-color .15s, color .15s;
   }
-  .btn-primary { background: var(--rose); color: #fff; }
-  .btn-primary:hover { background: var(--rose-fonce); }
+  .btn-primary { background: var(--mer); color: #fff; }
+  .btn-primary:hover { background: var(--mer-fonce); }
   .btn-outline { border-color: currentColor; background: transparent; }
   .btn-outline:hover { background: var(--ardoise); border-color: var(--ardoise); color: #fff; }
   .btn-light { border-color: rgba(255,255,255,.85); color: #fff; background: transparent; }
@@ -109,12 +112,12 @@
   .btn-small { min-height: 40px; padding: 0 16px; font-size: 15px; }
 
   /* Navigation */
-  .nav { position: sticky; top: 0; z-index: 50; background: rgba(251,250,247,.96); border-bottom: 1px solid var(--trait); }
+  .nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--trait); }
   .nav-bar { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 64px; }
   .logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-stretch: var(--wide); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; }
   .nav-links { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; font-size: 15px; font-weight: 600; }
   .nav-links a { text-decoration: none; }
-  .nav-links a:hover { color: var(--rose); }
+  .nav-links a:hover { color: var(--mer); }
   .nav-actions { display: flex; align-items: center; gap: 10px; }
   .nav-toggle { display: none; min-height: 40px; padding: 0 14px; border: 1px solid var(--trait); border-radius: 6px; background: transparent; font-weight: 600; cursor: pointer; }
   .nav-panel { display: none; }
@@ -126,10 +129,15 @@
     .nav-panel .nav-links a { display: block; padding: 12px 0; }
   }
 
+  /* Bandes du drapeau : elles encadrent la page, en haut sous l'image et en bas avant le pied de page. */
+  .flag { display: block; height: 24px; }
+  .flag-top { background: linear-gradient(to bottom, var(--mer) 0 14px, var(--blanc) 14px 18px, var(--marais) 18px 24px); }
+  .flag-bottom { background: linear-gradient(to bottom, var(--marais) 0 6px, var(--blanc) 6px 10px, var(--mer) 10px 24px); }
+
   /* Accueil : le film d'abord. */
   .hero { position: relative; min-height: min(88vh, 820px); display: flex; align-items: flex-end; color: #fff; background: var(--ardoise); overflow: hidden; }
   .hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(28,32,36,.86) 0%, rgba(28,32,36,.55) 45%, rgba(28,32,36,.05) 100%); }
+  .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,30,48,.86) 0%, rgba(8,30,48,.55) 45%, rgba(8,30,48,.05) 100%); }
   .hero-body { position: relative; z-index: 1; width: 100%; padding-top: 120px; padding-bottom: 56px; }
   .hero h1 { font-size: clamp(38px, 6vw, 84px); line-height: 0.98; max-width: 14em; }
   .hero-lead { margin-top: 22px; font-size: clamp(17px, 1.6vw, 20px); max-width: 38em; color: rgba(255,255,255,.9); }
@@ -144,7 +152,7 @@
   .reel img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 4px; opacity: .65; transition: opacity .15s; }
   .reel span { display: block; margin-top: 8px; font-size: 15px; font-weight: 600; color: var(--ardoise-doux); }
   .reel:hover img, .reel[aria-selected="true"] img { opacity: 1; }
-  .reel[aria-selected="true"] span { color: var(--ardoise); box-shadow: inset 0 -2px 0 var(--rose); display: inline-block; }
+  .reel[aria-selected="true"] span { color: var(--ardoise); box-shadow: inset 0 -2px 0 var(--mer); display: inline-block; }
   .gallery { margin-top: 48px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
   .gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 4px; }
 
@@ -156,20 +164,20 @@
   .service small { display: block; margin-top: 8px; font-size: 15px; color: var(--ardoise-doux); }
 
   /* Tarifs */
-  .switch { display: inline-flex; padding: 4px; border-radius: 8px; background: var(--ciel); margin-bottom: 40px; }
+  .switch { display: inline-flex; padding: 4px; border-radius: 8px; background: var(--ecume); margin-bottom: 40px; }
   .switch button { min-height: 44px; padding: 0 20px; border: 0; border-radius: 6px; background: transparent; font-weight: 700; cursor: pointer; color: var(--ardoise-doux); }
   .switch button[aria-selected="true"] { background: #fff; color: var(--ardoise); box-shadow: 0 1px 2px rgba(38,43,48,.12); }
   .plans { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ardoise); }
   .plan { padding: 32px 28px 36px; display: flex; flex-direction: column; border-right: 1px solid var(--trait); }
   .plan:last-child { border-right: 0; }
-  .plan-featured { background: var(--ciel); }
+  .plan-featured { background: var(--ecume); }
   .plan h3 { font-size: 26px; }
   .plan-sub { margin-top: 6px; font-size: 15px; color: var(--ardoise-doux); min-height: 3.2em; }
   .price { margin-top: 20px; font-stretch: var(--wide); font-weight: 800; font-size: 52px; line-height: 1; letter-spacing: -0.02em; }
   .price small { font-stretch: 100%; font-size: 15px; font-weight: 600; letter-spacing: 0; color: var(--ardoise-doux); margin-left: 6px; }
   .plan ul { list-style: none; padding: 0; margin: 24px 0 28px; font-size: 16px; }
   .plan li { padding: 7px 0 7px 22px; position: relative; }
-  .plan li::before { content: ''; position: absolute; left: 0; top: 15px; width: 10px; height: 2px; background: var(--volet); }
+  .plan li::before { content: ''; position: absolute; left: 0; top: 15px; width: 10px; height: 3px; background: var(--marais); }
   .plan .btn { margin-top: auto; }
   .table-wrap { overflow-x: auto; border-top: 1px solid var(--ardoise); }
   table { width: 100%; border-collapse: collapse; font-size: 17px; }
@@ -178,30 +186,30 @@
   thead th span { display: block; font-weight: 400; color: var(--ardoise-doux); }
   td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
   td.num { font-weight: 700; }
-  .col-featured { background: var(--ciel); }
+  .col-featured { background: var(--ecume); }
   .note { margin-top: 20px; font-size: 15px; color: var(--ardoise-doux); max-width: 46em; }
   .sub-block { margin-top: 72px; }
   .sub-block h3 { font-size: clamp(24px, 2.6vw, 32px); margin-bottom: 8px; }
   .sub-block > p { color: var(--ardoise-doux); margin-bottom: 24px; max-width: 40em; }
 
   /* Calculateur « vendre seul » */
-  .calc { margin-top: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; padding: 40px; background: var(--ardoise); color: #fff; border-radius: 4px; }
+  .calc { margin-top: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; padding: 40px; background: var(--mer-profond); color: #fff; border-radius: 4px; }
   .calc h3 { font-size: clamp(24px, 2.6vw, 32px); }
   .calc p { margin-top: 12px; color: rgba(255,255,255,.82); }
   .calc label { display: flex; justify-content: space-between; margin-top: 28px; font-size: 15px; }
   .calc label strong { font-size: 20px; }
-  .calc input[type=range] { width: 100%; margin-top: 12px; accent-color: var(--rose); }
+  .calc input[type=range] { width: 100%; margin-top: 12px; accent-color: var(--mer); }
   .calc dl { margin: 0; display: grid; gap: 0; align-content: center; }
   .calc dl div { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.18); }
   .calc dt { color: rgba(255,255,255,.82); }
   .calc dd { margin: 0; font-weight: 700; font-size: 20px; font-variant-numeric: tabular-nums; white-space: nowrap; }
   .calc dl div.total { border-bottom: 0; }
-  .calc dl div.total dd { font-stretch: var(--wide); font-weight: 800; font-size: 40px; color: #F0B9CB; }
+  .calc dl div.total dd { font-stretch: var(--wide); font-weight: 800; font-size: 40px; color: var(--soleil); }
 
   /* Déroulé : une vraie suite d'étapes. */
   .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; counter-reset: step; }
   .steps li { counter-increment: step; border-top: 2px solid var(--ardoise); padding-top: 20px; }
-  .steps li::before { content: counter(step); display: block; font-stretch: var(--wide); font-weight: 800; font-size: 44px; line-height: 1; color: var(--volet); margin-bottom: 14px; }
+  .steps li::before { content: counter(step); display: block; font-stretch: var(--wide); font-weight: 800; font-size: 44px; line-height: 1; color: var(--vert); margin-bottom: 14px; }
   .steps h3 { font-size: 22px; margin-bottom: 8px; }
   .steps p { font-size: 16px; color: var(--ardoise-doux); }
 
@@ -209,14 +217,14 @@
   .zone { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
   .cities { list-style: none; margin: 28px 0 0; padding: 0; columns: 2; font-weight: 600; }
   .cities li { padding: 4px 0; }
-  .map { background: var(--ciel); border-radius: 4px; padding: 24px; }
+  .map { background: var(--ecume); border-radius: 4px; padding: 24px; }
 
   /* Blog */
   .posts { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; }
   .post { text-decoration: none; display: block; }
   .post img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 4px; }
   .post h3 { margin-top: 16px; font-size: 26px; line-height: 1.15; }
-  .post:hover h3, .post-row:hover h3 { color: var(--rose); }
+  .post:hover h3, .post-row:hover h3 { color: var(--mer); }
   .post p { margin-top: 8px; color: var(--ardoise-doux); }
   .post-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ardoise); }
   .post-row { display: grid; grid-template-columns: 112px 1fr; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--trait); text-decoration: none; align-items: center; }
@@ -234,20 +242,21 @@
   .field textarea { min-height: 120px; resize: vertical; }
   .form .btn { grid-column: 1 / -1; justify-self: start; }
   .form-msg { grid-column: 1 / -1; padding: 14px 16px; border-radius: 6px; font-weight: 600; }
-  .form-msg.error { background: #F6DDE5; color: var(--rose-fonce); }
+  .form-msg.error { background: #FDE7E4; color: #A3261C; }
   .form-done { padding: 32px; background: #fff; border-radius: 4px; font-size: 19px; }
   .form-done strong { display: block; font-stretch: var(--wide); font-size: 28px; margin-bottom: 8px; }
 
   /* Pied de page */
-  .footer { background: var(--ardoise); color: rgba(255,255,255,.82); padding: 56px 0 32px; font-size: 15px; }
+  .footer { background: var(--mer); color: #fff; padding: 56px 0 32px; font-size: 15px; }
   .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
   .footer .logo { color: #fff; }
   .footer ul { list-style: none; margin: 0; padding: 0; }
   .footer li { padding: 4px 0; }
   .footer a { text-decoration: none; }
-  .footer a:hover { color: #fff; text-decoration: underline; }
+  .footer a:hover { text-decoration: underline; }
+  .footer :focus-visible { outline-color: var(--soleil); }
   .footer h2 { font-size: 15px; font-stretch: 100%; letter-spacing: 0; color: #fff; margin-bottom: 10px; }
-  .footer-legal { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.15); display: flex; flex-wrap: wrap; gap: 8px 24px; }
+  .footer-legal { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.3); display: flex; flex-wrap: wrap; gap: 8px 24px; }
 
   @media (max-width: 960px) {
     .section { padding: 72px 0; }
@@ -292,7 +301,7 @@
 </style>
 </head>
 <body>
-<div id="root"><header class="nav"><div class="wrap"><div class="nav-bar"><a href="/" class="logo" aria-label="ACN, accueil"><svg width="30" height="30" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="24" fill="none" stroke="#262B30" stroke-width="3"></circle><line x1="28" y1="22" x2="28" y2="8" stroke="#262B30" stroke-width="3" stroke-linecap="round"></line><line x1="33.19615242270663" y1="25" x2="45.32050807568878" y2="18" stroke="#262B30" stroke-width="3" stroke-linecap="round"></line><line x1="33.19615242270663" y1="31" x2="45.32050807568878" y2="38" stroke="#262B30" stroke-width="3" stroke-linecap="round"></line><line x1="28" y1="34" x2="28" y2="48" stroke="#262B30" stroke-width="3" stroke-linecap="round"></line><line x1="22.803847577293368" y1="31" x2="10.679491924311225" y2="38" stroke="#262B30" stroke-width="3" stroke-linecap="round"></line><line x1="22.803847577293368" y1="25" x2="10.679491924311229" y2="18" stroke="#262B30" stroke-width="3" stroke-linecap="round"></line><circle cx="28" cy="28" r="5.5" fill="#B8436A"></circle></svg>ACN</a><ul class="nav-links"><li><a href="#portfolio">Réalisations</a></li><li><a href="#prestations">Prestations</a></li><li><a href="#tarifs">Tarifs</a></li><li><a href="#blog">Blog</a></li></ul><div class="nav-actions"><a href="#contact" class="btn btn-primary btn-small">Demander un devis</a><button type="button" class="nav-toggle" aria-expanded="false" aria-controls="menu">Menu</button></div></div><nav id="menu" class="nav-panel" aria-label="Menu"><ul class="nav-links"><li><a href="#portfolio">Réalisations</a></li><li><a href="#prestations">Prestations</a></li><li><a href="#tarifs">Tarifs</a></li><li><a href="#blog">Blog</a></li></ul></nav></div></header><main><section class="hero"><img class="hero-media" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;q=80&amp;w=2400" alt="Maison avec piscine vue du ciel" fetchpriority="high"/><div class="wrap hero-body"><h1>Photo, vidéo et drone pour vendre vos biens.</h1><p class="hero-lead">En Charente-Maritime et autour de Bordeaux, un seul interlocuteur du repérage à la mise en ligne, pour les agences comme pour les particuliers qui vendent seuls.</p><div class="hero-actions"><a href="#agences" class="btn btn-primary">Je suis une agence</a><a href="#pap" class="btn btn-light">Je vends seul</a></div><p class="hero-note">Reportage photo dès 149 €, déplacement inclus jusqu’à 50 km. Pilote drone certifié DGAC.</p></div></section><section id="portfolio" class="section"><div class="wrap"><div class="head"><h2 class="title">Réalisations</h2><p class="lead">Extraits de nos tournages : drone, visite filmée et montage.</p></div><div class="player"><iframe src="https://www.youtube.com/embed/VwtgjyW36R0" title="La beauté est un jardin sauvage" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><div class="reels" role="tablist" aria-label="Choisir une vidéo"><button type="button" role="tab" class="reel" aria-selected="true" title="La beauté est un jardin sauvage"><img src="https://i.ytimg.com/vi/VwtgjyW36R0/mqdefault.jpg" alt="" loading="lazy"/><span>Jardin sauvage</span></button><button type="button" role="tab" class="reel" aria-selected="false" title="Vol en Chimera Custom au-dessus d’un parc, avant les vendanges"><img src="https://i.ytimg.com/vi/lhqjexkMRU8/mqdefault.jpg" alt="" loading="lazy"/><span>Vol drone FPV</span></button><button type="button" role="tab" class="reel" aria-selected="false" title="Fais de ton rêve une idée, et de cette idée une balade en FPV"><img src="https://i.ytimg.com/vi/cMjm1aVMTb0/mqdefault.jpg" alt="" loading="lazy"/><span>Balade FPV</span></button></div></div></section><section id="prestations" class="section section-ciel"><div class="wrap"><div class="head"><h2 class="title">Prestations</h2><p class="lead">Tournage, retouche et montage sont faits en interne : la personne qui vient sur place est celle qui vous livre les fichiers.</p></div><ul class="services"><li class="service"><h3>Photo HDR</h3><p>Des pièces lumineuses et des volumes fidèles, même par temps gris. 15 à 25 photos retouchées par reportage.<small>Sony α7 IV, bracketing HDR, redressement des perspectives</small></p></li><li class="service"><h3>Vidéo</h3><p>Une visite filmée pièce par pièce : les acheteurs savent à quoi s’attendre avant de se déplacer.<small>Stabilisateur, grand-angle, 60 à 90 secondes</small></p></li><li class="service"><h3>Drone</h3><p>Le terrain, la piscine, la vue et ce qu’il y a autour, montrés en un seul plan.<small>Pilote certifié DGAC, autorisations de vol en règle</small></p></li><li class="service"><h3>Montage</h3><p>Des fichiers prêts à publier sur les portails, Instagram, TikTok et YouTube.<small>Étalonnage, musique sous licence, versions horizontale et verticale</small></p></li></ul></div></section><section id="tarifs" class="section"><span id="agences"></span><span id="pap"></span><div class="wrap"><div class="head"><h2 class="title">Tarifs</h2><p class="lead">Prix TTC par bien. Tout est inclus : déplacement jusqu’à 50 km, tournage, post-production et livraison.</p></div><div class="switch" role="tablist" aria-label="Vous êtes"><button type="button" role="tab" aria-selected="true">Je vends seul</button><button type="button" role="tab" aria-selected="false">Je suis une agence</button></div><div class="plans"><article class="plan"><h3>Essentiel</h3><p class="plan-sub">Reportage photo, pour un bien qui se suffit à lui-même.</p><div class="price">149<!-- --> €<small>par bien</small></div><ul><li>15 à 20 photos HDR</li><li>Retouche et redressement</li><li>Photo aérienne incluse</li><li>Livraison en haute définition</li></ul><a href="#contact" class="btn btn-outline">Demander un devis</a></article><article class="plan plan-featured"><h3>Signature</h3><p class="plan-sub">Photo et vidéo, le duo qui fait la différence sur les portails.</p><div class="price">279<!-- --> €<small>par bien</small></div><ul><li>20 à 25 photos HDR</li><li>Vidéo de 60 à 90 secondes</li><li>Versions horizontale et verticale</li><li>Montage et musique sous licence</li></ul><a href="#contact" class="btn btn-primary">Demander un devis</a></article><article class="plan"><h3>Premium</h3><p class="plan-sub">Photo, vidéo et drone, quand le site autorise le vol.</p><div class="price">399<!-- --> €<small>par bien</small></div><ul><li>Tout le contenu Signature</li><li>Plans photo et vidéo au drone</li><li>Montage complet, version verticale</li><li>Site dédié au bien en option</li></ul><a href="#contact" class="btn btn-outline">Demander un devis</a></article></div><div class="calc"><div><h3>Vendre seul, avec des visuels d’agence.</h3><p>Une commission d’environ 4 % représente une somme importante. Vendre seul vous l’évite, mais votre annonce doit alors convaincre toute seule.</p><label for="prix">Prix de votre bien <strong>350 000<!-- --> €</strong></label><input id="prix" type="range" min="100000" max="2000000" step="10000" value="350000"/></div><dl><div><dt>Commission d’agence (≈ 4 %)</dt><dd>14 000<!-- --> €</dd></div><div><dt>Reportage ACN</dt><dd>dès <!-- -->149<!-- --> €</dd></div><div class="total"><dt>Écart</dt><dd>13 851<!-- --> €</dd></div></dl></div><div id="web" class="sub-block"><h3>Sites internet</h3><p>Pour que vos visuels aient leur propre page, pas seulement une annonce.</p><div class="table-wrap"><table><caption class="sr-only">Tarifs des sites internet</caption><thead><tr><th scope="col">Offre</th><th scope="col">Contenu</th><th scope="col" class="num">Tarif</th></tr></thead><tbody><tr><th scope="row">Mini-site d’un bien</th><td>Une page dédiée : galerie, vidéo, description, carte, formulaire de contact.</td><td class="num" data-label="Tarif">249 €</td></tr><tr><th scope="row">Site vitrine d’agence</th><td>Accueil, équipe, mandats, contact. Responsive, référencement de base, mise en ligne incluse.</td><td class="num" data-label="Tarif">990 à 1 490 €</td></tr><tr><th scope="row">Maintenance</th><td>Hébergement, certificat SSL, sauvegardes, mises à jour et petites modifications.</td><td class="num" data-label="Tarif">49 à 79 € / mois</td></tr></tbody></table></div></div></div></section><section id="deroule" class="section section-ciel"><div class="wrap"><div class="head"><h2 class="title">Comment ça se passe</h2></div><ol class="steps"><li><h3>Prise de contact</h3><p>Vous décrivez le bien et ce dont vous avez besoin. On commence par écouter, le devis vient après.</p></li><li><h3>Repérage</h3><p>On cale le projet ensemble et vous recevez un devis chiffré, clair et détaillé.</p></li><li><h3>Tournage</h3><p>Photo, vidéo, drone et, selon l’option choisie, site dédié au bien.</p></li><li><h3>Livraison</h3><p>Vous recevez les fichiers et le site est mis en ligne. L’annonce est prête.</p></li></ol></div></section><section id="zone" class="section"><div class="wrap zone"><div><h2 class="title">Zone d’intervention</h2><p class="lead">Déplacement inclus dans un rayon de 50 km autour de Royan, La Rochelle et Bordeaux. Au-delà, on établit un devis sur mesure.</p><p style="margin-top:16px;color:var(--ardoise-doux)">En Charente-Maritime, 22 % des logements sont des résidences secondaires (INSEE, 2023), plus du double de la moyenne nationale : beaucoup d’acheteurs découvrent le bien à distance, en photo et en vidéo.</p><ul class="cities"><li>La Rochelle</li><li>Île de Ré</li><li>Île d&#x27;Oléron</li><li>Royan</li><li>Bordeaux</li><li>Saint-Émilion</li><li>Arcachon</li><li>Cap Ferret</li></ul></div><div class="map"><svg viewBox="-25 -15 125 140" width="100%" height="100%" role="img" aria-label="Carte : rayon de 50 km autour de La Rochelle, Royan et Bordeaux"><circle cx="17.6" cy="16.1" r="25" fill="rgba(63,107,85,.10)" stroke="#3F6B55" stroke-opacity=".5" stroke-width=".4" stroke-dasharray="1.5 1"></circle><circle cx="22.2" cy="46.1" r="25" fill="rgba(63,107,85,.10)" stroke="#3F6B55" stroke-opacity=".5" stroke-width=".4" stroke-dasharray="1.5 1"></circle><circle cx="39.8" cy="89.4" r="25" fill="rgba(63,107,85,.10)" stroke="#3F6B55" stroke-opacity=".5" stroke-width=".4" stroke-dasharray="1.5 1"></circle><g><circle cx="17.6" cy="16.1" r="2.2" fill="#B8436A"></circle><text x="20.400000000000002" y="17.700000000000003" text-anchor="start" font-size="5.4" fill="#262B30" font-family="Archivo, sans-serif" font-weight="700">La Rochelle</text></g><g><circle cx="9" cy="13.9" r="1.4" fill="#3F6B55"></circle><text x="6.2" y="15.5" text-anchor="end" font-size="4.2" fill="#262B30" font-family="Archivo, sans-serif" font-weight="500">Île de Ré</text></g><g><circle cx="11.3" cy="28.3" r="1.4" fill="#3F6B55"></circle><text x="8.5" y="29.900000000000002" text-anchor="end" font-size="4.2" fill="#262B30" font-family="Archivo, sans-serif" font-weight="500">Île d&#x27;Oléron</text></g><g><circle cx="22.2" cy="46.1" r="2.2" fill="#B8436A"></circle><text x="25" y="47.7" text-anchor="start" font-size="5.4" fill="#262B30" font-family="Archivo, sans-serif" font-weight="700">Royan</text></g><g><circle cx="39.8" cy="89.4" r="2.2" fill="#B8436A"></circle><text x="39.8" y="85.4" text-anchor="middle" font-size="5.4" fill="#262B30" font-family="Archivo, sans-serif" font-weight="700">Bordeaux</text></g><g><circle cx="56.2" cy="86.6" r="1.4" fill="#3F6B55"></circle><text x="59" y="88.19999999999999" text-anchor="start" font-size="4.2" fill="#262B30" font-family="Archivo, sans-serif" font-weight="500">Saint-Émilion</text></g><g><circle cx="16.8" cy="99.3" r="1.4" fill="#3F6B55"></circle><text x="19.6" y="100.89999999999999" text-anchor="start" font-size="4.2" fill="#262B30" font-family="Archivo, sans-serif" font-weight="500">Arcachon</text></g><g><circle cx="13.7" cy="101" r="1.4" fill="#3F6B55"></circle><text x="10.899999999999999" y="102.6" text-anchor="end" font-size="4.2" fill="#262B30" font-family="Archivo, sans-serif" font-weight="500">Cap Ferret</text></g></svg></div></div></section><section id="blog" class="section section-ciel"><div class="wrap"><div class="head"><h2 class="title">Conseils pour vendre</h2></div><div class="posts"><a href="articles/vendre-sans-agence-methode-2026/" class="post"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&amp;fit=crop&amp;q=80&amp;w=1000" alt="" loading="lazy"/><h3>Vendre sans agence : la méthode 2026, avec checklist</h3><p>Notre méthode pas à pas pour vendre votre bien sans agence.</p><div class="meta">12 mai 2026, 8 min de lecture</div></a><ul class="post-list"><li><a href="articles/5-erreurs-photo-qui-font-fuir-les-acheteurs/" class="post-row"><img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&amp;fit=crop&amp;q=80&amp;w=300" alt="" loading="lazy"/><div><h3>5 erreurs photo qui font fuir les acheteurs</h3><div class="meta">28 avril, 4 min de lecture</div></div></a></li><li><a href="articles/quand-le-drone-change-vraiment-la-donne/" class="post-row"><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&amp;fit=crop&amp;q=80&amp;w=300" alt="" loading="lazy"/><div><h3>Quand le drone change vraiment la donne</h3><div class="meta">15 avril, 5 min de lecture</div></div></a></li><li><a href="articles/comment-estimer-son-bien-sans-agence/" class="post-row"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&amp;fit=crop&amp;q=80&amp;w=300" alt="" loading="lazy"/><div><h3>Comment estimer son bien sans agence</h3><div class="meta">2 avril, 6 min de lecture</div></div></a></li></ul></div></div></section><section id="contact" class="section"><div class="wrap contact"><div><h2 class="title">Demander un devis</h2><p class="lead">Décrivez le bien : on vous répond sous 24 h avec une proposition chiffrée et un créneau de tournage. Le devis est gratuit.</p><p class="contact-mail"><a href="mailto:contact@acn-studio.fr">contact@acn-studio.fr</a></p></div><form action="https://api.web3forms.com/submit" method="POST" class="form"><input type="hidden" name="subject" value="Nouveau devis ACN"/><input type="hidden" name="access_key" value="22a373dc-cbea-4a06-8d1c-5f616773988d"/><label class="field">Nom<input name="name" autoComplete="name"/></label><label class="field">Vous êtes<select name="profil"><option selected="">Particulier</option><option>Agence immobilière</option><option>Autre</option></select></label><label class="field">Email<input name="email" type="email" required="" autoComplete="email"/></label><label class="field">Téléphone (facultatif)<input name="phone" type="tel" autoComplete="tel"/></label><label class="field field-full">Votre bien et votre besoin<textarea name="message" placeholder="Type de bien, ville, prestations souhaitées, date idéale…"></textarea></label><button type="submit" class="btn btn-primary">Demander un devis</button></form></div></section></main><footer class="footer"><div class="wrap"><div class="footer-grid"><div><a href="/" class="logo" aria-label="ACN, accueil"><svg width="30" height="30" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="24" fill="none" stroke="#fff" stroke-width="3"></circle><line x1="28" y1="22" x2="28" y2="8" stroke="#fff" stroke-width="3" stroke-linecap="round"></line><line x1="33.19615242270663" y1="25" x2="45.32050807568878" y2="18" stroke="#fff" stroke-width="3" stroke-linecap="round"></line><line x1="33.19615242270663" y1="31" x2="45.32050807568878" y2="38" stroke="#fff" stroke-width="3" stroke-linecap="round"></line><line x1="28" y1="34" x2="28" y2="48" stroke="#fff" stroke-width="3" stroke-linecap="round"></line><line x1="22.803847577293368" y1="31" x2="10.679491924311225" y2="38" stroke="#fff" stroke-width="3" stroke-linecap="round"></line><line x1="22.803847577293368" y1="25" x2="10.679491924311229" y2="18" stroke="#fff" stroke-width="3" stroke-linecap="round"></line><circle cx="28" cy="28" r="5.5" fill="#B8436A"></circle></svg>ACN</a><p style="margin-top:14px;max-width:30em">Photo, vidéo, drone et sites internet pour l’immobilier, en Charente-Maritime et autour de Bordeaux.</p></div><div><h2>Le site</h2><ul><li><a href="#portfolio">Réalisations</a></li><li><a href="#prestations">Prestations</a></li><li><a href="#tarifs">Tarifs</a></li><li><a href="#blog">Blog</a></li><li><a href="#contact">Contact</a></li></ul></div><div><h2>Contact</h2><ul><li><a href="mailto:contact@acn-studio.fr">contact@acn-studio.fr</a></li><li>Royan, La Rochelle, Bordeaux</li></ul></div></div><div class="footer-legal"><span>© 2026 ACN</span><a href="mentions-legales/">Mentions légales</a><a href="cgv/">Conditions générales de vente</a><a href="politique-confidentialite/">Politique de confidentialité</a></div></div></footer></div>
+<div id="root"><header class="nav"><div class="wrap"><div class="nav-bar"><a href="/" class="logo" aria-label="ACN, accueil"><svg width="30" height="30" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="24" fill="none" stroke="#1F2A33" stroke-width="3"></circle><line x1="28" y1="22" x2="28" y2="8" stroke="#1F2A33" stroke-width="3" stroke-linecap="round"></line><line x1="33.19615242270663" y1="25" x2="45.32050807568878" y2="18" stroke="#1F2A33" stroke-width="3" stroke-linecap="round"></line><line x1="33.19615242270663" y1="31" x2="45.32050807568878" y2="38" stroke="#1F2A33" stroke-width="3" stroke-linecap="round"></line><line x1="28" y1="34" x2="28" y2="48" stroke="#1F2A33" stroke-width="3" stroke-linecap="round"></line><line x1="22.803847577293368" y1="31" x2="10.679491924311225" y2="38" stroke="#1F2A33" stroke-width="3" stroke-linecap="round"></line><line x1="22.803847577293368" y1="25" x2="10.679491924311229" y2="18" stroke="#1F2A33" stroke-width="3" stroke-linecap="round"></line><circle cx="28" cy="28" r="5.5" fill="#FFD703"></circle></svg>ACN</a><ul class="nav-links"><li><a href="#portfolio">Réalisations</a></li><li><a href="#prestations">Prestations</a></li><li><a href="#tarifs">Tarifs</a></li><li><a href="#blog">Blog</a></li></ul><div class="nav-actions"><a href="#contact" class="btn btn-primary btn-small">Demander un devis</a><button type="button" class="nav-toggle" aria-expanded="false" aria-controls="menu">Menu</button></div></div><nav id="menu" class="nav-panel" aria-label="Menu"><ul class="nav-links"><li><a href="#portfolio">Réalisations</a></li><li><a href="#prestations">Prestations</a></li><li><a href="#tarifs">Tarifs</a></li><li><a href="#blog">Blog</a></li></ul></nav></div></header><main><section class="hero"><img class="hero-media" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;q=80&amp;w=2400" alt="Maison avec piscine vue du ciel" fetchpriority="high"/><div class="wrap hero-body"><h1>Photo, vidéo et drone pour vendre vos biens.</h1><p class="hero-lead">En Charente-Maritime et autour de Bordeaux, un seul interlocuteur du repérage à la mise en ligne, pour les agences comme pour les particuliers qui vendent seuls.</p><div class="hero-actions"><a href="#agences" class="btn btn-primary">Je suis une agence</a><a href="#pap" class="btn btn-light">Je vends seul</a></div><p class="hero-note">Reportage photo dès 149 €, déplacement inclus jusqu’à 50 km. Pilote drone certifié DGAC.</p></div></section><span class="flag flag-top" aria-hidden="true"></span><section id="portfolio" class="section"><div class="wrap"><div class="head"><h2 class="title">Réalisations</h2><p class="lead">Extraits de nos tournages : drone, visite filmée et montage.</p></div><div class="player"><iframe src="https://www.youtube.com/embed/VwtgjyW36R0" title="La beauté est un jardin sauvage" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><div class="reels" role="tablist" aria-label="Choisir une vidéo"><button type="button" role="tab" class="reel" aria-selected="true" title="La beauté est un jardin sauvage"><img src="https://i.ytimg.com/vi/VwtgjyW36R0/mqdefault.jpg" alt="" loading="lazy"/><span>Jardin sauvage</span></button><button type="button" role="tab" class="reel" aria-selected="false" title="Vol en Chimera Custom au-dessus d’un parc, avant les vendanges"><img src="https://i.ytimg.com/vi/lhqjexkMRU8/mqdefault.jpg" alt="" loading="lazy"/><span>Vol drone FPV</span></button><button type="button" role="tab" class="reel" aria-selected="false" title="Fais de ton rêve une idée, et de cette idée une balade en FPV"><img src="https://i.ytimg.com/vi/cMjm1aVMTb0/mqdefault.jpg" alt="" loading="lazy"/><span>Balade FPV</span></button></div></div></section><section id="prestations" class="section section-ciel"><div class="wrap"><div class="head"><h2 class="title">Prestations</h2><p class="lead">Tournage, retouche et montage sont faits en interne : la personne qui vient sur place est celle qui vous livre les fichiers.</p></div><ul class="services"><li class="service"><h3>Photo HDR</h3><p>Des pièces lumineuses et des volumes fidèles, même par temps gris. 15 à 25 photos retouchées par reportage.<small>Sony α7 IV, bracketing HDR, redressement des perspectives</small></p></li><li class="service"><h3>Vidéo</h3><p>Une visite filmée pièce par pièce : les acheteurs savent à quoi s’attendre avant de se déplacer.<small>Stabilisateur, grand-angle, 60 à 90 secondes</small></p></li><li class="service"><h3>Drone</h3><p>Le terrain, la piscine, la vue et ce qu’il y a autour, montrés en un seul plan.<small>Pilote certifié DGAC, autorisations de vol en règle</small></p></li><li class="service"><h3>Montage</h3><p>Des fichiers prêts à publier sur les portails, Instagram, TikTok et YouTube.<small>Étalonnage, musique sous licence, versions horizontale et verticale</small></p></li></ul></div></section><section id="tarifs" class="section"><span id="agences"></span><span id="pap"></span><div class="wrap"><div class="head"><h2 class="title">Tarifs</h2><p class="lead">Prix TTC par bien. Tout est inclus : déplacement jusqu’à 50 km, tournage, post-production et livraison.</p></div><div class="switch" role="tablist" aria-label="Vous êtes"><button type="button" role="tab" aria-selected="true">Je vends seul</button><button type="button" role="tab" aria-selected="false">Je suis une agence</button></div><div class="plans"><article class="plan"><h3>Essentiel</h3><p class="plan-sub">Reportage photo, pour un bien qui se suffit à lui-même.</p><div class="price">149<!-- --> €<small>par bien</small></div><ul><li>15 à 20 photos HDR</li><li>Retouche et redressement</li><li>Photo aérienne incluse</li><li>Livraison en haute définition</li></ul><a href="#contact" class="btn btn-outline">Demander un devis</a></article><article class="plan plan-featured"><h3>Signature</h3><p class="plan-sub">Photo et vidéo, le duo qui fait la différence sur les portails.</p><div class="price">279<!-- --> €<small>par bien</small></div><ul><li>20 à 25 photos HDR</li><li>Vidéo de 60 à 90 secondes</li><li>Versions horizontale et verticale</li><li>Montage et musique sous licence</li></ul><a href="#contact" class="btn btn-primary">Demander un devis</a></article><article class="plan"><h3>Premium</h3><p class="plan-sub">Photo, vidéo et drone, quand le site autorise le vol.</p><div class="price">399<!-- --> €<small>par bien</small></div><ul><li>Tout le contenu Signature</li><li>Plans photo et vidéo au drone</li><li>Montage complet, version verticale</li><li>Site dédié au bien en option</li></ul><a href="#contact" class="btn btn-outline">Demander un devis</a></article></div><div class="calc"><div><h3>Vendre seul, avec des visuels d’agence.</h3><p>Une commission d’environ 4 % représente une somme importante. Vendre seul vous l’évite, mais votre annonce doit alors convaincre toute seule.</p><label for="prix">Prix de votre bien <strong>350 000<!-- --> €</strong></label><input id="prix" type="range" min="100000" max="2000000" step="10000" value="350000"/></div><dl><div><dt>Commission d’agence (≈ 4 %)</dt><dd>14 000<!-- --> €</dd></div><div><dt>Reportage ACN</dt><dd>dès <!-- -->149<!-- --> €</dd></div><div class="total"><dt>Écart</dt><dd>13 851<!-- --> €</dd></div></dl></div><div id="web" class="sub-block"><h3>Sites internet</h3><p>Pour que vos visuels aient leur propre page, pas seulement une annonce.</p><div class="table-wrap"><table><caption class="sr-only">Tarifs des sites internet</caption><thead><tr><th scope="col">Offre</th><th scope="col">Contenu</th><th scope="col" class="num">Tarif</th></tr></thead><tbody><tr><th scope="row">Mini-site d’un bien</th><td>Une page dédiée : galerie, vidéo, description, carte, formulaire de contact.</td><td class="num" data-label="Tarif">249 €</td></tr><tr><th scope="row">Site vitrine d’agence</th><td>Accueil, équipe, mandats, contact. Responsive, référencement de base, mise en ligne incluse.</td><td class="num" data-label="Tarif">990 à 1 490 €</td></tr><tr><th scope="row">Maintenance</th><td>Hébergement, certificat SSL, sauvegardes, mises à jour et petites modifications.</td><td class="num" data-label="Tarif">49 à 79 € / mois</td></tr></tbody></table></div></div></div></section><section id="deroule" class="section section-ciel"><div class="wrap"><div class="head"><h2 class="title">Comment ça se passe</h2></div><ol class="steps"><li><h3>Prise de contact</h3><p>Vous décrivez le bien et ce dont vous avez besoin. On commence par écouter, le devis vient après.</p></li><li><h3>Repérage</h3><p>On cale le projet ensemble et vous recevez un devis chiffré, clair et détaillé.</p></li><li><h3>Tournage</h3><p>Photo, vidéo, drone et, selon l’option choisie, site dédié au bien.</p></li><li><h3>Livraison</h3><p>Vous recevez les fichiers et le site est mis en ligne. L’annonce est prête.</p></li></ol></div></section><section id="zone" class="section"><div class="wrap zone"><div><h2 class="title">Zone d’intervention</h2><p class="lead">Déplacement inclus dans un rayon de 50 km autour de Royan, La Rochelle et Bordeaux. Au-delà, on établit un devis sur mesure.</p><p style="margin-top:16px;color:var(--ardoise-doux)">En Charente-Maritime, 22 % des logements sont des résidences secondaires (INSEE, 2023), plus du double de la moyenne nationale : beaucoup d’acheteurs découvrent le bien à distance, en photo et en vidéo.</p><ul class="cities"><li>La Rochelle</li><li>Île de Ré</li><li>Île d&#x27;Oléron</li><li>Royan</li><li>Bordeaux</li><li>Saint-Émilion</li><li>Arcachon</li><li>Cap Ferret</li></ul></div><div class="map"><svg viewBox="-25 -15 125 140" width="100%" height="100%" role="img" aria-label="Carte : rayon de 50 km autour de La Rochelle, Royan et Bordeaux"><circle cx="17.6" cy="16.1" r="25" fill="rgba(122,186,72,.16)" stroke="#7ABA48" stroke-opacity=".9" stroke-width=".4" stroke-dasharray="1.5 1"></circle><circle cx="22.2" cy="46.1" r="25" fill="rgba(122,186,72,.16)" stroke="#7ABA48" stroke-opacity=".9" stroke-width=".4" stroke-dasharray="1.5 1"></circle><circle cx="39.8" cy="89.4" r="25" fill="rgba(122,186,72,.16)" stroke="#7ABA48" stroke-opacity=".9" stroke-width=".4" stroke-dasharray="1.5 1"></circle><g><circle cx="17.6" cy="16.1" r="2.2" fill="#0C70B8"></circle><text x="20.400000000000002" y="17.700000000000003" text-anchor="start" font-size="5.4" fill="#1F2A33" font-family="Archivo, sans-serif" font-weight="700">La Rochelle</text></g><g><circle cx="9" cy="13.9" r="1.4" fill="#4A7F22"></circle><text x="6.2" y="15.5" text-anchor="end" font-size="4.2" fill="#1F2A33" font-family="Archivo, sans-serif" font-weight="500">Île de Ré</text></g><g><circle cx="11.3" cy="28.3" r="1.4" fill="#4A7F22"></circle><text x="8.5" y="29.900000000000002" text-anchor="end" font-size="4.2" fill="#1F2A33" font-family="Archivo, sans-serif" font-weight="500">Île d&#x27;Oléron</text></g><g><circle cx="22.2" cy="46.1" r="2.2" fill="#0C70B8"></circle><text x="25" y="47.7" text-anchor="start" font-size="5.4" fill="#1F2A33" font-family="Archivo, sans-serif" font-weight="700">Royan</text></g><g><circle cx="39.8" cy="89.4" r="2.2" fill="#0C70B8"></circle><text x="39.8" y="85.4" text-anchor="middle" font-size="5.4" fill="#1F2A33" font-family="Archivo, sans-serif" font-weight="700">Bordeaux</text></g><g><circle cx="56.2" cy="86.6" r="1.4" fill="#4A7F22"></circle><text x="59" y="88.19999999999999" text-anchor="start" font-size="4.2" fill="#1F2A33" font-family="Archivo, sans-serif" font-weight="500">Saint-Émilion</text></g><g><circle cx="16.8" cy="99.3" r="1.4" fill="#4A7F22"></circle><text x="19.6" y="100.89999999999999" text-anchor="start" font-size="4.2" fill="#1F2A33" font-family="Archivo, sans-serif" font-weight="500">Arcachon</text></g><g><circle cx="13.7" cy="101" r="1.4" fill="#4A7F22"></circle><text x="10.899999999999999" y="102.6" text-anchor="end" font-size="4.2" fill="#1F2A33" font-family="Archivo, sans-serif" font-weight="500">Cap Ferret</text></g></svg></div></div></section><section id="blog" class="section section-ciel"><div class="wrap"><div class="head"><h2 class="title">Conseils pour vendre</h2></div><div class="posts"><a href="articles/vendre-sans-agence-methode-2026/" class="post"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&amp;fit=crop&amp;q=80&amp;w=1000" alt="" loading="lazy"/><h3>Vendre sans agence : la méthode 2026, avec checklist</h3><p>Notre méthode pas à pas pour vendre votre bien sans agence.</p><div class="meta">12 mai 2026, 8 min de lecture</div></a><ul class="post-list"><li><a href="articles/5-erreurs-photo-qui-font-fuir-les-acheteurs/" class="post-row"><img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&amp;fit=crop&amp;q=80&amp;w=300" alt="" loading="lazy"/><div><h3>5 erreurs photo qui font fuir les acheteurs</h3><div class="meta">28 avril, 4 min de lecture</div></div></a></li><li><a href="articles/quand-le-drone-change-vraiment-la-donne/" class="post-row"><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&amp;fit=crop&amp;q=80&amp;w=300" alt="" loading="lazy"/><div><h3>Quand le drone change vraiment la donne</h3><div class="meta">15 avril, 5 min de lecture</div></div></a></li><li><a href="articles/comment-estimer-son-bien-sans-agence/" class="post-row"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&amp;fit=crop&amp;q=80&amp;w=300" alt="" loading="lazy"/><div><h3>Comment estimer son bien sans agence</h3><div class="meta">2 avril, 6 min de lecture</div></div></a></li></ul></div></div></section><section id="contact" class="section"><div class="wrap contact"><div><h2 class="title">Demander un devis</h2><p class="lead">Décrivez le bien : on vous répond sous 24 h avec une proposition chiffrée et un créneau de tournage. Le devis est gratuit.</p><p class="contact-mail"><a href="mailto:contact@acn-studio.fr">contact@acn-studio.fr</a></p></div><form action="https://api.web3forms.com/submit" method="POST" class="form"><input type="hidden" name="subject" value="Nouveau devis ACN"/><input type="hidden" name="access_key" value="22a373dc-cbea-4a06-8d1c-5f616773988d"/><label class="field">Nom<input name="name" autoComplete="name"/></label><label class="field">Vous êtes<select name="profil"><option selected="">Particulier</option><option>Agence immobilière</option><option>Autre</option></select></label><label class="field">Email<input name="email" type="email" required="" autoComplete="email"/></label><label class="field">Téléphone (facultatif)<input name="phone" type="tel" autoComplete="tel"/></label><label class="field field-full">Votre bien et votre besoin<textarea name="message" placeholder="Type de bien, ville, prestations souhaitées, date idéale…"></textarea></label><button type="submit" class="btn btn-primary">Demander un devis</button></form></div></section></main><span class="flag flag-bottom" aria-hidden="true"></span><footer class="footer"><div class="wrap"><div class="footer-grid"><div><a href="/" class="logo" aria-label="ACN, accueil"><svg width="30" height="30" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="24" fill="none" stroke="#fff" stroke-width="3"></circle><line x1="28" y1="22" x2="28" y2="8" stroke="#fff" stroke-width="3" stroke-linecap="round"></line><line x1="33.19615242270663" y1="25" x2="45.32050807568878" y2="18" stroke="#fff" stroke-width="3" stroke-linecap="round"></line><line x1="33.19615242270663" y1="31" x2="45.32050807568878" y2="38" stroke="#fff" stroke-width="3" stroke-linecap="round"></line><line x1="28" y1="34" x2="28" y2="48" stroke="#fff" stroke-width="3" stroke-linecap="round"></line><line x1="22.803847577293368" y1="31" x2="10.679491924311225" y2="38" stroke="#fff" stroke-width="3" stroke-linecap="round"></line><line x1="22.803847577293368" y1="25" x2="10.679491924311229" y2="18" stroke="#fff" stroke-width="3" stroke-linecap="round"></line><circle cx="28" cy="28" r="5.5" fill="#FFD703"></circle></svg>ACN</a><p style="margin-top:14px;max-width:30em">Photo, vidéo, drone et sites internet pour l’immobilier, en Charente-Maritime et autour de Bordeaux.</p></div><div><h2>Le site</h2><ul><li><a href="#portfolio">Réalisations</a></li><li><a href="#prestations">Prestations</a></li><li><a href="#tarifs">Tarifs</a></li><li><a href="#blog">Blog</a></li><li><a href="#contact">Contact</a></li></ul></div><div><h2>Contact</h2><ul><li><a href="mailto:contact@acn-studio.fr">contact@acn-studio.fr</a></li><li>Royan, La Rochelle, Bordeaux</li></ul></div></div><div class="footer-legal"><span>© 2026 ACN</span><a href="mentions-legales/">Mentions légales</a><a href="cgv/">Conditions générales de vente</a><a href="politique-confidentialite/">Politique de confidentialité</a></div></div></footer></div>
 
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
@@ -464,7 +473,7 @@ const fmt = n => n.toLocaleString('fr-FR');
 function Logo({
   dark = false
 }) {
-  const ink = dark ? '#fff' : '#262B30';
+  const ink = dark ? '#fff' : '#1F2A33';
   return React.createElement("a", {
     href: "/",
     className: "logo",
@@ -499,7 +508,7 @@ function Logo({
     cx: "28",
     cy: "28",
     r: "5.5",
-    fill: "#B8436A"
+    fill: "#FFD703"
   })), "ACN");
 }
 const NAV = [['Réalisations', '#portfolio'], ['Prestations', '#prestations'], ['Tarifs', '#tarifs'], ['Blog', '#blog']];
@@ -818,9 +827,9 @@ function Zone() {
     cx: c.x,
     cy: c.y,
     r: "25",
-    fill: "rgba(63,107,85,.10)",
-    stroke: "#3F6B55",
-    strokeOpacity: ".5",
+    fill: "rgba(122,186,72,.16)",
+    stroke: "#7ABA48",
+    strokeOpacity: ".9",
     strokeWidth: ".4",
     strokeDasharray: "1.5 1"
   })), CITIES.map(c => React.createElement("g", {
@@ -829,13 +838,13 @@ function Zone() {
     cx: c.x,
     cy: c.y,
     r: c.big ? 2.2 : 1.4,
-    fill: c.big ? '#B8436A' : '#3F6B55'
+    fill: c.big ? '#0C70B8' : '#4A7F22'
   }), React.createElement("text", {
     x: c.above ? c.x : c.left ? c.x - 2.8 : c.x + 2.8,
     y: c.above ? c.y - 4 : c.y + 1.6,
     textAnchor: c.above ? 'middle' : c.left ? 'end' : 'start',
     fontSize: c.big ? 5.4 : 4.2,
-    fill: "#262B30",
+    fill: "#1F2A33",
     fontFamily: "Archivo, sans-serif",
     fontWeight: c.big ? 700 : 500
   }, c.name)))))));
@@ -987,7 +996,13 @@ function Footer() {
   }, "Politique de confidentialit\xE9"))));
 }
 function App() {
-  return React.createElement(React.Fragment, null, React.createElement(Nav, null), React.createElement("main", null, React.createElement(Hero, null), React.createElement(Portfolio, null), React.createElement(Services, null), React.createElement(Pricing, null), React.createElement(Process, null), React.createElement(Zone, null), React.createElement(Blog, null), React.createElement(Contact, null)), React.createElement(Footer, null));
+  return React.createElement(React.Fragment, null, React.createElement(Nav, null), React.createElement("main", null, React.createElement(Hero, null), React.createElement("span", {
+    className: "flag flag-top",
+    "aria-hidden": "true"
+  }), React.createElement(Portfolio, null), React.createElement(Services, null), React.createElement(Pricing, null), React.createElement(Process, null), React.createElement(Zone, null), React.createElement(Blog, null), React.createElement(Contact, null)), React.createElement("span", {
+    className: "flag flag-bottom",
+    "aria-hidden": "true"
+  }), React.createElement(Footer, null));
 }
 if (typeof window !== 'undefined') {
   ReactDOM.hydrateRoot(document.getElementById('root'), React.createElement(App, null));
