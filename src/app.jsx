@@ -19,6 +19,9 @@ const VIDEOS = [
   { id: 'cMjm1aVMTb0', label: 'Balade FPV',      title: 'Fais de ton rêve une idée, et de cette idée une balade en FPV' },
 ];
 
+// Version verticale (format Shorts / Reels / TikTok) d'un reportage.
+const SOCIAL_VIDEO = { id: 'gOsleIrz71I', title: 'Démo immobilière ACN, format vertical pour les réseaux sociaux' };
+
 // Photos de reportages réels : { src: 'media/xxx.jpg', alt: '...' }. La grille
 // n'apparaît que lorsqu'il y en a.
 const PHOTOS = [];
@@ -182,6 +185,25 @@ function Portfolio() {
               <span>{x.label}</span>
             </button>
           ))}
+        </div>
+        <div className="social">
+          <div className="social-text">
+            <h3>Format réseaux sociaux</h3>
+            <p>
+              La même visite, montée à la verticale pour Instagram, TikTok et YouTube Shorts :
+              plus courte, cadrée pour le téléphone, prête à publier.
+            </p>
+            <p className="social-note">Livrée avec les formules Signature et Premium.</p>
+          </div>
+          <div className="phone">
+            <iframe
+              src={`https://www.youtube.com/embed/${SOCIAL_VIDEO.id}`}
+              title={SOCIAL_VIDEO.title}
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
         </div>
         {PHOTOS.length > 0 && (
           <div className="gallery">
