@@ -153,6 +153,12 @@
   .reel span { display: block; margin-top: 8px; font-size: 15px; font-weight: 600; color: var(--ardoise-doux); }
   .reel:hover img, .reel[aria-selected="true"] img { opacity: 1; }
   .reel[aria-selected="true"] span { color: var(--ardoise); box-shadow: inset 0 -2px 0 var(--mer); display: inline-block; }
+  .social { margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--trait); display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; }
+  .social h3 { font-size: clamp(24px, 2.6vw, 32px); }
+  .social p { margin-top: 12px; font-size: 18px; max-width: 30em; }
+  .social .social-note { font-size: 15px; color: var(--ardoise-doux); }
+  .phone { position: relative; width: 300px; aspect-ratio: 9 / 16; border: 10px solid var(--ardoise); border-radius: 28px; overflow: hidden; background: var(--ardoise); }
+  .phone iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   .gallery { margin-top: 48px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
   .gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 4px; }
 
@@ -260,7 +266,8 @@
 
   @media (max-width: 960px) {
     .section { padding: 72px 0; }
-    .service, .zone, .contact, .calc, .posts { grid-template-columns: 1fr; gap: 24px; }
+    .service, .zone, .contact, .calc, .posts, .social { grid-template-columns: 1fr; gap: 24px; }
+    .phone { width: min(300px, 100%); justify-self: center; }
     .plans { grid-template-columns: 1fr; }
     .plan { border-right: 0; border-bottom: 1px solid var(--trait); }
     .steps { grid-template-columns: 1fr 1fr; }
