@@ -6,6 +6,7 @@
 
 - Contenu et composants : `src/app.jsx`
 - `<head>`, SEO, styles globaux : `src/template.html`
+- Pages par ville (Royan, La Rochelle, Bordeaux) : `src/villes.jsx`, générées en HTML statique dans `photographe-immobilier-*/`
 
 Puis, depuis la racine du projet :
 

@@ -382,7 +382,12 @@ function Zone() {
             En Charente-Maritime, 22 % des logements sont des résidences secondaires (INSEE, 2023), plus du double
             de la moyenne nationale : beaucoup d’acheteurs découvrent le bien à distance, en photo et en vidéo.
           </p>
-          <ul className="cities">{CITIES.map((c) => <li key={c.name}>{c.name}</li>)}</ul>
+          <ul className="cities">
+            {CITIES.map((c) => {
+              const local = LOCAL_PAGES.find(([t]) => t === c.name);
+              return <li key={c.name}>{local ? <a href={local[1]}>{c.name}</a> : c.name}</li>;
+            })}
+          </ul>
         </div>
         <div className="map">
           <svg viewBox="-25 -15 125 140" width="100%" height="100%" role="img" aria-label="Carte : rayon de 50 km autour de La Rochelle, Royan et Bordeaux">
@@ -484,7 +489,13 @@ function Contact() {
   );
 }
 
-function Footer() {
+const LOCAL_PAGES = [
+  ['Royan', '/photographe-immobilier-royan/'],
+  ['La Rochelle', '/photographe-immobilier-la-rochelle/'],
+  ['Bordeaux', '/photographe-immobilier-bordeaux/'],
+];
+
+function Footer({ base = '' }) {
   return (
     <footer className="footer">
       <div className="wrap">
@@ -496,22 +507,25 @@ function Footer() {
           <div>
             <h2>Le site</h2>
             <ul>
-              {[...NAV, ['Contact', '#contact']].map(([t, h]) => <li key={h}><a href={h}>{t}</a></li>)}
+              {[...NAV, ['Contact', '#contact']].map(([t, h]) => <li key={h}><a href={base + h}>{t}</a></li>)}
             </ul>
           </div>
           <div>
             <h2>Contact</h2>
             <ul>
               <li><a href="mailto:contact@acn-studio.fr">contact@acn-studio.fr</a></li>
-              <li>Royan, La Rochelle, Bordeaux</li>
+            </ul>
+            <h2 style={{ marginTop: 20 }}>Nos villes</h2>
+            <ul>
+              {LOCAL_PAGES.map(([t, h]) => <li key={h}><a href={h}>{t}</a></li>)}
             </ul>
           </div>
         </div>
         <div className="footer-legal">
           <span>© 2026 ACN</span>
-          <a href="mentions-legales/">Mentions légales</a>
-          <a href="cgv/">Conditions générales de vente</a>
-          <a href="politique-confidentialite/">Politique de confidentialité</a>
+          <a href="/mentions-legales/">Mentions légales</a>
+          <a href="/cgv/">Conditions générales de vente</a>
+          <a href="/politique-confidentialite/">Politique de confidentialité</a>
         </div>
       </div>
     </footer>
